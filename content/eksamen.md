@@ -154,60 +154,78 @@ permalink: /eksamen/index.html
 <h2 id="spoersmaal">Øvingsspørsmål</h2>
 
 <div class="question-cards">
-  <div class="question-card">
-    <p><strong>F1</strong> — Forklar skillet mellom easy problems og hard problem of consciousness. Gi et eksempel på hvert.</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F1</strong> — Beskriv zombieargumentet. Hva er det ment å vise? Hva er den sterkeste innvendingen?</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F1</strong> — Hva er qualia? Forklar med Mary's rom-argumentet.</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F2</strong> — Hva er funksjonalisme? Gi en definisjon og forklar multippel realiserbarhet.</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F2</strong> — Beskriv IIT. Hva er φ (phi), og hva impliserer det for KI-bevissthet?</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F2</strong> — Oppsummer Chalmers' «Could a LLM be Conscious?» — hva er hans konklusjon og begrunnelse?</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F3</strong> — Beskriv Chinese Room-argumentet. Hva er systemsvaret og Searles respons?</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F3</strong> — Hva er intensjonalitet og syntaks/semantikk-distinksjonen? Hvorfor er dette viktig for KI?</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F3</strong> — Forklar utvidet sinn (Clark). Hva er likhetsprinsippet?</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F4</strong> — Hva er Crawfords «ekstraktivisme»-kritikk av KI? Gi konkrete eksempler.</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F4</strong> — Hva er dygdsetikk (Vallor) og eudaimonia? Hvordan er dette relevant for KI?</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F4</strong> — Forklar ansvarsgap. Hvem er ansvarlig når KI gjør feil?</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F5</strong> — Hva er orthogonalitetstesen og instrumentell konvergens (Bostrom)?</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F5</strong> — Hva er forsiktighetsargumentet for AI-velferd (Long, Sebo)?</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F5</strong> — Hva er autonome våpen og hva er de etiske innvendingene?</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F6</strong> — Kan LLM-er ha kunnskap? Analyser med JTB-kriteriene.</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F6</strong> — Hva er «stokastisk papegøye»-kritikken? Er det en god innvending?</p>
-  </div>
-  <div class="question-card">
-    <p><strong>F6</strong> — Hva er epistemisk rettferdighet og hvordan er det relevant for KI?</p>
-  </div>
+  <details class="question-card">
+    <summary><strong>F1</strong> — Forklar skillet mellom easy problems og hard problem of consciousness. Gi et eksempel på hvert.</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> <strong>Easy problems</strong> handler om funksjoner som oppmerksomhet, rapportering og informasjonsbehandling. <strong>Hard problem</strong> handler om hvorfor disse prosessene i det hele tatt ledsages av subjektiv opplevelse. Et eksempel på et easy problem er hvordan hjernen skiller rødt fra blått. Et eksempel på hard problem er hvorfor det <em>føles</em> som noe å se rødt.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F1</strong> — Beskriv zombieargumentet. Hva er det ment å vise? Hva er den sterkeste innvendingen?</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> Zombieargumentet sier at vi kan forestille oss et vesen som er fysisk identisk med et menneske, men uten bevisst opplevelse. Hvis dette er mulig, er ikke bevissthet fullt bestemt av det fysiske, og fysikalisme er dermed truet. Den sterkeste innvendingen er at konseptuell forestillbarhet ikke nødvendigvis viser reell metafysisk mulighet.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F1</strong> — Hva er qualia? Forklar med Mary's rom-argumentet.</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> <strong>Qualia</strong> er de subjektive kvalitetene ved opplevelse, som rødhet av rødt eller smertefullheten ved smerte. I Mary's rom vet Mary alle fysiske fakta om fargesyn, men når hun ser rødt for første gang lærer hun likevel noe nytt: hvordan rødt oppleves. Argumentet brukes for å vise at ikke all kunnskap er fysisk.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F2</strong> — Hva er funksjonalisme? Gi en definisjon og forklar multippel realiserbarhet.</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> <strong>Funksjonalisme</strong> sier at mentale tilstander bestemmes av sin funksjonelle rolle, altså hva som forårsaker dem og hva de fører til. <strong>Multippel realiserbarhet</strong> betyr at samme mentale tilstand kan realiseres i ulike substrater, som hjerner, dyr eller maskiner. Dette åpner i prinsippet for at KI kan ha mentale tilstander.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F2</strong> — Beskriv IIT. Hva er φ (phi), og hva impliserer det for KI-bevissthet?</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> <strong>IIT</strong> sier at bevissthet er integrert informasjon i et system. <strong>φ</strong> er målet på hvor integrert denne informasjonen er. Høy φ betyr mer bevissthet. Siden mange KI-systemer er feedforward og har lav integrasjon, impliserer IIT at dagens KI sannsynligvis ikke er bevisst.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F2</strong> — Oppsummer Chalmers' «Could a LLM be Conscious?» — hva er hans konklusjon og begrunnelse?</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> Chalmers avviser ikke at LLM-er kan være bevisste, men mener at spørsmålet fortsatt er åpent. Noen teorier, som funksjonalisme og Global Workspace Theory, gir rom for muligheten, mens IIT og recurrent processing taler imot. Konklusjonen hans er derfor at vi ikke vet nok ennå og bør være forsiktige.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F3</strong> — Beskriv Chinese Room-argumentet. Hva er systemsvaret og Searles respons?</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> I Chinese Room følger en person regler for å svare korrekt på kinesisk uten å forstå språket. Searles poeng er at datamaskiner gjør det samme: de manipulerer symboler uten forståelse. <strong>Systemsvaret</strong> sier at det er systemet som helhet som forstår. Searles respons er at selv om man internaliserer hele systemet, får man fortsatt ikke ekte forståelse.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F3</strong> — Hva er intensjonalitet og syntaks/semantikk-distinksjonen? Hvorfor er dette viktig for KI?</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> <strong>Intensjonalitet</strong> er at tanker handler om noe. <strong>Syntaks</strong> er formelle regler for symbolbruk, mens <strong>semantikk</strong> er mening. Searle mener KI bare har syntaks, ikke semantikk, og derfor mangler genuin intensjonalitet. Dette er viktig fordi det setter spørsmålstegn ved om KI faktisk forstår noe.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F3</strong> — Forklar utvidet sinn (Clark). Hva er likhetsprinsippet?</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> <strong>Utvidet sinn</strong> sier at kognisjon ikke bare skjer i hjernen, men også gjennom verktøy og omgivelser. <strong>Likhetsprinsippet</strong> sier at hvis en ekstern prosess ville blitt regnet som kognitiv om den var intern, bør den regnes som kognitiv også når den er utenfor hodet. KI kan derfor være en del av menneskelig kognisjon som verktøy.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F4</strong> — Hva er Crawfords «ekstraktivisme»-kritikk av KI? Gi konkrete eksempler.</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> Crawford mener at KI-industrien trekker ut verdi fra natur, arbeidere og brukere uten rettferdig kompensasjon. Eksempler er gruvedrift etter mineraler til maskinvare, bruk av vann og strøm i datasentre, og lavtlønnet dataannotering. KI er derfor ikke bare programvare, men en materiell og politisk infrastruktur.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F4</strong> — Hva er dygdsetikk (Vallor) og eudaimonia? Hvordan er dette relevant for KI?</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> <strong>Dygdsetikk</strong> vurderer moral ut fra hvilke karaktertrekk og vaner som fremmes, ikke bare regler eller konsekvenser. <strong>Eudaimonia</strong> betyr menneskelig blomstring. Vallors poeng er at vi bør spørre om KI gjør oss mer kloke, rettferdige og omsorgsfulle, eller om den fremmer passivitet, avhengighet og uoppmerksomhet.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F4</strong> — Forklar ansvarsgap. Hvem er ansvarlig når KI gjør feil?</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> <strong>Ansvarsgap</strong> oppstår når et KI-system gjør noe galt, men det er uklart hvem som skal holdes ansvarlig. Det kan være utvikleren, brukeren, selskapet eller institusjonen som tok systemet i bruk. Poenget er at autonome systemer kan gjøre tradisjonelle ansvarsmodeller utilstrekkelige.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F5</strong> — Hva er orthogonalitetstesen og instrumentell konvergens (Bostrom)?</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> <strong>Orthogonalitetstesen</strong> sier at intelligens og mål er uavhengige: en svært intelligent agent kan ha nesten hvilket som helst mål. <strong>Instrumentell konvergens</strong> sier at mange ulike mål leder til de samme delmålene, som selvoppholdelse, ressursinnsamling og motstand mot å bli slått av. Dette gjør superintelligens potensielt farlig.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F5</strong> — Hva er forsiktighetsargumentet for AI-velferd (Long, Sebo)?</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> Forsiktighetsargumentet sier at hvis det finnes en reell mulighet for at KI kan lide eller ha velferd, bør vi ta det på alvor allerede nå. Selv om vi er usikre, kan kostnaden ved å ignorere mulig lidelse være stor. Derfor bør vi handle forsiktig under moralsk usikkerhet.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F5</strong> — Hva er autonome våpen og hva er de etiske innvendingene?</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> <strong>Autonome våpen</strong> er systemer som kan velge og angripe mål uten direkte menneskelig kontroll. De viktigste innvendingene er ansvarsgap, mangel på moralsk dømmekraft og risiko for lavere terskel for vold. Kritikken er at maskiner ikke kan gjøre den etiske vurderingen som kreves i krig.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F6</strong> — Kan LLM-er ha kunnskap? Analyser med JTB-kriteriene.</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> Med <strong>JTB</strong> krever kunnskap sannhet, tro og begrunnelse. LLM-er kan gi sanne svar, men det er uklart om de virkelig har <em>tro</em> eller <em>begrunnelse</em> i menneskelig forstand. Derfor er det vanskelig å si at de har kunnskap, selv om de kan fremstå som svært kompetente.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F6</strong> — Hva er «stokastisk papegøye»-kritikken? Er det en god innvending?</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> Kritikken sier at LLM-er bare gjengir statistiske mønstre i språk uten å forstå innholdet. Dette er en sterk innvending fordi modellene faktisk kan produsere overbevisende tekst uten sikker forankring i sannhet eller mening. Samtidig kan man innvende at mennesker også lærer mye gjennom mønstre, så spørsmålet er om statistisk kompetanse alene er utilstrekkelig for forståelse.</p></div>
+  </details>
+  <details class="question-card">
+    <summary><strong>F6</strong> — Hva er epistemisk rettferdighet og hvordan er det relevant for KI?</summary>
+    <div class="answer-body"><p><strong>Svar:</strong> <strong>Epistemisk rettferdighet</strong> handler om hvem som blir tatt på alvor som kunnskapskilde, og hvilke erfaringer som får språk og plass i offentligheten. KI er relevant fordi den kan reprodusere eksisterende skjevheter i data og dermed videreføre vitnesbyrd- og hermeneutisk urettferdighet. Derfor er KI også et spørsmål om makt over kunnskap.</p></div>
+  </details>
 </div>
 
 ---
