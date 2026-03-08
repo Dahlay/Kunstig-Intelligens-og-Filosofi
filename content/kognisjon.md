@@ -19,11 +19,13 @@ permalink: /kognisjon/index.html
 
 ## Sammendrag
 
-Forelesningen tar for seg spørsmålet: *Kan KI virkelig tenke?* Her skilles det mellom å simulere tenking og faktisk ha tanker — en distinksjon som går til hjertet av debatten om kunstig intelligens.
+- **Hovedspørsmål:** Tenker KI selv, eller hjelper den bare oss å tenke?
+- **Searles svar:** Nei — symbolbehandling er ikke det samme som forståelse.
+- **Clarks svar:** KI kan inngå i menneskelig kognisjon som et verktøy, selv om den ikke tenker som oss.
 
-**John Searle** hevder med sitt Chinese Room-argument at KI-systemer kun manipulerer symboler etter regler (syntaks), uten å forstå meningen (semantikk) i det de gjør. Sann tenking krever intensjonalitet — evnen til å representere verden — som Searle mener ikke kan oppstå fra ren symbolmanipulasjon.
-
-**Andy Clark** argumenterer derimot for at hjernen alltid har vært «koblet ut» i verden — vi tenker *med* redskaper og omgivelser. KI kan dermed ses som en forlengelse av menneskets kognitive apparatur.
+<div class="info-box">
+  <strong>Husk dette:</strong> F3 handler om forskjellen mellom å gi riktige svar og å faktisk forstå hva svarene betyr.
+</div>
 
 ---
 

@@ -19,11 +19,13 @@ permalink: /bevissthet-2/index.html
 
 ## Sammendrag
 
-Denne forelesningen tar opp: *Kan KI noen gang være bevisst?* For å svare på dette trenger vi både en teori om hva bevissthet *er*, og kriterier for når et system har det.
+- **Hovedspørsmål:** Kan KI være bevisst hvis den har riktig funksjon eller struktur?
+- **Hovedidé:** Funksjonalisme sier ja i prinsippet, fordi mentale tilstander defineres av hva de gjør.
+- **Uenighet:** Ulike teorier som IIT og Global Workspace gir ulike svar på om dagens KI faktisk kvalifiserer.
 
-**Funksjonalisme** er en naturlig teori å begynne med fordi den sier at mentale tilstander er definert av funksjonelle roller — ikke av substansen de er implementert i. Dette åpner for KI-bevissthet. Men kritikere (Searle, Block) mener funksjonalisme ikke fanger qualia.
-
-Moderne bevissthetsteorier som **IIT**, **Global Workspace Theory** og **prediktiv prosessering** gir ulike kriterier — og ulike konklusjoner — for om LLM-er eller andre KI-systemer kan være bevisste.
+<div class="info-box">
+  <strong>Husk dette:</strong> F2 er debatten om hvilke kriterier som må være oppfylt før vi kan si at et system er bevisst.
+</div>
 
 ---
 

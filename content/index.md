@@ -5,14 +5,19 @@ title: Oversikt
 
 <div class="course-intro">
   <h1>Kunstig Intelligens og Filosofi</h1>
-  <p>Velkommen til studieveiledningen! Her finner du oppsummeringer av alle forelesninger, forklaringer av nøkkelbegreper og øvingsspørsmål til eksamen. Bruk sidepanelet til å navigere.</p>
+  <p>Kort og enkel studieveiledning til kurset. Her finner du bare det viktigste: hovedpoeng, nøkkelbegreper og spørsmål du bør kunne til eksamen.</p>
 </div>
 
 ## Om kurset
 
-Kurset undersøker grunnleggende filosofiske spørsmål som kunstig intelligens reiser: *Kan maskiner tenke? Kan de være bevisste? Hva er kognisjon? Hvilke etiske forpliktelser har vi overfor KI — og overfor dem som påvirkes av det?*
+Kurset handler om fire ting du bør holde fra hverandre:
 
-Kurset spenner over seks forelesningsrekker og et bredt pensum med tekster fra analytisk filosofi, kognisjonsvitenskap og etikk.
+- **Bevissthet**: Kan KI ha subjektive opplevelser?
+- **Kognisjon**: Kan KI forstå, tenke og vite noe?
+- **Etikk**: Hvem får makt, og hvem har ansvar?
+- **Fremtid**: Kan KI få moralsk status eller bli farlig?
+
+Målet med siden er å gjøre dette lett å repetere, ikke å gjenta hele pensum i detalj.
 
 ---
 
@@ -22,32 +27,32 @@ Kurset spenner over seks forelesningsrekker og et bredt pensum med tekster fra a
   <a class="lecture-card" href="/bevissthet-1/">
       <div class="card-num">Forelesning 1 · Hedda Hassel Mørch</div>
     <h3>Introduksjon &amp; Bevissthet I</h3>
-    <p>Hva er bevissthet? Hard problem, qualia, Nagel, Mary's rom og filosofiske zombier.</p>
+    <p>Hva bevissthet er, og hvorfor qualia og hard problem skaper trøbbel for enkle forklaringer.</p>
   </a>
   <a class="lecture-card" href="/bevissthet-2/">
       <div class="card-num">Forelesning 2 · Hedda Hassel Mørch</div>
     <h3>Funksjonalisme &amp; KI-bevissthet</h3>
-    <p>Funksjonalisme, IIT, Global Workspace Theory, Chalmers om LLM-er, Seth og prediktiv prosessering.</p>
+    <p>Om funksjonalisme er nok, og hvilke teorier som brukes for å vurdere bevisst KI.</p>
   </a>
   <a class="lecture-card" href="/kognisjon/">
       <div class="card-num">Forelesning 3 · Anna Sara Malmgren</div>
     <h3>Kognisjon: Kan KI tenke?</h3>
-    <p>Searles Chinese Room, intensjonalitet, syntaks vs. semantikk, Clark og utvidet sinn.</p>
+    <p>Kan KI tenke, eller bare etterligne tenking? Chinese Room og utvidet sinn er nøkkelen her.</p>
   </a>
   <a class="lecture-card" href="/etikk/">
       <div class="card-num">Forelesning 4 · Anstein Gregersen</div>
     <h3>Etikk og Samfunn</h3>
-    <p>Datamakt, algoritmisk skjevhet, Floridi, Crawford, Vallor og dygdsetikk i teknologien.</p>
+    <p>Hva KI gjør med samfunnet: skjevhet, makt, ansvar og hvordan teknologi bør vurderes etisk.</p>
   </a>
   <a class="lecture-card" href="/ai-velferd/">
       <div class="card-num">Forelesning 5 · Andreas Brekke Carlsson</div>
     <h3>AI Velferd og Fremtid</h3>
-    <p>Moralsk status, autonome våpen, superintelligens, posthumanisme og digitale sinn.</p>
+    <p>Om KI kan bli moralsk relevant, og hvorfor superintelligens og autonome våpen bekymrer filosofer.</p>
   </a>
   <a class="lecture-card" href="/kunnskap-ai/">
       <div class="card-num">Forelesning 6 · Anna Drozdzowicz</div>
     <h3>Kunnskap og Forståelse</h3>
-    <p>Kjenner KI noe? Semantisk forståelse, testbarhet av kognisjon og epistemisk rettferdighet.</p>
+    <p>Hva kunnskap og forståelse er, og hvorfor språkmodeller både imponerer og hallusinerer.</p>
   </a>
 </div>
 
@@ -59,12 +64,12 @@ Kurset spenner over seks forelesningsrekker og et bredt pensum med tekster fra a
   <a class="lecture-card" href="/eksamen/">
       <div class="card-num">Samlet oversikt</div>
     <h3>Nøkkelord til eksamen</h3>
-    <p>Alle sentrale begreper, definisjoner og øvingsspørsmål samlet på ett sted.</p>
+    <p>Bruk denne siden til repetisjon de siste dagene før eksamen.</p>
   </a>
   <a class="lecture-card" href="/pdfs.html">
       <div class="card-num">Pensumlitteratur</div>
     <h3>PDF-ressurser</h3>
-    <p>Alle pensumsartikler tilgjengelig for nedlasting.</p>
+    <p>Hele pensum samlet hvis du vil gå fra kortversjon til originaltekst.</p>
   </a>
 </div>
 
@@ -87,15 +92,8 @@ Kurset spenner over seks forelesningsrekker og et bredt pensum med tekster fra a
 
 </div>
 
-- **Andre**: Schneider, Birch, Long Butlin et al. (Consciousness in AI) – Utforsker etikk og muligheter for bevisst KI.
+## Slik bruker du siden
 
-**Generell forklaring**: Pensumet dekker filosofi av sinn, AI-etikk og tekniske aspekter. Fokuser på debatter: Er bevissthet emergent? Kan KI være moralsk ansvarlig?
-
-## Generell Studieplan
-- **Dag 1-2**: Les forelesning 1 og 2. Ta notater på bevissthet og funksjonalisme.
-- **Dag 3**: Forelesning 3 og kognisjon-artikler. Diskuter med deg selv: Kan KI tenke?
-- **Dag 4**: Arbeidskrav – Lag svar.
-- **Dag 5-7**: Les 2-3 artikler fra pensum. Sammendragskriv.
-- **Ukentlig**: Gjenta nøkkelpunkter, lag flashcards (f.eks. "Hva er qualia?").
-
-Hvis du trenger mer detaljerte sammendrag eller kodeeksempler (f.eks. enkle KI-modeller), si fra!
+<div class="info-box">
+  <strong>Enkel strategi:</strong> Start med sammendraget på hver forelesningsside, lær nøkkelbegrepene, og avslutt med øvingsspørsmålene på eksamenssiden. Hvis du kan forklare hvert hovedbegrep med 2–3 setninger, ligger du godt an.
+</div>

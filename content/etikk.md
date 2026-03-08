@@ -19,13 +19,13 @@ permalink: /etikk/index.html
 
 ## Sammendrag
 
-Forelesningen retter blikket mot KIs samfunnsmessige og etiske dimensjoner. Hva gjør KI *med oss* — som individer, samfunn og art? Hvem *tjener* på KI, og hvem *betaler prisen*?
+- **Hovedspørsmål:** Hvilke samfunnsproblemer skaper KI, og hvem har ansvar?
+- **Crawford:** KI er ikke nøytral; den bygger på ressursbruk, arbeid og makt.
+- **Floridi og Vallor:** KI må vurderes både som del av et informasjonsmiljø og ut fra hva slags mennesker og samfunn teknologien fremmer.
 
-**Kate Crawford** (Atlas of AI) avdekker at KI ikke er nøytral teknologi — den er bygget på enorme ressursuttrekk: fysisk (mineraler, vann, energi), menneskelig (arbeidskraft, data) og politisk (maktkonsentrasjoner hos store teknologiselskaper). KI er infrastruktur for kapital og kontroll.
-
-**Luciano Floridi** tilbyr et filosofisk rammeverk: informasjonsfilosofi. KI-agenter er del av «infosphere» — og filosofi bør analysere krav om rettigheter, ansvar og etikk i dette rommet.
-
-**Shannon Vallor** argumenterer for at teknologiutvikling trenger dygdsetikk — ikke bare regler, men karakterutvikling og menneskelig blomstring.
+<div class="info-box">
+  <strong>Husk dette:</strong> F4 er mindre om «kan vi bygge KI?» og mer om «bør vi bruke den slik vi gjør nå?».
+</div>
 
 ---
 

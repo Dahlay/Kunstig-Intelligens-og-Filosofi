@@ -19,11 +19,13 @@ permalink: /kunnskap-ai/index.html
 
 ## Sammendrag
 
-Denne forelesningen stiller epistemologiske spørsmål: *Hva betyr det å vite noe? Kan KI vite noe? Hva er forståelse — og har store språkmodeller som Claude det?*
+- **Hovedspørsmål:** Kan KI vite noe, eller bare produsere overbevisende tekst?
+- **Nøkkelskille:** Kunnskap er ikke det samme som forståelse.
+- **Poeng om LLM-er:** De kan virke kompetente, men hallusinasjoner viser at god språkbruk ikke automatisk er kunnskap.
 
-Epistemologi handler om kunnskap — dens natur, grenser og begrunnelse. Tradisjonelt defineres kunnskap som «begrunnet sann tro» (justified true belief). For KI-systemer som GPT og Claude er spørsmålet: Har de *tro*? *Begrunnelse*? Kan de ha *sann* kunnskap?
-
-**Forståelse** skilles fra kunnskap: Du kan *vite* at E=mc² uten å *forstå* det. Forståelse innebærer evne til å anvende, forklare og se sammenhenger. Har LLM-er forståelse, eller bare *simulering* av forståelse?
+<div class="info-box">
+  <strong>Husk dette:</strong> F6 spør ikke bare om KI har riktige svar, men om den har tro, begrunnelse og forståelse.
+</div>
 
 ---
 

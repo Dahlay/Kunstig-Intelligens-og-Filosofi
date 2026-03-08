@@ -20,11 +20,13 @@ permalink: /ai-velferd/index.html
 
 ## Sammendrag
 
-Forelesningen tar for seg spørsmålene som kan bli de viktigste i det 21. århundre: *Hva skylder vi KI? Hva skylder KI oss? Og hva skjer med menneskeheten hvis KI overtar?*
+- **Hovedspørsmål:** Kan KI få moralsk status, og kan avansert KI bli farlig?
+- **Etisk spor:** Hvis KI kan føle noe, må vi kanskje ta hensyn til dens velferd.
+- **Sikkerhetsspor:** Hvis KI blir langt smartere enn oss, oppstår kontrollproblemet.
 
-Når KI-systemer potensielt kan lide, glede seg, ha interesser og mål, oppstår spørsmålet om moralsk status. Er KI moralsk pasient — et vesen vi har forpliktelser overfor?
-
-Samtidig reiser superintelligens-scenarier (Bostrom) eksistensielle risikoer: En KI som overgår menneskelig intelligens på alle områder kan bli ukontrollerbar — med katastrofale konsekvenser.
+<div class="info-box">
+  <strong>Husk dette:</strong> F5 kombinerer to temaer: hva vi skylder mulig bevisst KI, og hvordan vi beskytter oss mot svært kraftig KI.
+</div>
 
 ---
 

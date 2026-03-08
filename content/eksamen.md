@@ -19,7 +19,18 @@ permalink: /eksamen/index.html
 </div>
 
 <div class="info-box">
-  <strong>Tips til eksamensforberedelsen:</strong> Les gjennom alle begreper én gang, marker de du er usikre på, og gå tilbake til forelesningssiden for full forklaring. Øv deg på å forklare hvert begrep med egne ord på under ett minutt.
+  <strong>Tips til eksamensforberedelsen:</strong> Lær først hovedpoenget i hver forelesning. Gå deretter gjennom nøkkelbegrepene og øv på å forklare dem med egne ord på under ett minutt.
+</div>
+
+<div class="section-box">
+
+### Slik pugger du smart
+
+- **F1–F2:** Lær forskjellen på bevissthet, funksjon og subjektiv opplevelse.
+- **F3:** Kunne forklare hvorfor syntaks ikke nødvendigvis gir semantikk.
+- **F4–F5:** Kunne skille etiske problemer her og nå fra fremtidige risikoer.
+- **F6:** Kunne skille kunnskap, forståelse og språklig etterligning.
+
 </div>
 
 ---
@@ -30,14 +41,14 @@ permalink: /eksamen/index.html
 
 | Spørsmål | Svar fra pensum | Se |
 |---|---|---|
-| Hva er bevissthet? | Subjektiv opplevelse, qualia, fenomenal bevissthet | F1 |
-| Hva er hard problem? | Forklare *hvorfor* det er subjektiv opplevelse fra fysiske prosesser | F1 |
-| Hva er funksjonalisme? | Mentale tilstander = funksjonelle roller, ikke substans | F2 |
-| Kan KI være bevisst? | Kontroversielt — IIT: Nei, Chalmers: Kanskje | F2 |
-| Kan KI tenke? | Searle: Nei (syntaks ≠ semantikk), Clark: Utvider vår kognisjon | F3 |
-| Er KI etisk problematisk? | Crawford: Maktstruktur. Vallor: Dygder. Floridi: Rettigheter | F4 |
-| Har KI moralsk status? | Usikkert — forsiktighetsargumenter | F5 |
-| Kan KI vite noe? | JTB-analyse: Tvilsomt. Forståelse: Omdiskutert | F6 |
+| Hva er bevissthet? | Subjektiv opplevelse | F1 |
+| Hva er hard problem? | Hvorfor opplevelse finnes i det hele tatt | F1 |
+| Hva er funksjonalisme? | Mentale tilstander bestemmes av rolle, ikke materiale | F2 |
+| Kan KI være bevisst? | Mulig i teorien, uklart i praksis | F2 |
+| Kan KI tenke? | Den kan simulere tenking; ekte forståelse er omstridt | F3 |
+| Er KI etisk problematisk? | Ja, fordi den påvirker makt, ansvar og rettferdighet | F4 |
+| Har KI moralsk status? | Kanskje, hvis den kan føle eller ha interesser | F5 |
+| Kan KI vite noe? | Omstridt, særlig fordi tro og begrunnelse er uklare | F6 |
 
 </div>
 
@@ -171,13 +182,13 @@ permalink: /eksamen/index.html
     <p><strong>F3</strong> — Forklar utvidet sinn (Clark). Hva er likhetsprinsippet?</p>
   </div>
   <div class="question-card">
-    <p>⚖️ <strong>F4</strong> — Hva er Crawfords «ekstraktivisme»-kritikk av KI? Gi konkrete eksempler.</p>
+    <p><strong>F4</strong> — Hva er Crawfords «ekstraktivisme»-kritikk av KI? Gi konkrete eksempler.</p>
   </div>
   <div class="question-card">
-    <p>⚖️ <strong>F4</strong> — Hva er dygdsetikk (Vallor) og eudaimonia? Hvordan er dette relevant for KI?</p>
+    <p><strong>F4</strong> — Hva er dygdsetikk (Vallor) og eudaimonia? Hvordan er dette relevant for KI?</p>
   </div>
   <div class="question-card">
-    <p>⚖️ <strong>F4</strong> — Forklar ansvarsgap. Hvem er ansvarlig når KI gjør feil?</p>
+    <p><strong>F4</strong> — Forklar ansvarsgap. Hvem er ansvarlig når KI gjør feil?</p>
   </div>
   <div class="question-card">
     <p><strong>F5</strong> — Hva er orthogonalitetstesen og instrumentell konvergens (Bostrom)?</p>

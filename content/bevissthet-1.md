@@ -19,9 +19,13 @@ permalink: /bevissthet-1/index.html
 
 ## Sammendrag
 
-Forelesningen introduserer kurset og stiller grunnspørsmålet: *Hva er bevissthet?* Bevissthet er ikke bare å «ha en hjerne» eller «behandle informasjon» — det er spørsmålet om hvorfor det i det hele tatt *er noe det er som* å ha en bestemt mental tilstand. Dette er kjernen i den filosofiske debatten om bevissthet og kunstig intelligens.
+- **Hovedspørsmål:** Hva er bevissthet, og hvorfor er den vanskelig å forklare?
+- **Viktig skille:** *Easy problems* handler om funksjon og atferd, mens *hard problem* handler om subjektiv opplevelse.
+- **Poeng for KI:** Selv om en maskin virker intelligent, følger det ikke at den føler eller opplever noe.
 
-Vi skiller mellom **enkle problemer** (forklare atferd, funksjon og nevrale korrelasjoner til bevissthet) og det **harde problemet** (forklare selve den subjektive opplevelsen). Russell & Norvig gir en innledning til KI som «rasjonell agent», men dette sier ingenting om om agenten *opplever* noe.
+<div class="info-box">
+  <strong>Husk dette:</strong> F1 handler først og fremst om hvorfor bevissthet ikke er det samme som intelligens, atferd eller informasjonsbehandling.
+</div>
 
 ---
 
