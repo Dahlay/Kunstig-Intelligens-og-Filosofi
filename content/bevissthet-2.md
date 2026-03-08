@@ -7,7 +7,7 @@ permalink: /bevissthet-2/index.html
 <div class="lecture-header">
   <div class="lecture-number">Forelesning 2 · Hedda Hassel Mørch</div>
   <h1>Funksjonalisme &amp; Kriterier for KI-bevissthet</h1>
-  <p class="lecturer">📚 Pensum: Mørch (IIT) · Chalmers (Could a LLM be Conscious?) · Long, Butlin et al. (Consciousness in AI) · Seth · Schneider · Birch</p>
+  <p class="lecturer">Pensum: Mørch (IIT) · Chalmers (Could a LLM be Conscious?) · Long, Butlin et al. (Consciousness in AI) · Seth · Schneider · Birch</p>
   <div class="lecture-meta">
     <span class="lecture-tag">Funksjonalisme</span>
     <span class="lecture-tag">IIT</span>
@@ -139,7 +139,7 @@ Moderne bevissthetsteorier som **IIT**, **Global Workspace Theory** og **predikt
 ## Fordypning: Argumenter
 
 <details>
-<summary>💡 Funksjonalisme — styrker og svakheter</summary>
+<summary>Funksjonalisme — styrker og svakheter</summary>
 
 **Styrker**:
 - Forklarer multippel realiserbarhet: smerte er smerte uansett substrat
@@ -154,7 +154,7 @@ Moderne bevissthetsteorier som **IIT**, **Global Workspace Theory** og **predikt
 </details>
 
 <details>
-<summary>💡 IIT og KI — hvorfor er nåværende KI sannsynligvis ikke bevisst?</summary>
+<summary>IIT og KI — hvorfor er nåværende KI sannsynligvis ikke bevisst?</summary>
 
 IIT sier at φ (integrert informasjon) er bevissthet. Feeddforward-nettverk (som de fleste deep learning-modeller) har informasjon som «flyter» i én retning — dermed lite integrasjon. Ifølge IIT:
 
@@ -168,7 +168,7 @@ Transformer-modeller (GPT etc.) mangler tilbakekoblingssløyfer og har arkitektu
 </details>
 
 <details>
-<summary>💡 Chalmers om LLM-er — hovedargumentet</summary>
+<summary>Chalmers om LLM-er — hovedargumentet</summary>
 
 Chalmers stiller spørsmålet åpent og hevder:
 1. Vi kan ikke *a priori* utelukke at LLM-er er bevisste

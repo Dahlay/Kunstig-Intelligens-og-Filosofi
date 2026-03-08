@@ -6,7 +6,7 @@ permalink: /eksamen/index.html
 
 <div class="lecture-header">
   <div class="lecture-number">Samlet oversikt</div>
-  <h1>🎯 Nøkkelord og eksamenshjelp</h1>
+  <h1>Nøkkelord og eksamenshjelp</h1>
   <p class="lecturer">Alle sentrale begreper, øvingsspørsmål og sammendrag på ett sted</p>
   <div class="lecture-meta">
     <span class="lecture-tag">F1: Bevissthet</span>
@@ -43,7 +43,7 @@ permalink: /eksamen/index.html
 
 ---
 
-<h2 id="begreper">📌 Alle nøkkelbegreper</h2>
+<h2 id="begreper">Alle nøkkelbegreper</h2>
 
 ### F1 — Introduksjon og Bevissthet
 
@@ -140,35 +140,35 @@ permalink: /eksamen/index.html
 
 ---
 
-<h2 id="spoersmaal">❓ Øvingsspørsmål</h2>
+<h2 id="spoersmaal">Øvingsspørsmål</h2>
 
 <div class="question-cards">
   <div class="question-card">
-    <p>📖 <strong>F1</strong> — Forklar skillet mellom easy problems og hard problem of consciousness. Gi et eksempel på hvert.</p>
+    <p><strong>F1</strong> — Forklar skillet mellom easy problems og hard problem of consciousness. Gi et eksempel på hvert.</p>
   </div>
   <div class="question-card">
-    <p>📖 <strong>F1</strong> — Beskriv zombieargumentet. Hva er det ment å vise? Hva er den sterkeste innvendingen?</p>
+    <p><strong>F1</strong> — Beskriv zombieargumentet. Hva er det ment å vise? Hva er den sterkeste innvendingen?</p>
   </div>
   <div class="question-card">
-    <p>📖 <strong>F1</strong> — Hva er qualia? Forklar med Mary's rom-argumentet.</p>
+    <p><strong>F1</strong> — Hva er qualia? Forklar med Mary's rom-argumentet.</p>
   </div>
   <div class="question-card">
-    <p>🧠 <strong>F2</strong> — Hva er funksjonalisme? Gi en definisjon og forklar multippel realiserbarhet.</p>
+    <p><strong>F2</strong> — Hva er funksjonalisme? Gi en definisjon og forklar multippel realiserbarhet.</p>
   </div>
   <div class="question-card">
-    <p>🧠 <strong>F2</strong> — Beskriv IIT. Hva er φ (phi), og hva impliserer det for KI-bevissthet?</p>
+    <p><strong>F2</strong> — Beskriv IIT. Hva er φ (phi), og hva impliserer det for KI-bevissthet?</p>
   </div>
   <div class="question-card">
-    <p>🧠 <strong>F2</strong> — Oppsummer Chalmers' «Could a LLM be Conscious?» — hva er hans konklusjon og begrunnelse?</p>
+    <p><strong>F2</strong> — Oppsummer Chalmers' «Could a LLM be Conscious?» — hva er hans konklusjon og begrunnelse?</p>
   </div>
   <div class="question-card">
-    <p>💭 <strong>F3</strong> — Beskriv Chinese Room-argumentet. Hva er systemsvaret og Searles respons?</p>
+    <p><strong>F3</strong> — Beskriv Chinese Room-argumentet. Hva er systemsvaret og Searles respons?</p>
   </div>
   <div class="question-card">
-    <p>💭 <strong>F3</strong> — Hva er intensjonalitet og syntaks/semantikk-distinksjonen? Hvorfor er dette viktig for KI?</p>
+    <p><strong>F3</strong> — Hva er intensjonalitet og syntaks/semantikk-distinksjonen? Hvorfor er dette viktig for KI?</p>
   </div>
   <div class="question-card">
-    <p>💭 <strong>F3</strong> — Forklar utvidet sinn (Clark). Hva er likhetsprinsippet?</p>
+    <p><strong>F3</strong> — Forklar utvidet sinn (Clark). Hva er likhetsprinsippet?</p>
   </div>
   <div class="question-card">
     <p>⚖️ <strong>F4</strong> — Hva er Crawfords «ekstraktivisme»-kritikk av KI? Gi konkrete eksempler.</p>
@@ -180,22 +180,22 @@ permalink: /eksamen/index.html
     <p>⚖️ <strong>F4</strong> — Forklar ansvarsgap. Hvem er ansvarlig når KI gjør feil?</p>
   </div>
   <div class="question-card">
-    <p>🤝 <strong>F5</strong> — Hva er orthogonalitetstesen og instrumentell konvergens (Bostrom)?</p>
+    <p><strong>F5</strong> — Hva er orthogonalitetstesen og instrumentell konvergens (Bostrom)?</p>
   </div>
   <div class="question-card">
-    <p>🤝 <strong>F5</strong> — Hva er forsiktighetsargumentet for AI-velferd (Long, Sebo)?</p>
+    <p><strong>F5</strong> — Hva er forsiktighetsargumentet for AI-velferd (Long, Sebo)?</p>
   </div>
   <div class="question-card">
-    <p>🤝 <strong>F5</strong> — Hva er autonome våpen og hva er de etiske innvendingene?</p>
+    <p><strong>F5</strong> — Hva er autonome våpen og hva er de etiske innvendingene?</p>
   </div>
   <div class="question-card">
-    <p>🔍 <strong>F6</strong> — Kan LLM-er ha kunnskap? Analyser med JTB-kriteriene.</p>
+    <p><strong>F6</strong> — Kan LLM-er ha kunnskap? Analyser med JTB-kriteriene.</p>
   </div>
   <div class="question-card">
-    <p>🔍 <strong>F6</strong> — Hva er «stokastisk papegøye»-kritikken? Er det en god innvending?</p>
+    <p><strong>F6</strong> — Hva er «stokastisk papegøye»-kritikken? Er det en god innvending?</p>
   </div>
   <div class="question-card">
-    <p>🔍 <strong>F6</strong> — Hva er epistemisk rettferdighet og hvordan er det relevant for KI?</p>
+    <p><strong>F6</strong> — Hva er epistemisk rettferdighet og hvordan er det relevant for KI?</p>
   </div>
 </div>
 

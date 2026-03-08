@@ -7,7 +7,7 @@ permalink: /kunnskap-ai/index.html
 <div class="lecture-header">
   <div class="lecture-number">Forelesning 6 · Anna Drozdzowicz</div>
   <h1>Kunnskap, Forståelse og KI</h1>
-  <p class="lecturer">📚 Pensum: Mallory · Bayne &amp; Williams · «Claude» (om store språkmodeller)</p>
+  <p class="lecturer">Pensum: Mallory · Bayne &amp; Williams · «Claude» (om store språkmodeller)</p>
   <div class="lecture-meta">
     <span class="lecture-tag">Epistemologi</span>
     <span class="lecture-tag">Forståelse</span>
@@ -107,7 +107,7 @@ Epistemologi handler om kunnskap — dens natur, grenser og begrunnelse. Tradisj
 ## Fordypning: Argumenter
 
 <details>
-<summary>💡 Kan LLM-er ha kunnskap? — analyse</summary>
+<summary>Kan LLM-er ha kunnskap? — analyse</summary>
 
 **Kravene til kunnskap (JTB)**:
 1. **Sannhet**: LLM-er sier mange sanne ting — men de kan ikke skille sant fra usant internt
@@ -121,7 +121,7 @@ Epistemologi handler om kunnskap — dens natur, grenser og begrunnelse. Tradisj
 </details>
 
 <details>
-<summary>💡 Forståelse vs. kunnskap — kan KI forstå?</summary>
+<summary>Forståelse vs. kunnskap — kan KI forstå?</summary>
 
 Jonathan Kvanvig: Forståelse krever:
 1. En koherent representasjon av et domene
@@ -138,7 +138,7 @@ Jonathan Kvanvig: Forståelse krever:
 </details>
 
 <details>
-<summary>💡 Epistemisk rettferdighet og KI</summary>
+<summary>Epistemisk rettferdighet og KI</summary>
 
 Miranda Frickers begrep om epistemisk rettferdighet er relevant for KI på to måter:
 

@@ -7,7 +7,7 @@ permalink: /bevissthet-1/index.html
 <div class="lecture-header">
   <div class="lecture-number">Forelesning 1 · Hedda Hassel Mørch</div>
   <h1>Introduksjon &amp; Bevissthet I</h1>
-  <p class="lecturer">📚 Pensum: Nagel · Bayne (other minds, physicalism) · Chalmers (facing up) · Russell &amp; Norvig · Mørch (non-physicalist theories)</p>
+  <p class="lecturer">Pensum: Nagel · Bayne (other minds, physicalism) · Chalmers (facing up) · Russell &amp; Norvig · Mørch (non-physicalist theories)</p>
   <div class="lecture-meta">
     <span class="lecture-tag">Bevissthet</span>
     <span class="lecture-tag">Qualia</span>
@@ -115,7 +115,7 @@ Vi skiller mellom **enkle problemer** (forklare atferd, funksjon og nevrale korr
 ## Fordypning: Viktige argumenter
 
 <details>
-<summary>💡 Chalmers' hard problem — utdypning</summary>
+<summary>Chalmers' hard problem — utdypning</summary>
 
 Chalmers skiller mellom «easy problems» og «hard problem». Easy problems handler om funksjon og atferd:
 - Hvordan integrerer hjernen informasjon?
@@ -129,7 +129,7 @@ Chalmers mener dette problemet er genuint annerledes enn alle andre vitenskapeli
 </details>
 
 <details>
-<summary>💡 Zombieargumentet</summary>
+<summary>Zombieargumentet</summary>
 
 **Premiss 1**: Det er konseptuelt mulig å forestille seg en filosofisk zombie — et vesen identisk med et menneske i alle fysiske og funksjonelle henseender, men uten subjektiv opplevelse.
 
@@ -142,7 +142,7 @@ Chalmers mener dette problemet er genuint annerledes enn alle andre vitenskapeli
 </details>
 
 <details>
-<summary>💡 Mary's rom (kunnskapsargumentet)</summary>
+<summary>Mary's rom (kunnskapsargumentet)</summary>
 
 Frank Jackson (1982): Mary er en nevrolog som har levd hele livet i et sort/hvitt-rom. Hun vet alt det er mulig å vite om fargesyn — alle nevrale prosesser, bølgelengder, etc. Så forlater hun rommet og ser rødt for første gang.
 
@@ -157,7 +157,7 @@ Frank Jackson (1982): Mary er en nevrolog som har levd hele livet i et sort/hvit
 </details>
 
 <details>
-<summary>💡 Andre sinn-problemet og KI</summary>
+<summary>Andre sinn-problemet og KI</summary>
 
 Vi vet at vi selv er bevisste (Descartes: cogito). Men vi kan aldri direkte oppleve andres bevissthet. Vi slutter oss til at andre mennesker er bevisste basert på:
 1. Atferdslikhet med oss selv

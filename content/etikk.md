@@ -7,7 +7,7 @@ permalink: /etikk/index.html
 <div class="lecture-header">
   <div class="lecture-number">Forelesning 4 · Anstein Gregersen</div>
   <h1>KI, Etikk og Samfunn</h1>
-  <p class="lecturer">📚 Pensum: Crawford (Atlas of AI) · Floridi · Summerfield · Vallor</p>
+  <p class="lecturer">Pensum: Crawford (Atlas of AI) · Floridi · Summerfield · Vallor</p>
   <div class="lecture-meta">
     <span class="lecture-tag">AI-etikk</span>
     <span class="lecture-tag">Datamakt</span>
@@ -114,7 +114,7 @@ Forelesningen retter blikket mot KIs samfunnsmessige og etiske dimensjoner. Hva 
 ## Fordypning: Crawford — KI som infrastruktur
 
 <details>
-<summary>💡 KIs materielle grunnlag (Crawford)</summary>
+<summary>KIs materielle grunnlag (Crawford)</summary>
 
 Crawford argumenterer for at KI er **ikke abstrakt** — det er dypt materiell teknologi:
 
@@ -134,7 +134,7 @@ Crawford argumenterer for at KI er **ikke abstrakt** — det er dypt materiell t
 </details>
 
 <details>
-<summary>💡 Vallors dygdsetikk for teknologi</summary>
+<summary>Vallors dygdsetikk for teknologi</summary>
 
 Vallor identifiserer teknologiske dyder og laster:
 
@@ -155,7 +155,7 @@ Vallor identifiserer teknologiske dyder og laster:
 </details>
 
 <details>
-<summary>💡 Ansvarsgap i KI</summary>
+<summary>Ansvarsgap i KI</summary>
 
 Når et autonomt KI-system gjør noe galt (f.eks. et selvkjørende kjøretøy påkjører noen), hvem er ansvarlig?
 

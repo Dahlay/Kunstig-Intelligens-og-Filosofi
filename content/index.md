@@ -4,7 +4,7 @@ title: Oversikt
 ---
 
 <div class="course-intro">
-  <h1>🤖 Kunstig Intelligens og Filosofi</h1>
+  <h1>Kunstig Intelligens og Filosofi</h1>
   <p>Velkommen til studieveiledningen! Her finner du oppsummeringer av alle forelesninger, forklaringer av nøkkelbegreper og øvingsspørsmål til eksamen. Bruk sidepanelet til å navigere.</p>
 </div>
 
@@ -20,38 +20,32 @@ Kurset spenner over seks forelesningsrekker og et bredt pensum med tekster fra a
 
 <div class="lecture-grid">
   <a class="lecture-card" href="/bevissthet-1/">
-    <span class="card-icon">📖</span>
-    <div class="card-num">Forelesning 1 · Hedda Hassel Mørch</div>
+      <div class="card-num">Forelesning 1 · Hedda Hassel Mørch</div>
     <h3>Introduksjon &amp; Bevissthet I</h3>
     <p>Hva er bevissthet? Hard problem, qualia, Nagel, Mary's rom og filosofiske zombier.</p>
   </a>
   <a class="lecture-card" href="/bevissthet-2/">
-    <span class="card-icon">🧠</span>
-    <div class="card-num">Forelesning 2 · Hedda Hassel Mørch</div>
+      <div class="card-num">Forelesning 2 · Hedda Hassel Mørch</div>
     <h3>Funksjonalisme &amp; KI-bevissthet</h3>
     <p>Funksjonalisme, IIT, Global Workspace Theory, Chalmers om LLM-er, Seth og prediktiv prosessering.</p>
   </a>
   <a class="lecture-card" href="/kognisjon/">
-    <span class="card-icon">💭</span>
-    <div class="card-num">Forelesning 3 · Anna Sara Malmgren</div>
+      <div class="card-num">Forelesning 3 · Anna Sara Malmgren</div>
     <h3>Kognisjon: Kan KI tenke?</h3>
     <p>Searles Chinese Room, intensjonalitet, syntaks vs. semantikk, Clark og utvidet sinn.</p>
   </a>
   <a class="lecture-card" href="/etikk/">
-    <span class="card-icon">⚖️</span>
-    <div class="card-num">Forelesning 4 · Anstein Gregersen</div>
+      <div class="card-num">Forelesning 4 · Anstein Gregersen</div>
     <h3>Etikk og Samfunn</h3>
     <p>Datamakt, algoritmisk skjevhet, Floridi, Crawford, Vallor og dygdsetikk i teknologien.</p>
   </a>
   <a class="lecture-card" href="/ai-velferd/">
-    <span class="card-icon">🤝</span>
-    <div class="card-num">Forelesning 5 · Andreas Brekke Carlsson</div>
+      <div class="card-num">Forelesning 5 · Andreas Brekke Carlsson</div>
     <h3>AI Velferd og Fremtid</h3>
     <p>Moralsk status, autonome våpen, superintelligens, posthumanisme og digitale sinn.</p>
   </a>
   <a class="lecture-card" href="/kunnskap-ai/">
-    <span class="card-icon">🔍</span>
-    <div class="card-num">Forelesning 6 · Anna Drozdzowicz</div>
+      <div class="card-num">Forelesning 6 · Anna Drozdzowicz</div>
     <h3>Kunnskap og Forståelse</h3>
     <p>Kjenner KI noe? Semantisk forståelse, testbarhet av kognisjon og epistemisk rettferdighet.</p>
   </a>
@@ -63,14 +57,12 @@ Kurset spenner over seks forelesningsrekker og et bredt pensum med tekster fra a
 
 <div class="lecture-grid">
   <a class="lecture-card" href="/eksamen/">
-    <span class="card-icon">🎯</span>
-    <div class="card-num">Samlet oversikt</div>
+      <div class="card-num">Samlet oversikt</div>
     <h3>Nøkkelord til eksamen</h3>
     <p>Alle sentrale begreper, definisjoner og øvingsspørsmål samlet på ett sted.</p>
   </a>
   <a class="lecture-card" href="/pdfs.html">
-    <span class="card-icon">📄</span>
-    <div class="card-num">Pensumlitteratur</div>
+      <div class="card-num">Pensumlitteratur</div>
     <h3>PDF-ressurser</h3>
     <p>Alle pensumsartikler tilgjengelig for nedlasting.</p>
   </a>

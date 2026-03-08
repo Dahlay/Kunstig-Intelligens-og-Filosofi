@@ -7,7 +7,7 @@ permalink: /ai-velferd/index.html
 <div class="lecture-header">
   <div class="lecture-number">Forelesning 5 · Andreas Brekke Carlsson</div>
   <h1>AI Velferd, Moralsk Status og Fremtid</h1>
-  <p class="lecturer">📚 Pensum: Nyholm · Purves/Jenkins/Strawser · Carlsson · Long et al. · Bostrom (Superintelligens, Posthuman, Deep Utopia) · Chalmers (What do we talk to?) · Shulman &amp; Bostrom</p>
+  <p class="lecturer">Pensum: Nyholm · Purves/Jenkins/Strawser · Carlsson · Long et al. · Bostrom (Superintelligens, Posthuman, Deep Utopia) · Chalmers (What do we talk to?) · Shulman &amp; Bostrom</p>
   <div class="lecture-meta">
     <span class="lecture-tag">Moralsk status</span>
     <span class="lecture-tag">Superintelligens</span>
@@ -123,7 +123,7 @@ Samtidig reiser superintelligens-scenarier (Bostrom) eksistensielle risikoer: En
 ## Fordypning: Argumenter
 
 <details>
-<summary>💡 Bostrom — superintelligens og kontrollproblemet</summary>
+<summary>Bostrom — superintelligens og kontrollproblemet</summary>
 
 **Intelligenseksplosjonsscenariet**:
 1. Vi skaper en KI omtrent på menneskelig intelligens
@@ -145,7 +145,7 @@ Samtidig reiser superintelligens-scenarier (Bostrom) eksistensielle risikoer: En
 </details>
 
 <details>
-<summary>💡 Autonome våpen — etisk analyse</summary>
+<summary>Autonome våpen — etisk analyse</summary>
 
 Purves, Jenkins og Strawser stiller spørsmålet: Kan autonome dødelige våpensystemer (LAWS) operere etisk i krig?
 
@@ -164,7 +164,7 @@ Purves, Jenkins og Strawser stiller spørsmålet: Kan autonome dødelige våpens
 </details>
 
 <details>
-<summary>💡 AI-velferd — forsiktighetsargumentet</summary>
+<summary>AI-velferd — forsiktighetsargumentet</summary>
 
 Long, Sebo et al.: Vi er usikre på om KI-systemer lider. Men:
 

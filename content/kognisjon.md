@@ -7,7 +7,7 @@ permalink: /kognisjon/index.html
 <div class="lecture-header">
   <div class="lecture-number">Forelesning 3 · Anna Sara Malmgren</div>
   <h1>Kognisjon: Kan KI tenke som oss?</h1>
-  <p class="lecturer">📚 Pensum: Searle (CCT) · Clark (Mindware) · Block (Software) · Bayne (Thought)</p>
+  <p class="lecturer">Pensum: Searle (CCT) · Clark (Mindware) · Block (Software) · Bayne (Thought)</p>
   <div class="lecture-meta">
     <span class="lecture-tag">Kognisjon</span>
     <span class="lecture-tag">Chinese Room</span>
@@ -112,7 +112,7 @@ Forelesningen tar for seg spørsmålet: *Kan KI virkelig tenke?* Her skilles det
 ## Fordypning: Argumenter
 
 <details>
-<summary>💡 Chinese Room — fullt argument og motargumenter</summary>
+<summary>Chinese Room — fullt argument og motargumenter</summary>
 
 **Argumentet**:
 1. Et dataprogram manipulerer bare symboler etter formelle regler (syntaks)
@@ -134,7 +134,7 @@ Forelesningen tar for seg spørsmålet: *Kan KI virkelig tenke?* Her skilles det
 </details>
 
 <details>
-<summary>💡 Utvidet sinn og KI</summary>
+<summary>Utvidet sinn og KI</summary>
 
 Clark &amp; Chalmers (1998) stiller spørsmålet: Hvis notatboken din inneholder informasjon du bruker i beslutningsprosesser, er den ikke *funksjonelt* en del av ditt kognitive system?
 
@@ -150,7 +150,7 @@ Clark &amp; Chalmers (1998) stiller spørsmålet: Hvis notatboken din inneholder
 </details>
 
 <details>
-<summary>💡 Blocks kritikk av funksjonalisme (absent og inverterte qualia)</summary>
+<summary>Blocks kritikk av funksjonalisme (absent og inverterte qualia)</summary>
 
 Ned Block: Selv om et system er funksjonelt ekvivalent med en bevisst person, betyr det ikke at det har qualia.
 
