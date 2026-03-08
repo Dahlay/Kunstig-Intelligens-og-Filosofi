@@ -7,12 +7,17 @@ permalink: /quiz/index.html
 <div class="lecture-header">
   <div class="lecture-number">Selvtest</div>
   <h1>Quiz</h1>
-  <p class="lecturer">Klikk på et spørsmål for å se svaret — merk deg selv</p>
+  <p class="lecturer">To moduser: åpne svar eller flervalg</p>
   <div class="lecture-meta">
-    <span class="lecture-tag">36 spørsmål</span>
+    <span class="lecture-tag">36 åpne</span>
+    <span class="lecture-tag">30 flervalg</span>
     <span class="lecture-tag">F1–F6</span>
-    <span class="lecture-tag">Selvvurdering</span>
   </div>
+</div>
+
+<div class="quiz-mode-tabs">
+  <button class="qmode-btn active" id="tab-open" onclick="switchMode('open')">Åpne svar</button>
+  <button class="qmode-btn" id="tab-mc" onclick="switchMode('mc')">Flervalg</button>
 </div>
 
 <div class="quiz-controls">
@@ -27,9 +32,9 @@ permalink: /quiz/index.html
 
 {% raw %}
 <script>
+// ── OPEN QUESTIONS ────────────────────────────────────────────────────────────
 var questions = [
-  // F1 — Bevissthet I
-  {f:"F1", q:"Hva er «hard problem of consciousness»?",
+  {f:"F1",q:"Hva er «hard problem of consciousness»?",
    a:"Spørsmålet om <em>hvorfor</em> det i det hele tatt er subjektiv opplevelse (qualia) ledsaget av hjerneaktivitet. «Easy problems» kan forklares av vitenskap; hard problem handler om selve opplevelsens eksistens."},
   {f:"F1", q:"Hva er qualia? Gi et eksempel.",
    a:"De kvalitative, subjektive egenskapene ved en opplevelse — rødhet av rødt, smertefullhet av smerte. Qualia er det som gjenstår etter at all fysisk og funksjonell beskrivelse er gitt."},
@@ -113,85 +118,224 @@ var questions = [
    a:"Testimonialt kunnskap fra KI er problematisk fordi KI ikke selv «vet» i JTB-forstand. Men vi bruker KI som kunnskapskilde i praksis. Spørsmålet er om vi bør stille de samme epistemiske kravene til KI som til menneskelige vitner."}
 ];
 
+// ── MULTIPLE CHOICE QUESTIONS ─────────────────────────────────────────────────
+var mcQuestions = [
+  // F1
+  {f:"F1",q:"Hva kalles spørsmålet om <em>hvorfor</em> subjektiv opplevelse eksisterer?",
+   o:["Easy problem of consciousness","Hard problem of consciousness","Andre sinn-problemet","Absent qualia-problemet"],c:1},
+  {f:"F1",q:"Jackson argumenterer i «Mary's rom» for at:",
+   o:["Fysikalisme er korrekt","Qualia ikke eksisterer","Det finnes kunnskap som ikke er fysisk","Bevissthet er identisk med hjerneaktivitet"],c:2},
+  {f:"F1",q:"En filosofisk zombie er et vesen som:",
+   o:["Simulerer menneskelig atferd digitalt","Er fysisk identisk med et menneske men uten subjektiv opplevelse","Kan bestå Turing-testen","Mangler nevral aktivitet"],c:1},
+  {f:"F1",q:"Fenomenal bevissthet vs. aksess-bevissthet (Block) — hva er riktig?",
+   o:["Fenomenal er målbar; aksess er ikke","Fenomenal = subjektiv opplevelse; aksess = tilgjengelighet for resonnement","Aksess handler om qualia; fenomenal om atferd","De er synonymer"],c:1},
+  {f:"F1",q:"Nagels poeng i «What Is It Like to Be a Bat?» er at:",
+   o:["Dyr er ikke bevisste","Nevrovitenskap kan fullt forklare opplevelse","Bevissthet har en subjektiv karakter som ikke fanges av objektiv vitenskap","Flaggermus og mennesker har de samme qualia"],c:2},
+  // F2
+  {f:"F2",q:"Hva definerer mentale tilstander ifølge funksjonalisme?",
+   o:["Biologisk substrat (karbon)","Nevrale mønstre i korteks","Funksjonelle roller — årsaker og effekter","Kvantemekaniske prosesser"],c:2},
+  {f:"F2",q:"Hva er φ (phi) i Integrated Information Theory?",
+   o:["Antall nevroner i et system","Frekvens av hjernebølger","Mål på integrert informasjon = grad av bevissthet","Styrken på rekursiv prosessering"],c:2},
+  {f:"F2",q:"Hva er Chalmers' konklusjon i «Could a LLM be Conscious?»?",
+   o:["LLM-er er definitivt bevisste","LLM-er er definitivt ikke bevisste","Vi kan ikke utelukke det, men trenger bedre bevissthetsvitenskap","Bevissthet er umulig i silisium"],c:2},
+  {f:"F2",q:"«Multippel realiserbarhet» betyr at:",
+   o:["Bevissthet krever biologisk substrat","Den samme mentale tilstanden kan oppstå i ulike fysiske substrater","KI kan kopiere menneskelig atferd perfekt","Hjernen prosesserer informasjon parallelt"],c:1},
+  {f:"F2",q:"Hva er panpsykisme?",
+   o:["Bevissthet finnes kun hos mennesker","Alle fysiske systemer har en form for mental egenskap","KI vil alltid bli bevisst","Sinnet er fullstendig immaterielt"],c:1},
+  // F3
+  {f:"F3",q:"Hva er den sentrale konklusjonen av Chinese Room? (Searle)",
+   o:["Store nok KI-systemer kan forstå","Syntaks alene er ikke tilstrekkelig for semantikk","Turing-testen er den beste intelligenstesten","KI-systemer har genuint intensjonalitet"],c:1},
+  {f:"F3",q:"«Systemsvaret» på Chinese Room hevder at:",
+   o:["Rommet er for lite til ekte forståelse","Personen trenger mer trening","Systemet som helhet forstår, ikke bare personen","Kinesisk er for vanskelig"],c:2},
+  {f:"F3",q:"Clarks «likhetsprinsipp» (parity principle) sier at:",
+   o:["Alle kognitive prosesser er like","En ekstern prosess er kognitiv hvis den ville vært det om den var intern","Menneskelig og maskinell kognisjon er identisk","KI kan bare hjelpe, aldri erstatte"],c:1},
+  {f:"F3",q:"Intensjonalitet er:",
+   o:["Evnen til å handle planmessig","Mentale tilstanders egenskap til å «handle om» noe","Evnen til å lære av erfaring","Bevisst planlegging av handlinger"],c:1},
+  {f:"F3",q:"Hva skiller sterk KI fra svak KI?",
+   o:["Sterk KI er raskere","Sterk KI har mer data","Sterk KI forstår faktisk; svak KI simulerer bare","Sterk KI er mer energieffektiv"],c:2},
+  // F4
+  {f:"F4",q:"Hva mener Crawford med «ekstraktivisme» om KI?",
+   o:["At KI trekker mening ut av tekst","At KI-industrien henter ressurser fra natur, arbeidere og brukere uten rettferdig kompensasjon","At KI utvinnes fra rådata","At KI fjerner jobber fra markedet"],c:1},
+  {f:"F4",q:"«Ansvarsgap» i KI-etikk betyr at:",
+   o:["KI-algoritmer mangler forklarbarhet","Ingen kan holdes ansvarlig for KI-systemers handlinger","Det ikke er nok KI-etikere","KI vet mer enn myndighetene"],c:1},
+  {f:"F4",q:"Vallors «eudaimonia» refererer til:",
+   o:["Evnen til å beregne konsekvenser","Overholdelse av etiske regler","Menneskelig blomstring — det gode liv","Digital velferd for KI"],c:2},
+  {f:"F4",q:"Floridis «infosphere» er:",
+   o:["En database for informasjonsfilosofi","Det totale informasjonsmiljøet — data, KI og menneskelige aktører","Internett som informasjonsnettverk","Skyen der KI-modeller kjøres"],c:1},
+  {f:"F4",q:"«Algoritmisk skjevhet» betyr at:",
+   o:["Algoritmer alltid inneholder feil","KI-systemer systematisk diskriminerer grupper pga. skjevheter i treningsdata","Kode er partisk mot visse programmeringsspråk","KI favoriserer riktig informasjon"],c:1},
+  // F5
+  {f:"F5",q:"Orthogonalitetstesen (Bostrom) sier at:",
+   o:["Superintelligens vil alltid ha menneskevennlige mål","Intelligens og mål er uavhengige — en superintelligens kan ha hvilke som helst mål","Mål og midler alltid er i konflikt","Superintelligens er teknologisk umulig"],c:1},
+  {f:"F5",q:"«Instrumentell konvergens» betyr at:",
+   o:["Alle KI-systemer konvergerer mot samme arkitektur","Ulike mål har de samme delmålene (selvoppholdelse, ressurser, motstand mot målendring)","KI alltid velger den enkleste løsningen","Superintelligens er uunngåelig"],c:1},
+  {f:"F5",q:"En «moralsk pasient» er:",
+   o:["Et vesen som kan bedømme moral","Et vesen som har plikter overfor andre","Et vesen som andre har forpliktelser overfor","En filosof som studerer etikk"],c:2},
+  {f:"F5",q:"Forsiktighetsargumentet for AI-velferd (Long, Sebo) hevder:",
+   o:["Vi bør stanse all KI-utvikling","Hvis KI kan lide med ikke-neglisjerbar sannsynlighet, bør vi ta hensyn","KI definitivt ikke kan lide","Moralsk status krever bevist bevissthet"],c:1},
+  {f:"F5",q:"Den viktigste etiske innvendingen mot autonome våpensystemer er:",
+   o:["De er for dyre å produsere","De er upresise i urbane miljøer","Ansvarsgap: ingen kan holdes moralsk ansvarlig for drap","De vil alltid feil-klassifisere mål"],c:2},
+  // F6
+  {f:"F6",q:"JTB-analysen av kunnskap krever:",
+   o:["At man er ekspert på emnet","At man husker informasjonen","Sannhet, tro og berettigelse","Praktisk kunnskap og erfaring"],c:2},
+  {f:"F6",q:"«Stokastisk papegøye» (Bender et al.) beskriver LLM-er som:",
+   o:["KI som kan lære seg tale","Modeller som gjengir statistiske mønstre uten å forstå","Algoritmer som genererer tilfeldig tekst","Systemer som stadig forbedrer seg"],c:1},
+  {f:"F6",q:"«Testimonialt kunnskap» er:",
+   o:["Kunnskap fra vitenskapelige eksperimenter","Kunnskap vi tilegner oss gjennom andres vitnesbyrd","Kunnskap vi tilegner oss gjennom egenerfaring","Kunnskap bevist gjennom logikk"],c:1},
+  {f:"F6",q:"Frickers «vitnesbyrd-urettferdighet» handler om:",
+   o:["At KI gir feilaktig informasjon","At noen ikke tas på alvor som kilde til kunnskap pga. sin identitet","At vitneutsagn i retten er upålitelige","At KI-systemer ikke kan vitne"],c:1},
+  {f:"F6",q:"KI-hallusinasjon viser at:",
+   o:["KI alltid lyver bevisst","God språkbruk og faktisk kunnskap er to forskjellige ting","KI er generelt ubrukelig","KI har ukontrollerbar fantasi"],c:1}
+];
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
 var state = {};
 var currentFilter = 'all';
+var currentMode = 'open';
 
 function resetQuiz() {
   state = {};
-  document.querySelectorAll('.qcard').forEach(function(c) {
-    c.classList.remove('open', 'correct', 'incorrect');
-    c.querySelector('.qcard-answer').style.display = 'none';
-  });
+  if (currentMode === 'open') {
+    document.querySelectorAll('.qcard').forEach(function(c) {
+      c.classList.remove('open','correct','incorrect');
+      c.querySelector('.qcard-answer').style.display = 'none';
+    });
+  } else {
+    document.querySelectorAll('.mc-card').forEach(function(c) {
+      c.classList.remove('correct','incorrect');
+      c.querySelectorAll('.mc-opt').forEach(function(o) {
+        o.classList.remove('opt-correct','opt-wrong');
+        o.disabled = false;
+      });
+      c.querySelector('.mc-feedback').textContent = '';
+    });
+  }
   updateScore();
 }
 
 function updateScore() {
   var answered = Object.keys(state).length;
-  var correct = Object.values(state).filter(function(v) { return v; }).length;
+  var correct  = Object.values(state).filter(Boolean).length;
   var el = document.getElementById('scoreDisplay');
-  if (answered === 0) {
-    el.innerHTML = 'Riktig: 0 / Besvart: 0';
-    el.style.color = '';
-  } else {
-    var pct = Math.round(correct / answered * 100);
-    var color = pct >= 80 ? '#1a7a33' : pct >= 50 ? '#b35c00' : '#c0392b';
-    el.innerHTML = 'Riktig: <strong style="color:' + color + '">' + correct + '</strong> / Besvart: ' + answered + ' <span style="color:var(--text-tert);font-weight:400">(' + pct + '%)</span>';
-  }
+  if (!answered) { el.innerHTML = 'Riktig: 0 / Besvart: 0'; return; }
+  var pct = Math.round(correct / answered * 100);
+  var col = pct >= 80 ? '#1a7a33' : pct >= 50 ? '#b35c00' : '#c0392b';
+  el.innerHTML = 'Riktig: <strong style="color:'+col+'">'+correct+'</strong> / Besvart: '+answered+
+    ' <span style="color:var(--text-tert);font-weight:400">('+pct+'%)</span>';
 }
 
+// ── OPEN MODE ─────────────────────────────────────────────────────────────────
 function mark(id, isCorrect) {
   state[id] = isCorrect;
-  var card = document.getElementById('qcard-' + id);
-  card.classList.remove('correct', 'incorrect');
+  var card = document.getElementById('qcard-'+id);
+  card.classList.remove('correct','incorrect');
   card.classList.add(isCorrect ? 'correct' : 'incorrect');
   updateScore();
 }
 
 function toggleCard(id) {
-  var card = document.getElementById('qcard-' + id);
-  var ans = card.querySelector('.qcard-answer');
-  var isOpen = card.classList.contains('open');
-  card.classList.toggle('open', !isOpen);
-  ans.style.display = isOpen ? 'none' : 'block';
+  var card = document.getElementById('qcard-'+id);
+  var ans  = card.querySelector('.qcard-answer');
+  var open = card.classList.contains('open');
+  card.classList.toggle('open', !open);
+  ans.style.display = open ? 'none' : 'block';
 }
 
+// ── MC MODE ───────────────────────────────────────────────────────────────────
+function answerMC(qIdx, chosenIdx) {
+  var q    = mcQuestions[qIdx];
+  var card = document.getElementById('mc-'+qIdx);
+  var opts = card.querySelectorAll('.mc-opt');
+  var fb   = card.querySelector('.mc-feedback');
+  var ok   = chosenIdx === q.c;
+  opts.forEach(function(o, i) {
+    o.disabled = true;
+    if (i === q.c)              o.classList.add('opt-correct');
+    if (i === chosenIdx && !ok) o.classList.add('opt-wrong');
+  });
+  card.classList.add(ok ? 'correct' : 'incorrect');
+  fb.textContent = ok ? '✓ Riktig!' : '✗ Feil — riktig svar er markert grønt';
+  fb.style.color = ok ? '#1a7a33' : '#c0392b';
+  state['mc-'+qIdx] = ok;
+  updateScore();
+}
+
+// ── FILTER ────────────────────────────────────────────────────────────────────
 function filterQuiz(f) {
   currentFilter = f;
   document.querySelectorAll('.filter-btn').forEach(function(b) {
     b.classList.toggle('active', b.dataset.filter === f);
   });
-  document.querySelectorAll('.qcard').forEach(function(c) {
-    var match = f === 'all' || c.dataset.topic === f;
-    c.style.display = match ? '' : 'none';
+  var sel = currentMode === 'open' ? '.qcard' : '.mc-card';
+  document.querySelectorAll(sel).forEach(function(c) {
+    c.style.display = (f === 'all' || c.dataset.topic === f) ? '' : 'none';
   });
 }
 
-function renderQuiz() {
-  var labels = { all:'Alle', F1:'F1', F2:'F2', F3:'F3', F4:'F4', F5:'F5', F6:'F6' };
-  var topics = ['all','F1','F2','F3','F4','F5','F6'];
-  document.getElementById('quizFilters').innerHTML = topics.map(function(t) {
-    return '<button class="filter-btn' + (t === 'all' ? ' active' : '') + '" data-filter="' + t + '" onclick="filterQuiz(\'' + t + '\')">' + labels[t] + '</button>';
-  }).join('');
-
-  document.getElementById('quizContainer').innerHTML = '<div class="quiz-grid">' +
-    questions.map(function(q, i) {
-      return '<div class="qcard" id="qcard-' + i + '" data-topic="' + q.f + '">' +
-        '<div class="qcard-question" onclick="toggleCard(' + i + ')">' +
-          '<span class="qcard-tag">' + q.f + '</span>' +
-          '<span class="qcard-text">' + q.q + '</span>' +
-          '<span class="qcard-chevron">&#9654;</span>' +
-        '</div>' +
-        '<div class="qcard-answer" style="display:none">' +
-          '<p>' + q.a + '</p>' +
-          '<div class="qcard-actions">' +
-            '<button class="qbtn-correct" onclick="mark(' + i + ',true)">Kunne det ✓</button>' +
-            '<button class="qbtn-incorrect" onclick="mark(' + i + ',false)">Kunne det ikke ✗</button>' +
-          '</div>' +
-        '</div>' +
-      '</div>';
-    }).join('') + '</div>';
+// ── MODE SWITCH ───────────────────────────────────────────────────────────────
+function switchMode(mode) {
+  currentMode = mode;
+  state = {};
+  updateScore();
+  document.getElementById('tab-open').classList.toggle('active', mode === 'open');
+  document.getElementById('tab-mc').classList.toggle('active',   mode === 'mc');
+  if (mode === 'open') renderOpen(); else renderMC();
 }
 
-renderQuiz();
+// ── RENDER HELPERS ────────────────────────────────────────────────────────────
+function renderFilters() {
+  var labels = {all:'Alle',F1:'F1',F2:'F2',F3:'F3',F4:'F4',F5:'F5',F6:'F6'};
+  document.getElementById('quizFilters').innerHTML =
+    ['all','F1','F2','F3','F4','F5','F6'].map(function(t) {
+      return '<button class="filter-btn'+(t==='all'?' active':'')+'" data-filter="'+t+
+             '" onclick="filterQuiz(\''+t+'\')">'+labels[t]+'</button>';
+    }).join('');
+  currentFilter = 'all';
+}
+
+function renderOpen() {
+  renderFilters();
+  document.getElementById('quizContainer').innerHTML = '<div class="quiz-grid">'+
+    questions.map(function(q,i) {
+      return '<div class="qcard" id="qcard-'+i+'" data-topic="'+q.f+'">'+
+        '<div class="qcard-question" onclick="toggleCard('+i+')">'+
+          '<span class="qcard-tag">'+q.f+'</span>'+
+          '<span class="qcard-text">'+q.q+'</span>'+
+          '<span class="qcard-chevron">&#9654;</span>'+
+        '</div>'+
+        '<div class="qcard-answer" style="display:none">'+
+          '<p>'+q.a+'</p>'+
+          '<div class="qcard-actions">'+
+            '<button class="qbtn-correct"   onclick="mark('+i+',true)">Kunne det ✓</button>'+
+            '<button class="qbtn-incorrect" onclick="mark('+i+',false)">Kunne det ikke ✗</button>'+
+          '</div>'+
+        '</div>'+
+      '</div>';
+    }).join('')+'</div>';
+}
+
+function renderMC() {
+  renderFilters();
+  document.getElementById('quizContainer').innerHTML = '<div class="quiz-grid">'+
+    mcQuestions.map(function(q,i) {
+      return '<div class="mc-card" id="mc-'+i+'" data-topic="'+q.f+'">'+
+        '<div class="mc-question">'+
+          '<span class="qcard-tag">'+q.f+'</span>'+
+          '<span class="mc-qtext">'+q.q+'</span>'+
+        '</div>'+
+        '<div class="mc-options">'+
+          q.o.map(function(opt,j) {
+            return '<button class="mc-opt" onclick="answerMC('+i+','+j+')">'+
+              '<span class="mc-letter">'+String.fromCharCode(65+j)+'</span>'+
+              '<span>'+opt+'</span>'+
+            '</button>';
+          }).join('')+
+        '</div>'+
+        '<div class="mc-feedback"></div>'+
+      '</div>';
+    }).join('')+'</div>';
+}
+
+renderOpen();
 </script>
 {% endraw %}
