@@ -1,150 +1,179 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
   <meta charset="UTF-8">
-  <title>index.md</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oversikt — Studieveiledning</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<article>
-<hr />
-<p>layout: layout.njk
-title: Studieplan for KI, Bevissthet og Kognisjon</p>
-<hr />
-<h1>Studieplan for KI, Bevissthet og Kognisjon</h1>
-<p>Denne planen dekker materialene i arbeidsområdet ditt. Den er organisert etter forelesninger og artikler, med nøkkelpunkter, forklaringer og puggetips. Fokuser på å lese én seksjon om dagen, ta notater og svar på spørsmålene.</p>
-<h2>1. Bevissthet, Funksjonalisme og Kriterier for KI Bevissthet</h2>
-<h3>Forelesning 1: Introduksjon + Bevissthet I</h3>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-title">
+        <span class="header-icon">🤖</span>
+        <div>
+          <h1>Kunstig Intelligens og Filosofi</h1>
+          <p>Studieveiledning · Pensumoversikt · Eksamenshjelp</p>
+        </div>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Meny">☰</button>
+    </div>
+  </header>
+
+  <div class="site-body">
+
+    <nav class="sidebar" id="sidebar">
+      <div class="nav-close-btn" onclick="toggleSidebar()">✕</div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Hjem</div>
+        <ul>
+          <li><a href="/">🏠 Oversikt</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Forelesninger</div>
+        <ul>
+          <li><a href="/bevissthet-1/">📖 F1: Introduksjon &amp; Bevissthet</a></li>
+          <li><a href="/bevissthet-2/">🧠 F2: Funksjonalisme</a></li>
+          <li><a href="/kognisjon/">💭 F3: Kognisjon</a></li>
+          <li><a href="/etikk/">⚖️ F4: Etikk og Samfunn</a></li>
+          <li><a href="/ai-velferd/">🤝 F5: AI Velferd og Fremtid</a></li>
+          <li><a href="/kunnskap-ai/">🔍 F6: Kunnskap og Forståelse</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Eksamen</div>
+        <ul>
+          <li><a href="/eksamen/">🎯 Nøkkelord til eksamen</a></li>
+          <li><a href="/pdfs.html">📄 PDF-ressurser</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-progress">
+        <div class="nav-group-title">Rask navigasjon</div>
+        <a href="/eksamen/#begreper" class="quick-link">📌 Alle begreper</a>
+        <a href="/eksamen/#spoersmaal" class="quick-link">❓ Øvingsspørsmål</a>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="breadcrumb">
+        <span>Oversikt</span>
+      </div>
+      <div class="course-intro">
+  <h1>🤖 Kunstig Intelligens og Filosofi</h1>
+  <p>Velkommen til studieveiledningen! Her finner du oppsummeringer av alle forelesninger, forklaringer av nøkkelbegreper og øvingsspørsmål til eksamen. Bruk sidepanelet til å navigere.</p>
+</div>
+<h2>Om kurset</h2>
+<p>Kurset undersøker grunnleggende filosofiske spørsmål som kunstig intelligens reiser: <em>Kan maskiner tenke? Kan de være bevisste? Hva er kognisjon? Hvilke etiske forpliktelser har vi overfor KI — og overfor dem som påvirkes av det?</em></p>
+<p>Kurset spenner over seks forelesningsrekker og et bredt pensum med tekster fra analytisk filosofi, kognisjonsvitenskap og etikk.</p>
+<hr>
+<h2>Forelesninger</h2>
+<div class="lecture-grid">
+  <a class="lecture-card" href="/bevissthet-1/">
+    <span class="card-icon">📖</span>
+    <div class="card-num">Forelesning 1 · Hedda Hassel Mørch</div>
+    <h3>Introduksjon &amp; Bevissthet I</h3>
+    <p>Hva er bevissthet? Hard problem, qualia, Nagel, Mary's rom og filosofiske zombier.</p>
+  </a>
+  <a class="lecture-card" href="/bevissthet-2/">
+    <span class="card-icon">🧠</span>
+    <div class="card-num">Forelesning 2 · Hedda Hassel Mørch</div>
+    <h3>Funksjonalisme &amp; KI-bevissthet</h3>
+    <p>Funksjonalisme, IIT, Global Workspace Theory, Chalmers om LLM-er, Seth og prediktiv prosessering.</p>
+  </a>
+  <a class="lecture-card" href="/kognisjon/">
+    <span class="card-icon">💭</span>
+    <div class="card-num">Forelesning 3 · Anna Sara Malmgren</div>
+    <h3>Kognisjon: Kan KI tenke?</h3>
+    <p>Searles Chinese Room, intensjonalitet, syntaks vs. semantikk, Clark og utvidet sinn.</p>
+  </a>
+  <a class="lecture-card" href="/etikk/">
+    <span class="card-icon">⚖️</span>
+    <div class="card-num">Forelesning 4 · Anstein Gregersen</div>
+    <h3>Etikk og Samfunn</h3>
+    <p>Datamakt, algoritmisk skjevhet, Floridi, Crawford, Vallor og dygdsetikk i teknologien.</p>
+  </a>
+  <a class="lecture-card" href="/ai-velferd/">
+    <span class="card-icon">🤝</span>
+    <div class="card-num">Forelesning 5 · Andreas Brekke Carlsson</div>
+    <h3>AI Velferd og Fremtid</h3>
+    <p>Moralsk status, autonome våpen, superintelligens, posthumanisme og digitale sinn.</p>
+  </a>
+  <a class="lecture-card" href="/kunnskap-ai/">
+    <span class="card-icon">🔍</span>
+    <div class="card-num">Forelesning 6 · Anna Drozdzowicz</div>
+    <h3>Kunnskap og Forståelse</h3>
+    <p>Kjenner KI noe? Semantisk forståelse, testbarhet av kognisjon og epistemisk rettferdighet.</p>
+  </a>
+</div>
+<hr>
+<h2>Eksamensressurser</h2>
+<div class="lecture-grid">
+  <a class="lecture-card" href="/eksamen/">
+    <span class="card-icon">🎯</span>
+    <div class="card-num">Samlet oversikt</div>
+    <h3>Nøkkelord til eksamen</h3>
+    <p>Alle sentrale begreper, definisjoner og øvingsspørsmål samlet på ett sted.</p>
+  </a>
+  <a class="lecture-card" href="/pdfs.html">
+    <span class="card-icon">📄</span>
+    <div class="card-num">Pensumlitteratur</div>
+    <h3>PDF-ressurser</h3>
+    <p>Alle pensumsartikler tilgjengelig for nedlasting.</p>
+  </a>
+</div>
+<hr>
+<h2>Sentrale spørsmål i kurset</h2>
+<div class="section-box">
+<table>
+<thead>
+<tr>
+<th>Spørsmål</th>
+<th>Relevante forelesninger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hva er bevissthet, og hva er <em>hard problem</em>?</td>
+<td>F1, F2</td>
+</tr>
+<tr>
+<td>Kan KI noen gang være bevisst?</td>
+<td>F1, F2, F5</td>
+</tr>
+<tr>
+<td>Hva er funksjonalisme, og holder det?</td>
+<td>F2</td>
+</tr>
+<tr>
+<td>Kan maskiner virkelig tenke — eller bare simulere?</td>
+<td>F3</td>
+</tr>
+<tr>
+<td>Hva betyr det at KI «forstår» noe?</td>
+<td>F3, F6</td>
+</tr>
+<tr>
+<td>Hvem er ansvarlig når KI tar feil beslutninger?</td>
+<td>F4</td>
+</tr>
+<tr>
+<td>Bør KI ha moralsk status eller rettigheter?</td>
+<td>F5</td>
+</tr>
+<tr>
+<td>Hva er superintelligens og posthumanisme?</td>
+<td>F5</td>
+</tr>
+</tbody>
+</table>
+</div>
 <ul>
-<li><strong>Fil</strong>: <code>1 introduksjon + bevissthet I.pdf</code></li>
-<li><strong>Hovedtema</strong>: Hva er bevissthet? Filosofiske perspektiver på bevissthet i mennesker og muligheten for bevissthet i KI.</li>
-<li><strong>Nøkkelpunkter</strong>:</li>
-<li>Bevissthet som subjektiv opplevelse (qualia).</li>
-<li>Hard problem of consciousness (Chalmers): Hvorfor er det bevissthet?</li>
-<li>Kan KI simulere bevissthet uten å være bevisst?</li>
-<li><strong>Forklaring</strong>: Bevissthet handler om å være bevisst på verden og seg selv. I KI-kontekst: Turing-test vs. ekte bevissthet. Funksjonalisme sier at mentale tilstander er funksjoner av hjerneprosesser, så KI kan potensielt være bevisst hvis det fungerer som mennesker.</li>
-<li><strong>Pugge</strong>: Hva er forskjellen mellom easy og hard problem? Kan en zombie (uten bevissthet) oppføre seg som bevisst?</li>
-</ul>
-<h3>Forelesning 2: Bevissthet II - Funksjonalisme</h3>
-<ul>
-<li><strong>Fil</strong>: <code>2 bevissthet II - funksjonalisme.pdf</code></li>
-<li><strong>Hovedtema</strong>: Funksjonalistisk teori om bevissthet og kriterier for KI-bevissthet.</li>
-<li><strong>Nøkkelpunkter</strong>:</li>
-<li>Funksjonalisme: Mentale tilstander defineres av funksjoner, ikke substans.</li>
-<li>Kriterier: Selvbevissthet, følelser, intensjonalitet.</li>
-<li>Kritikk: Ignorerer kvalitative aspekter.</li>
-<li><strong>Forklaring</strong>: Funksjonalisme tillater at KI kan være bevisst hvis det har riktige funksjoner. Eksempel: Searle's Chinese Room argument mot sterk AI.</li>
-<li><strong>Pugge</strong>: Forklar funksjonalisme. Hvorfor er det kontroversielt for KI?</li>
-</ul>
-<h2>2. Kognisjon: Kan KI Tenke Som Oss?</h2>
-<h3>Forelesning 3: Kognisjon</h3>
-<ul>
-<li><strong>Fil</strong>: <code>3 kognisjon.pdf</code></li>
-<li><strong>Hovedtema</strong>: Kognisjon, tankeprosesser og sammenligning med KI.</li>
-</ul>
-<h4>Viktige Nøkkelord og Forklaringer</h4>
-<ol>
-<li><strong>Kognisjon</strong>  </li>
-<li><strong>Definisjon</strong>: Kognisjon refererer til mentale prosesser som tenking, læring, problemløsning, hukommelse og beslutningstaking. Det er hjernens måte å behandle informasjon på for å forstå og interagere med verden.  </li>
-<li><strong>I KI-kontekst</strong>: KI kan simulere kognitive oppgaver (f.eks. gjenkjenne mønstre i data eller løse matematiske problemer), men det er ofte begrenset til spesifikke algoritmer uten den bredere, bevisste opplevelsen mennesker har.  </li>
-<li>
-<p><strong>Eksempel</strong>: Menneskelig kognisjon inkluderer emosjoner og subjektiv opplevelse, mens KI er mer effektiv i repeterende oppgaver.</p>
-</li>
-<li>
-<p><strong>Symbolsk AI vs. Nevrale Nettverk</strong>  </p>
-</li>
-<li><strong>Symbolsk AI</strong>: En tidlig tilnærming til KI hvor kunnskap representeres som symboler og regler (f.eks. logiske systemer som Expert Systems). Det fokuserer på eksplisitt programmering av regler for å etterligne tenking.  </li>
-<li><strong>Nevrale Nettverk</strong>: Moderne KI-modeller (som deep learning) som etterligner hjernens nevroner. De lærer fra data gjennom lag av noder, uten eksplisitte regler. Dette gjør dem bedre på mønstergjenkjenning, men mindre transparente.  </li>
-<li>
-<p><strong>Sammenligning</strong>: Symbolsk AI er "regelbassert" og forutsigbar, mens nevrale nettverk er "datadrevet" og kan håndtere kompleksitet som bilder eller språk. Begge brukes i KI, men nevrale nettverk dominerer nå.</p>
-</li>
-<li>
-<p><strong>Kan KI "Tenke" Som Mennesker?</strong>  </p>
-</li>
-<li><strong>Debatten</strong>: KI kan utføre oppgaver som krever "tenking" (f.eks. spille sjakk eller generere tekst), men det er uenighet om hvorvidt dette er ekte tenking. Menneskelig tenking involverer bevissthet, følelser og subjektiv opplevelse (qualia), som KI mangler.  </li>
-<li><strong>Svak AI vs. Sterk AI</strong>:  <ul>
-<li><strong>Svak AI (Narrow AI)</strong>: KI som er spesialisert på én oppgave (f.eks. ChatGPT for språk). Det "tenker" ikke som mennesker, men simulerer intelligens.  </li>
-<li><strong>Sterk AI (General AI)</strong>: Hypotetisk KI som kan tenke og føle som mennesker. Dette eksisterer ikke ennå og er kontroversielt.  </li>
-</ul>
-</li>
-<li>
-<p><strong>Clark's "Mindware" Hypothese</strong>: KI som et verktøy som utvider menneskelig kognisjon, ikke erstatter den. Eksempel: En kalkulator hjelper oss å regne raskere uten å gjøre oss til maskiner.</p>
-</li>
-<li>
-<p><strong>Andre Relaterte Begreper</strong>  </p>
-</li>
-<li><strong>Bevissthet og Emosjoner</strong>: Menneskelig kognisjon er bundet til bevissthet (se forelesning 1-2). KI kan simulere emosjoner (f.eks. i chatbots), men ikke oppleve dem.  </li>
-<li><strong>Eksempler på KI-Tenking</strong>: Algoritmer som løser Sudoku eller predikerer vær viser "tenking", men uten selvbevissthet.</li>
-</ol>
-<h4>Bruk av Pensumlister for Støtte</h4>
-<p>Pensumlister gir teoretisk grunnlag og debatter som støtter forelesningen. Her er relevante utdrag og hvordan de kobler seg:</p>
-<ul>
-<li><strong>Russell &amp; Norvig (Introduksjon til AI)</strong>:  </li>
-<li>Tema: AI-grunnlag, søk, læring.  </li>
-<li>
-<p>Forklaring: Gir oversikt over AI som "rasjonell agent" – KI som et system som oppfører seg intelligent ved å maksimere mål. Dette støtter diskusjonen om KI-modeller (symbolsk vs. nevrale) og hvorfor KI kan "tenke" i oppgavespesifikke sammenhenger, men ikke nødvendigvis som mennesker. Bruk dette for å forstå grunnleggende KI-arkitektur.</p>
-</li>
-<li>
-<p><strong>Chalmers: "Could a LLM be Conscious?"</strong>:  </p>
-</li>
-<li>Tema: Kan store språkmodeller (LLM-er som GPT) være bevisste?  </li>
-<li>
-<p>Forklaring: Diskuterer kompleksitet i KI som potensiell bevissthet, men konkluderer nei fordi LLM-er mangler subjektiv opplevelse. Dette kobler til kognisjon ved å vise at KI kan simulere tenking (f.eks. språkforståelse), men ikke ha bevissthet. Relevant for debatten om sterk vs. svak AI.</p>
-</li>
-<li>
-<p><strong>Seth: Prediktive Modeller av Bevissthet</strong>:  </p>
-</li>
-<li>Tema: Bevissthet som prediksjon av sensorisk input.  </li>
-<li>
-<p>Forklaring: Foreslår at bevissthet oppstår fra hjernens evne til å forutsi verden. Dette kan brukes på KI: Kan nevrale nettverk utvikle bevissthet gjennom læring? Støtter ideen om at KI kan nærme seg menneskelig kognisjon, men ikke fullt ut.</p>
-</li>
-<li>
-<p><strong>Mørch: Integrated Information Theory (IIT)</strong>:  </p>
-</li>
-<li>Tema: Bevissthet som integrert informasjon i systemer.  </li>
-<li>
-<p>Forklaring: Måler bevissthet ved hvor mye informasjon som integreres (f.eks. i hjernen). Kan brukes på KI for å vurdere om komplekse modeller har bevissthet. Dette er nyttig for å diskutere om KI noen gang kan "tenke" som oss.</p>
-</li>
-<li>
-<p><strong>Andre (Schneider, Birch, Long Butlin et al.: Consciousness in AI)</strong>:  </p>
-</li>
-<li>Tema: Etikk og muligheter for bevisst KI.  </li>
-<li>
-<p>Forklaring: Utforsker om KI kan være moralsk ansvarlig eller ha rettigheter hvis det blir bevisst. Dette kobler til kognisjon ved å stille spørsmål om KI's "tenking" har konsekvenser utover oppgaveløsning.</p>
-</li>
-<li>
-<p><strong>Pugge</strong>: Hva er forskjell mellom svak og sterk AI? Eksempler på KI-tenking.</p>
-</li>
-</ul>
-<h3>Artikler i denne mappen:</h3>
-<ul>
-<li><strong>Bayne Thought</strong>: Om tanke og bevissthet.</li>
-<li><strong>Block Software</strong>: Kritikk av funksjonalisme i software.</li>
-<li><strong>Clark Mindware</strong>: KI som utvidelse av menneskelig kognisjon.</li>
-<li><strong>Searle CCT</strong>: Chinese Room Thought Experiment – mot sterk AI.</li>
-</ul>
-<p><strong>Generell forklaring for artikler</strong>: Disse utforsker om KI kan ha ekte tenking. Searle sier nei, fordi syntaks ikke gir semantikk. Clark sier KI kan forbedre oss.</p>
-<h2>3. Arbeidskrav</h2>
-<ul>
-<li><strong>Fil</strong>: <code>Arbeidskrav tilbakemelding.pdf</code></li>
-<li><strong>Tema</strong>: Oppgaver og tilbakemeldinger relatert til kurset.</li>
-<li><strong>Pugge</strong>: Gå gjennom kravene, lag utkast til svar basert på forelesningene.</li>
-</ul>
-<h2>4. Pensumlister (Syllabus)</h2>
-<p>Disse er artikler for dypere lesing. Fokuser på 1-2 per uke.</p>
-<h3>Nøkkelartikler:</h3>
-<ul>
-<li><strong>Russell Norvig</strong>: Introduksjon til AI (fra AI-boken).</li>
-<li>Tema: AI-grunnlag, søk, læring.</li>
-<li>Forklaring: Oversikt over AI-feltet. KI som rasjonell agent.</li>
-<li><strong>Chalmers: Could a LLM be Conscious?</strong></li>
-<li>Tema: Kan store språkmodeller være bevisste?</li>
-<li>Forklaring: Diskuterer om LLM-er har bevissthet basert på kompleksitet. Nei, fordi de mangler subjektiv opplevelse.</li>
-<li><strong>Seth</strong>: Om prediktive modeller av bevissthet.</li>
-<li><strong>Mørch: Integrated Information Theory</strong></li>
-<li>Tema: IIT som teori for bevissthet.</li>
-<li>Forklaring: Bevissthet som integrert informasjon. Kan brukes på KI.</li>
 <li><strong>Andre</strong>: Schneider, Birch, Long Butlin et al. (Consciousness in AI) – Utforsker etikk og muligheter for bevisst KI.</li>
 </ul>
 <p><strong>Generell forklaring</strong>: Pensumet dekker filosofi av sinn, AI-etikk og tekniske aspekter. Fokuser på debatter: Er bevissthet emergent? Kan KI være moralsk ansvarlig?</p>
@@ -154,9 +183,52 @@ title: Studieplan for KI, Bevissthet og Kognisjon</p>
 <li><strong>Dag 3</strong>: Forelesning 3 og kognisjon-artikler. Diskuter med deg selv: Kan KI tenke?</li>
 <li><strong>Dag 4</strong>: Arbeidskrav – Lag svar.</li>
 <li><strong>Dag 5-7</strong>: Les 2-3 artikler fra pensum. Sammendragskriv.</li>
-<li><strong>Ukentlig</strong>: Gjenta nøkkelpunkter, lag flashcards (f.eks. "Hva er qualia?").</li>
+<li><strong>Ukentlig</strong>: Gjenta nøkkelpunkter, lag flashcards (f.eks. &quot;Hva er qualia?&quot;).</li>
 </ul>
 <p>Hvis du trenger mer detaljerte sammendrag eller kodeeksempler (f.eks. enkle KI-modeller), si fra!</p>
-</article>
+
+    </main>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>Kunstig Intelligens og Filosofi · Studieveiledning 2026</p>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Til toppen">↑</button>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <script>
+    // Back to top
+    window.addEventListener('scroll', function () {
+      document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 300);
+    });
+
+    // Active link
+    const path = window.location.pathname;
+    document.querySelectorAll('.sidebar a').forEach(function (a) {
+      const href = a.getAttribute('href');
+      if (href === path || (path !== '/' && href !== '/' && path.startsWith(href))) {
+        a.classList.add('active');
+        a.closest('.nav-group') && a.closest('.nav-group').querySelector('.nav-group-title').classList.add('active-section');
+      }
+    });
+
+    // Mobile sidebar toggle
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('visible');
+      document.body.classList.toggle('sidebar-open');
+    }
+
+    // Details: auto-open if anchor target inside
+    if (window.location.hash) {
+      document.querySelectorAll('details').forEach(function (d) {
+        if (d.querySelector(window.location.hash)) d.open = true;
+      });
+    }
+  </script>
+
 </body>
 </html>

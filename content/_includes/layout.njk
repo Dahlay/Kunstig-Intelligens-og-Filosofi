@@ -1,17 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
   <meta charset="UTF-8">
-  <title>{{ title or "KI Studieplan" }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or "KI og Filosofi" }} — Studieveiledning</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <nav>
-    <a href="/">Hjem</a> |
-    <a href="/pdfs.html">PDF-er</a>
-  </nav>
-  <main>
-    {{ content | safe }}
-  </main>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-title">
+        <span class="header-icon">🤖</span>
+        <div>
+          <h1>Kunstig Intelligens og Filosofi</h1>
+          <p>Studieveiledning · Pensumoversikt · Eksamenshjelp</p>
+        </div>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Meny">☰</button>
+    </div>
+  </header>
+
+  <div class="site-body">
+
+    <nav class="sidebar" id="sidebar">
+      <div class="nav-close-btn" onclick="toggleSidebar()">✕</div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Hjem</div>
+        <ul>
+          <li><a href="/">🏠 Oversikt</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Forelesninger</div>
+        <ul>
+          <li><a href="/bevissthet-1/">📖 F1: Introduksjon &amp; Bevissthet</a></li>
+          <li><a href="/bevissthet-2/">🧠 F2: Funksjonalisme</a></li>
+          <li><a href="/kognisjon/">💭 F3: Kognisjon</a></li>
+          <li><a href="/etikk/">⚖️ F4: Etikk og Samfunn</a></li>
+          <li><a href="/ai-velferd/">🤝 F5: AI Velferd og Fremtid</a></li>
+          <li><a href="/kunnskap-ai/">🔍 F6: Kunnskap og Forståelse</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Eksamen</div>
+        <ul>
+          <li><a href="/eksamen/">🎯 Nøkkelord til eksamen</a></li>
+          <li><a href="/pdfs.html">📄 PDF-ressurser</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-progress">
+        <div class="nav-group-title">Rask navigasjon</div>
+        <a href="/eksamen/#begreper" class="quick-link">📌 Alle begreper</a>
+        <a href="/eksamen/#spoersmaal" class="quick-link">❓ Øvingsspørsmål</a>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="breadcrumb">
+        {% if title %}<span>{{ title }}</span>{% endif %}
+      </div>
+      {{ content | safe }}
+    </main>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>Kunstig Intelligens og Filosofi · Studieveiledning 2026</p>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Til toppen">↑</button>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <script>
+    // Back to top
+    window.addEventListener('scroll', function () {
+      document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 300);
+    });
+
+    // Active link
+    const path = window.location.pathname;
+    document.querySelectorAll('.sidebar a').forEach(function (a) {
+      const href = a.getAttribute('href');
+      if (href === path || (path !== '/' && href !== '/' && path.startsWith(href))) {
+        a.classList.add('active');
+        a.closest('.nav-group') && a.closest('.nav-group').querySelector('.nav-group-title').classList.add('active-section');
+      }
+    });
+
+    // Mobile sidebar toggle
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('visible');
+      document.body.classList.toggle('sidebar-open');
+    }
+
+    // Details: auto-open if anchor target inside
+    if (window.location.hash) {
+      document.querySelectorAll('details').forEach(function (d) {
+        if (d.querySelector(window.location.hash)) d.open = true;
+      });
+    }
+  </script>
+
 </body>
 </html>

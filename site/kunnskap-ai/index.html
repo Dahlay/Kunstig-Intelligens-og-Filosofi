@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F6: Kunnskap og Forståelse — Studieveiledning</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-title">
+        <span class="header-icon">🤖</span>
+        <div>
+          <h1>Kunstig Intelligens og Filosofi</h1>
+          <p>Studieveiledning · Pensumoversikt · Eksamenshjelp</p>
+        </div>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Meny">☰</button>
+    </div>
+  </header>
+
+  <div class="site-body">
+
+    <nav class="sidebar" id="sidebar">
+      <div class="nav-close-btn" onclick="toggleSidebar()">✕</div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Hjem</div>
+        <ul>
+          <li><a href="/">🏠 Oversikt</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Forelesninger</div>
+        <ul>
+          <li><a href="/bevissthet-1/">📖 F1: Introduksjon &amp; Bevissthet</a></li>
+          <li><a href="/bevissthet-2/">🧠 F2: Funksjonalisme</a></li>
+          <li><a href="/kognisjon/">💭 F3: Kognisjon</a></li>
+          <li><a href="/etikk/">⚖️ F4: Etikk og Samfunn</a></li>
+          <li><a href="/ai-velferd/">🤝 F5: AI Velferd og Fremtid</a></li>
+          <li><a href="/kunnskap-ai/">🔍 F6: Kunnskap og Forståelse</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Eksamen</div>
+        <ul>
+          <li><a href="/eksamen/">🎯 Nøkkelord til eksamen</a></li>
+          <li><a href="/pdfs.html">📄 PDF-ressurser</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-progress">
+        <div class="nav-group-title">Rask navigasjon</div>
+        <a href="/eksamen/#begreper" class="quick-link">📌 Alle begreper</a>
+        <a href="/eksamen/#spoersmaal" class="quick-link">❓ Øvingsspørsmål</a>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="breadcrumb">
+        <span>F6: Kunnskap og Forståelse</span>
+      </div>
+      <div class="lecture-header">
+  <div class="lecture-number">Forelesning 6 · Anna Drozdzowicz</div>
+  <h1>Kunnskap, Forståelse og KI</h1>
+  <p class="lecturer">📚 Pensum: Mallory · Bayne &amp; Williams · «Claude» (om store språkmodeller)</p>
+  <div class="lecture-meta">
+    <span class="lecture-tag">Epistemologi</span>
+    <span class="lecture-tag">Forståelse</span>
+    <span class="lecture-tag">LLM</span>
+    <span class="lecture-tag">Semantisk kunnskap</span>
+    <span class="lecture-tag">Epistemisk rettferdighet</span>
+  </div>
+</div>
+<h2>Sammendrag</h2>
+<p>Denne forelesningen stiller epistemologiske spørsmål: <em>Hva betyr det å vite noe? Kan KI vite noe? Hva er forståelse — og har store språkmodeller som Claude det?</em></p>
+<p>Epistemologi handler om kunnskap — dens natur, grenser og begrunnelse. Tradisjonelt defineres kunnskap som «begrunnet sann tro» (justified true belief). For KI-systemer som GPT og Claude er spørsmålet: Har de <em>tro</em>? <em>Begrunnelse</em>? Kan de ha <em>sann</em> kunnskap?</p>
+<p><strong>Forståelse</strong> skilles fra kunnskap: Du kan <em>vite</em> at E=mc² uten å <em>forstå</em> det. Forståelse innebærer evne til å anvende, forklare og se sammenhenger. Har LLM-er forståelse, eller bare <em>simulering</em> av forståelse?</p>
+<hr>
+<h2>Nøkkelbegreper</h2>
+<div class="keyword-grid">
+  <div class="keyword-card">
+    <h4>Kunnskap (Knowledge)</h4>
+    <p>Tradisjonelt: Begrunnet sann tro (JTB — Justified True Belief). Gettier (1963) viste at dette ikke er tilstrekkelig. Epistemologi analyserer hva kunnskap egentlig er.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Forståelse (Understanding)</h4>
+    <p>Mer enn kunnskap — å se sammenhenger, kunne anvende og forklare. Forståelse innebærer en kognitiv grasping av årsaker og relasjoner, ikke bare faktainnsamling.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Begrunnet sann tro (JTB)</h4>
+    <p>Platons klassiske analyse: S vet at P hvis og bare hvis: (1) P er sann, (2) S tror at P, (3) S er berettiget i å tro at P. KI-utfordring: Kan maskiner ha «tro» i denne forstand?</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Semantisk kompetanse</h4>
+    <p>Evnen til å bruke ord korrekt i kontekst, forstå mening og referanse. LLM-er viser imponerende semantisk kompetanse, men er dette ekte forståelse eller statistisk mønstergjenkjenning?</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Stokastisk papegøye</h4>
+    <p>Kritisk begrep (Bender et al.): LLM-er er bare statistiske papegøyer som gjengir mønstre fra treningsdata uten å «forstå» noe. Motargument: Forståelse er selv et statistisk fenomen?</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Proposisjonell kunnskap</h4>
+    <p>«Knowing that» — å vite at noe er sant. Vs. «knowing how» (prosedural kunnskap) og «knowing what it is like» (fenomenal kunnskap). LLM-er kan kanskje ha noe proposisjonell kunnskap.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Epistemisk rettferdighet</h4>
+    <p>Miranda Fricker: Epistemisk urettferdighet skjer når noen ikke tas på alvor som kilde til kunnskap pga. identitet (vitnesbyrd-urettferdighet) eller manglende begreper (hermeneutisk urettferdighet).</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Testimonialt kunnskap</h4>
+    <p>Kunnskap vi tilegner oss gjennom andres vitnesbyrd. Drozdzowicz: Kan vi få kunnskap fra KI på samme måte som fra mennesker? Krever det at KI selv «vet» noe?</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Hallusinasjon (KI)</h4>
+    <p>Fenomenet der LLM-er produserer plausibelt klingende, men falsk informasjon. Epistemisk viktig: KI vet ikke nødvendigvis at det sier usant — det «predikerer» bare sannsynlige tekster.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Inferens og generalisering</h4>
+    <p>LLM-er er trent på å predikere neste token. Kan slik statistisk inferens gi noe som ligner kunnskap? Eller er det fundamentalt annerledes fra menneskelig begrunnet tro?</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Epistemisk autoritet</h4>
+    <p>Hvem har rett til å sette standarder for kunnskap? Når vi bruker KI som kunnskapskilde, delegerer vi epistemisk autoritet til teknologiselskaper.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Radikalt innhold vs. form</h4>
+    <p>Bayne &amp; Williams: Forholdet mellom innholdet i en tanke og dens form/struktur. Relevant for KI: LLM-er har form (grammatisk korrekte setninger) — men har de innhold (mening, referanse)?</p>
+  </div>
+</div>
+<hr>
+<h2>Sentrale tekster</h2>
+<div class="author-list">
+  <div class="author-card">
+    <div class="author-name">Mallory</div>
+    <div class="text-title">Epistemologi og KI</div>
+    <p>Analyserer epistemologiske spørsmål rundt KI: Kan maskiner ha kunnskap? Hva er kravene til kunnskap, og møter KI-systemer disse? Fokus på begrunnelse og tro som kognitive tilstander.</p>
+  </div>
+  <div class="author-card">
+    <div class="author-name">Tim Bayne &amp; Adrian Williams</div>
+    <div class="text-title">Tanke, innhold og mening</div>
+    <p>Undersøker forholdet mellom tankens form og innhold. Hva det betyr at en mental tilstand «handler om» noe — og hvorvidt dette er mulig for beregningssystemer.</p>
+  </div>
+  <div class="author-card">
+    <div class="author-name">Om Claude (Anthropic)</div>
+    <div class="text-title">Store språkmodeller og epistemiske spørsmål</div>
+    <p>Analyse av hva store språkmodeller som Claude faktisk «vet» — hva er kilden til deres «kunnskap», hva er hallusinasjon, og hvilke epistemiske forpliktelser oppstår ved bruk av slike systemer?</p>
+  </div>
+</div>
+<hr>
+<h2>Fordypning: Argumenter</h2>
+<details>
+<summary>💡 Kan LLM-er ha kunnskap? — analyse</summary>
+<p><strong>Kravene til kunnskap (JTB)</strong>:</p>
+<ol>
+<li><strong>Sannhet</strong>: LLM-er sier mange sanne ting — men de kan ikke skille sant fra usant internt</li>
+<li><strong>Tro</strong>: Har LLM-er <em>tro</em> i kognitiv forstand? De har «vekter» som repræsenterer sannsynligheter, ikke tro med subjektiv holdning</li>
+<li><strong>Begrunnelse</strong>: LLM-er kan ikke <em>begrunne</em> sine utsagn — de produserer plausibel tekst basert på trening</li>
+</ol>
+<p><strong>Konklusjon</strong>: LLM-er mangler minst to av tre JTB-kriterier. Men...</p>
+<p><strong>Motargument</strong>: Kanskje JTB er feil analyse av kunnskap (Gettier). Kanskje kunnskap er funksjonelt — og LLM-er fungerer kunnskapsrikt nok?</p>
+</details>
+<details>
+<summary>💡 Forståelse vs. kunnskap — kan KI forstå?</summary>
+<p>Jonathan Kvanvig: Forståelse krever:</p>
+<ol>
+<li>En koherent representasjon av et domene</li>
+<li>Evne til å se årsaks- og forklaringsforbindelser</li>
+<li>Evne til å anvende innsikt på nye situasjoner</li>
+</ol>
+<p><strong>LLM-er og forståelse</strong>:</p>
+<ul>
+<li>De kan produsere koherente representasjoner (punkt 1 muligens møtt)</li>
+<li>De kan gi kausale forklaringer (punkt 2 delvis — men disse er trent inn, ikke «utledet»)</li>
+<li>De generaliserer til nye situasjoner (punkt 3 delvis møtt)</li>
+</ul>
+<p><strong>Men</strong>: Er dette ekte forståelse, eller en meget god <em>simulering</em> av forståelse? Dette er den sentrale debatten.</p>
+</details>
+<details>
+<summary>💡 Epistemisk rettferdighet og KI</summary>
+<p>Miranda Frickers begrep om epistemisk rettferdighet er relevant for KI på to måter:</p>
+<p><strong>1. KI som kilde til vitnesbyrd</strong>: Når vi spør en LLM om noe, behandler vi den som en epistemisk kilde. Men har den <em>rett</em> til å bli hørt? Og er vi for ukritiske overfor KI-«autoritet»?</p>
+<p><strong>2. KI som reprodusent av urettferdighet</strong>: LLM-er er trent på menneskelig tekst — inkludert all den biased, diskriminerende og epistemisk urettferdige teksten som finnes. De risikerer å reprodusere hermeneutisk urettferdighet ved å mangle begreper for marginaliserte gruppers erfaringer.</p>
+</details>
+<hr>
+<div class="exam-box">
+<ul>
+<li>Hva er <strong>begrunnet sann tro</strong> (JTB)? Kan LLM-er tilfredsstille disse kravene?</li>
+<li>Forklar forskjellen mellom <strong>kunnskap</strong> og <strong>forståelse</strong> — og diskuter om KI kan ha begge</li>
+<li>Hva er en <strong>stokastisk papegøye</strong> og hva er dette begrepets kritikk av LLM-er?</li>
+<li>Hva er <strong>semantisk kompetanse</strong> — og kan KI ha det?</li>
+<li>Hva er <strong>epistemisk rettferdighet</strong> (Fricker) og hvordan er det relevant for KI?</li>
+<li>Hva er <strong>hallusinasjon</strong> i KI-sammenheng — og hva sier det om KI og kunnskap?</li>
+<li>Kan vi lære noe av KI på samme måte som vi lærer fra menneskelige vitner (<strong>testimonialt kunnskap</strong>)?</li>
+</ul>
+</div>
+
+    </main>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>Kunstig Intelligens og Filosofi · Studieveiledning 2026</p>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Til toppen">↑</button>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <script>
+    // Back to top
+    window.addEventListener('scroll', function () {
+      document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 300);
+    });
+
+    // Active link
+    const path = window.location.pathname;
+    document.querySelectorAll('.sidebar a').forEach(function (a) {
+      const href = a.getAttribute('href');
+      if (href === path || (path !== '/' && href !== '/' && path.startsWith(href))) {
+        a.classList.add('active');
+        a.closest('.nav-group') && a.closest('.nav-group').querySelector('.nav-group-title').classList.add('active-section');
+      }
+    });
+
+    // Mobile sidebar toggle
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('visible');
+      document.body.classList.toggle('sidebar-open');
+    }
+
+    // Details: auto-open if anchor target inside
+    if (window.location.hash) {
+      document.querySelectorAll('details').forEach(function (d) {
+        if (d.querySelector(window.location.hash)) d.open = true;
+      });
+    }
+  </script>
+
+</body>
+</html>

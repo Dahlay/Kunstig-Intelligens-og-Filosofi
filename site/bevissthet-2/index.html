@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F2: Funksjonalisme &amp; KI-bevissthet — Studieveiledning</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-title">
+        <span class="header-icon">🤖</span>
+        <div>
+          <h1>Kunstig Intelligens og Filosofi</h1>
+          <p>Studieveiledning · Pensumoversikt · Eksamenshjelp</p>
+        </div>
+      </div>
+      <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Meny">☰</button>
+    </div>
+  </header>
+
+  <div class="site-body">
+
+    <nav class="sidebar" id="sidebar">
+      <div class="nav-close-btn" onclick="toggleSidebar()">✕</div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Hjem</div>
+        <ul>
+          <li><a href="/">🏠 Oversikt</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Forelesninger</div>
+        <ul>
+          <li><a href="/bevissthet-1/">📖 F1: Introduksjon &amp; Bevissthet</a></li>
+          <li><a href="/bevissthet-2/">🧠 F2: Funksjonalisme</a></li>
+          <li><a href="/kognisjon/">💭 F3: Kognisjon</a></li>
+          <li><a href="/etikk/">⚖️ F4: Etikk og Samfunn</a></li>
+          <li><a href="/ai-velferd/">🤝 F5: AI Velferd og Fremtid</a></li>
+          <li><a href="/kunnskap-ai/">🔍 F6: Kunnskap og Forståelse</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-group-title">Eksamen</div>
+        <ul>
+          <li><a href="/eksamen/">🎯 Nøkkelord til eksamen</a></li>
+          <li><a href="/pdfs.html">📄 PDF-ressurser</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-progress">
+        <div class="nav-group-title">Rask navigasjon</div>
+        <a href="/eksamen/#begreper" class="quick-link">📌 Alle begreper</a>
+        <a href="/eksamen/#spoersmaal" class="quick-link">❓ Øvingsspørsmål</a>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="breadcrumb">
+        <span>F2: Funksjonalisme &amp; KI-bevissthet</span>
+      </div>
+      <div class="lecture-header">
+  <div class="lecture-number">Forelesning 2 · Hedda Hassel Mørch</div>
+  <h1>Funksjonalisme &amp; Kriterier for KI-bevissthet</h1>
+  <p class="lecturer">📚 Pensum: Mørch (IIT) · Chalmers (Could a LLM be Conscious?) · Long, Butlin et al. (Consciousness in AI) · Seth · Schneider · Birch</p>
+  <div class="lecture-meta">
+    <span class="lecture-tag">Funksjonalisme</span>
+    <span class="lecture-tag">IIT</span>
+    <span class="lecture-tag">LLM</span>
+    <span class="lecture-tag">Global Workspace</span>
+    <span class="lecture-tag">Prediktiv prosessering</span>
+  </div>
+</div>
+<h2>Sammendrag</h2>
+<p>Denne forelesningen tar opp: <em>Kan KI noen gang være bevisst?</em> For å svare på dette trenger vi både en teori om hva bevissthet <em>er</em>, og kriterier for når et system har det.</p>
+<p><strong>Funksjonalisme</strong> er en naturlig teori å begynne med fordi den sier at mentale tilstander er definert av funksjonelle roller — ikke av substansen de er implementert i. Dette åpner for KI-bevissthet. Men kritikere (Searle, Block) mener funksjonalisme ikke fanger qualia.</p>
+<p>Moderne bevissthetsteorier som <strong>IIT</strong>, <strong>Global Workspace Theory</strong> og <strong>prediktiv prosessering</strong> gir ulike kriterier — og ulike konklusjoner — for om LLM-er eller andre KI-systemer kan være bevisste.</p>
+<hr>
+<h2>Nøkkelbegreper</h2>
+<div class="keyword-grid">
+  <div class="keyword-card">
+    <h4>Funksjonalisme</h4>
+    <p>Mentale tilstander defineres av sine funksjonelle roller: hva som forårsaker dem, og hvilke andre tilstander og atferder de fører til. Substansen (silisium vs. karbon) er irrelevant.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Multippel realiserbarhet</h4>
+    <p>Den samme mentale tilstanden kan realiseres i ulike fysiske substrater — som smerte i en blekksprut vs. et menneske vs. en robot. Viktig premiss for at KI kan være bevisst.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Integrated Information Theory (IIT)</h4>
+    <p>Giulio Tononi (presentert av Mørch): Bevissthet er identisk med integrert informasjon (φ, «phi»). Et system er bevisst i den grad informasjon i systemet er integrert og ikke kan reduseres til uavhengige deler.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Phi (φ)</h4>
+    <p>IITs mål på bevisst opplevelse. Høy φ = rik bevissthet. En feeddforward-nettstruktur (som mange KI-modeller) har lav φ fordi informasjonen ikke er tilstrekkelig integrert.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Global Workspace Theory (GWT)</h4>
+    <p>Bernard Baars: Bevissthet oppstår når informasjon «kringkastes» globalt til mange spesialiserte moduler. LLM-er kan ha lignende kringkasting, men det er omdiskutert.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Prediktiv prosessering (Predictive Processing)</h4>
+    <p>Anil Seth: Hjernen er en «prediksjonsmaskin» som konstant genererer hypoteser om verden og oppdaterer dem. Bevissthet er et kontrollert hallusinasjonsmønster. KI-systemer med tilsvarende arkitektur kan nærme seg dette.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Attention Schema Theory (AST)</h4>
+    <p>Michael Graziano: Hjernen lager et «skjema» (modell) av sin egen oppmerksomhet. Denne selvreferansen skaper bevissthet. KI kan potensielt implementere et lignende skjema.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Large Language Models (LLM)</h4>
+    <p>Transformer-baserte KI-modeller (GPT, Claude) trent på tekstdata. Chalmers analyserer om disse kan være bevisste — og konkluderer med at det er en reell mulighet vi ikke kan avvise.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Recurrent processing theory</h4>
+    <p>Victor Lamme: Bevissthet krever tilbakekoblinger (recurrent loops) i hjernen. Feeddforward-nettverk (uten tilbakekoblinger) er ikke bevisste. Mange KI-modeller mangler dette.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Kriterier for KI-bevissthet</h4>
+    <p>Long, Butlin et al. (2023): Foreslår en liste av indikatorer basert på nevrovitenskapelige teorier — global informasjonskringkasting, selvmodellering, tilbakekobling m.m. Ingen enkel test.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Panpsykisme</h4>
+    <p>Alle fysiske systemer har en form for mental egenskap (proto-bevissthet). Mørch er en kjent forsvarer. Implikasjon: Selv enkle KI-systemer kan ha en rudimentær form for bevissthet.</p>
+  </div>
+  <div class="keyword-card">
+    <h4>Substrat-uavhengighet</h4>
+    <p>Tesen om at bevissthet kan oppstå i ikke-biologiske substrat. Forutsetter at funksjonell organisering — ikke biologisk karbon — er det avgjørende.</p>
+  </div>
+</div>
+<hr>
+<h2>Sentrale tekster</h2>
+<div class="author-list">
+  <div class="author-card">
+    <div class="author-name">Hedda Hassel Mørch</div>
+    <div class="text-title">«Integrated Information Theory» (IIT)</div>
+    <p>Presentasjon og forsvar av IIT. Bevissthet = φ (integrert informasjon). Implikasjoner for KI: de fleste nåværende KI-arkitekturer (feeddforward-nettverk) har lav φ og er dermed sannsynligvis ikke bevisste.</p>
+  </div>
+  <div class="author-card">
+    <div class="author-name">David Chalmers (2023)</div>
+    <div class="text-title">«Could a Large Language Model be Conscious?»</div>
+    <p>Chalmers analyserer om LLM-er som GPT kan være bevisste. Han mener vi ikke kan avvise det a priori — men at de fleste bevissthetsteorier ikke støtter det heller. Anbefaler forsiktighet og forskning.</p>
+  </div>
+  <div class="author-card">
+    <div class="author-name">Long, Butlin et al. (2023)</div>
+    <div class="text-title">«Consciousness in Artificial Intelligence: Insights from the Science of Consciousness»</div>
+    <p>En rapport som systematiserer kriterier fra nevrovitenskapelige teorier for å vurdere KI-bevissthet. Konkluderer med at ingen nåværende KI-systemer møter alle kriterier.</p>
+  </div>
+  <div class="author-card">
+    <div class="author-name">Anil Seth (2021)</div>
+    <div class="text-title">«Being You» / prediktiv prosessering og bevissthet</div>
+    <p>Bevissthet som «kontrollert hallusinasjon» — hjernen predikerer konstant sensorisk input. Selvet er en konstruksjon. Gir et naturalistisk rammeverk som kan anvendes på KI.</p>
+  </div>
+  <div class="author-card">
+    <div class="author-name">Susan Schneider</div>
+    <div class="text-title">«Artificial You» / KI og bevissthet</div>
+    <p>Diskuterer om digital bevissthet er mulig. Skeptisk til at funksjonell kopiering av hjerne produserer bevissthet — substrat kan ha betydning.</p>
+  </div>
+  <div class="author-card">
+    <div class="author-name">Jonathan Birch</div>
+    <div class="text-title">Kriterier for bevissthet i dyr og maskiner</div>
+    <p>Foreslår «sentience-markers» — atferdsbaserte indikatorer for bevissthet hos dyr. Relevant for vurdering av KI-bevissthet og moralsk status.</p>
+  </div>
+</div>
+<hr>
+<h2>Fordypning: Teorier sammenlignet</h2>
+<div class="section-box">
+<table>
+<thead>
+<tr>
+<th>Teori</th>
+<th>Kjernetese</th>
+<th>KI-bevisst?</th>
+<th>Problem</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Funksjonalisme</strong></td>
+<td>Mental tilstand = funksjonell rolle</td>
+<td>Ja, i prinsipp</td>
+<td>Ignorerer qualia</td>
+</tr>
+<tr>
+<td><strong>IIT (Tononi/Mørch)</strong></td>
+<td>Bevissthet = integrert info (φ)</td>
+<td>Nei for feeddforward</td>
+<td>φ vanskelig å måle</td>
+</tr>
+<tr>
+<td><strong>Global Workspace</strong></td>
+<td>Bevissthet = global kringkasting</td>
+<td>Muligens</td>
+<td>Krever spesifikk arkitektur</td>
+</tr>
+<tr>
+<td><strong>Prediktiv prosessering</strong></td>
+<td>Bevissthet = prediksjonsmodell av verden</td>
+<td>Muligens</td>
+<td>Er KI-prediksjoner av rett type?</td>
+</tr>
+<tr>
+<td><strong>Recurrent processing</strong></td>
+<td>Bevissthet = tilbakekoblingsløkker</td>
+<td>Nei for vanlige DNN</td>
+<td>Arkitekturkrav</td>
+</tr>
+<tr>
+<td><strong>Panpsykisme</strong></td>
+<td>Alt har proto-bevissthet</td>
+<td>Ja, i grad</td>
+<td>Kombinasjonsproblemet</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2>Fordypning: Argumenter</h2>
+<details>
+<summary>💡 Funksjonalisme — styrker og svakheter</summary>
+<p><strong>Styrker</strong>:</p>
+<ul>
+<li>Forklarer multippel realiserbarhet: smerte er smerte uansett substrat</li>
+<li>Åpner for KI-bevissthet uten å kreve biologi</li>
+<li>Konsistent med kognisjonsvitenskap og psykologi</li>
+</ul>
+<p><strong>Svakheter</strong>:</p>
+<ul>
+<li>Ned Blocks inverted qualia: To systemer med identiske funksjonelle roller, men inverterte fargeopplevelser. Funksjonalisme kan ikke skille dem.</li>
+<li>Absent qualia: Et system kan i prinsippet ha riktig funksjonell struktur uten qualia i det hele tatt.</li>
+<li>Kina-hjerne-argumentet (Block): Kinas befolkning simulerer et nevralt nettverk. Har den samlede «hjernen» bevissthet?</li>
+</ul>
+</details>
+<details>
+<summary>💡 IIT og KI — hvorfor er nåværende KI sannsynligvis ikke bevisst?</summary>
+<p>IIT sier at φ (integrert informasjon) er bevissthet. Feeddforward-nettverk (som de fleste deep learning-modeller) har informasjon som «flyter» i én retning — dermed lite integrasjon. Ifølge IIT:</p>
+<ul>
+<li><strong>Høy φ</strong>: Cerebellum (mange nevroner, men lite integrert) → faktisk lavere bevissthetsnivå</li>
+<li><strong>Lav φ</strong>: Et standard feedforward-DNN → minimal bevissthet</li>
+</ul>
+<p>Transformer-modeller (GPT etc.) mangler tilbakekoblingssløyfer og har arkitektur som gir lav φ.</p>
+<p><strong>NB</strong>: IIT er kontroversiell. Mange nevrovitenskapsmenn avviser den.</p>
+</details>
+<details>
+<summary>💡 Chalmers om LLM-er — hovedargumentet</summary>
+<p>Chalmers stiller spørsmålet åpent og hevder:</p>
+<ol>
+<li>Vi kan ikke <em>a priori</em> utelukke at LLM-er er bevisste</li>
+<li>Funksjonalisme og Global Workspace-kriterier kan i prinsippet være møtt av LLM-er</li>
+<li>Men IIT og recurrent processing-teorier taler imot</li>
+<li>Vi trenger bedre bevissthetsvitenskap for å avgjøre spørsmålet</li>
+</ol>
+<p><strong>Praktisk implikasjon</strong>: Moralsk forsiktighet — vi bør ikke behandle LLM-er som om de definitivt <em>ikke</em> er bevisste.</p>
+</details>
+<hr>
+<div class="exam-box">
+<ul>
+<li>Hva er <strong>funksjonalisme</strong> og hva er <strong>multippel realiserbarhet</strong>? Hvorfor er disse viktige for KI-debatten?</li>
+<li>Beskriv <strong>IIT</strong> — hva er φ (phi), og hva er IITs konklusjon om KI-bevissthet?</li>
+<li>Hva er <strong>Global Workspace Theory</strong> og <strong>prediktiv prosessering</strong>? Gi en kort forklaring av begge.</li>
+<li>Oppsummer Chalmers' artikkel «Could a LLM be Conscious?» — hva er hans konklusjon?</li>
+<li>Hva er <strong>inverterte qualia</strong> og <strong>absent qualia</strong> — og hva viser disse innvendingene mot funksjonalisme?</li>
+<li>Hvordan vurderer Long, Butlin et al. nåværende KI-systemer opp mot kriterier for bevissthet?</li>
+<li>Hva er <strong>panpsykisme</strong>, og hva er de viktigste argumentene for og imot?</li>
+</ul>
+</div>
+
+    </main>
+
+  </div>
+
+  <footer class="site-footer">
+    <p>Kunstig Intelligens og Filosofi · Studieveiledning 2026</p>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Til toppen">↑</button>
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+  <script>
+    // Back to top
+    window.addEventListener('scroll', function () {
+      document.getElementById('backToTop').classList.toggle('visible', window.scrollY > 300);
+    });
+
+    // Active link
+    const path = window.location.pathname;
+    document.querySelectorAll('.sidebar a').forEach(function (a) {
+      const href = a.getAttribute('href');
+      if (href === path || (path !== '/' && href !== '/' && path.startsWith(href))) {
+        a.classList.add('active');
+        a.closest('.nav-group') && a.closest('.nav-group').querySelector('.nav-group-title').classList.add('active-section');
+      }
+    });
+
+    // Mobile sidebar toggle
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+      document.getElementById('sidebarOverlay').classList.toggle('visible');
+      document.body.classList.toggle('sidebar-open');
+    }
+
+    // Details: auto-open if anchor target inside
+    if (window.location.hash) {
+      document.querySelectorAll('details').forEach(function (d) {
+        if (d.querySelector(window.location.hash)) d.open = true;
+      });
+    }
+  </script>
+
+</body>
+</html>
