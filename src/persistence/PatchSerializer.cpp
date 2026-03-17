@@ -32,10 +32,14 @@ std::string PatchSerializer::toJson(const graph::PatchGraph& graph) {
 
   for (const auto& [id, node] : graph.getNodes()) {
     j["nodes"].push_back({{"id", id},
-                            {"type", static_cast<int>(node.type)},
-                            {"x", node.position.x},
-                            {"y", node.position.y},
-                            {"gain", node.gain}});
+                           {"type", static_cast<int>(node.type)},
+                           {"x", node.position.x},
+                           {"y", node.position.y},
+                           {"gain", node.gain},
+                           {"filterCutoffHz", node.filterCutoffHz},
+                           {"delayMs", node.delayMs},
+                           {"delayFeedback", node.delayFeedback},
+                           {"delayMix", node.delayMix}});
   }
 
   for (const auto& [edgeId, edge] : graph.getEdges()) {
@@ -113,8 +117,22 @@ bool PatchSerializer::fromJson(const std::string& jsonText, graph::PatchGraph& o
     const auto oldId = n["id"].get<std::string>();
     const auto newId = graph.addNode(*typeOpt, {n["x"].get<float>(), n["y"].get<float>()});
 
-    if (auto* node = graph.findNode(newId); node && n.contains("gain")) {
-      node->gain = n["gain"].get<float>();
+    if (auto* node = graph.findNode(newId); node) {
+      if (n.contains("gain")) {
+        node->gain = n["gain"].get<float>();
+      }
+      if (n.contains("filterCutoffHz")) {
+        node->filterCutoffHz = n["filterCutoffHz"].get<float>();
+      }
+      if (n.contains("delayMs")) {
+        node->delayMs = n["delayMs"].get<float>();
+      }
+      if (n.contains("delayFeedback")) {
+        node->delayFeedback = n["delayFeedback"].get<float>();
+      }
+      if (n.contains("delayMix")) {
+        node->delayMix = n["delayMix"].get<float>();
+      }
     }
 
     oldNodeIdToNewNodeId[oldId] = newId;

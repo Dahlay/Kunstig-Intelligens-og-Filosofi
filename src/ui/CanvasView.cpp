@@ -129,13 +129,18 @@ void CanvasView::paint(juce::Graphics& g) {
   }
 
   // Nodes
-  for (const auto& [_, node] : graph_.getNodes()) {
+  for (const auto& [nodeId, node] : graph_.getNodes()) {
     const auto r = nodeRect(node);
 
     g.setColour(juce::Colour(0xff242b38));
     g.fillRoundedRectangle(r, 10.0f);
     g.setColour(juce::Colour(0xff4c5d7a));
     g.drawRoundedRectangle(r, 10.0f, 1.2f);
+
+    if (selectedNodeId_ && *selectedNodeId_ == nodeId) {
+      g.setColour(juce::Colours::deepskyblue);
+      g.drawRoundedRectangle(r.expanded(2.0f), 11.0f, 2.2f);
+    }
 
     g.setColour(juce::Colours::white);
     g.setFont(juce::FontOptions(14.0f, juce::Font::bold));
@@ -189,6 +194,11 @@ void CanvasView::mouseDown(const juce::MouseEvent& event) {
   }
 
   if (auto nodeId = hitNode(p)) {
+    selectedNodeId_ = *nodeId;
+    if (onNodeSelection_) {
+      onNodeSelection_(selectedNodeId_);
+    }
+
     draggingNodeId_ = *nodeId;
     if (onGraphEdit_) {
       onGraphEdit_();
@@ -196,7 +206,15 @@ void CanvasView::mouseDown(const juce::MouseEvent& event) {
     if (const auto* node = graph_.findNode(*nodeId)) {
       dragOffset_ = {p.x - node->position.x, p.y - node->position.y};
     }
+    repaint();
+    return;
   }
+
+  selectedNodeId_.reset();
+  if (onNodeSelection_) {
+    onNodeSelection_(selectedNodeId_);
+  }
+  repaint();
 }
 
 void CanvasView::mouseDrag(const juce::MouseEvent& event) {

@@ -1,13 +1,15 @@
 #include "app/MainComponent.h"
+#include "diagnostics/CrashLogger.h"
 
 #include <juce_gui_extra/juce_gui_extra.h>
 
 class ModularPatcherApplication final : public juce::JUCEApplication {
  public:
   const juce::String getApplicationName() override { return "Modular Audio Patcher"; }
-  const juce::String getApplicationVersion() override { return "0.1.0"; }
+  const juce::String getApplicationVersion() override { return MAP_VERSION_STRING; }
 
   void initialise(const juce::String&) override {
+    CrashLogger::install();
     mainWindow_ = std::make_unique<MainWindow>(getApplicationName());
   }
 

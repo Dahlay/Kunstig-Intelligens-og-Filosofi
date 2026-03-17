@@ -38,6 +38,10 @@ struct Node {
   NodeType type{NodeType::Gain};
   Position position{};
   float gain{1.0f};
+  float filterCutoffHz{1200.0f};
+  float delayMs{250.0f};
+  float delayFeedback{0.25f};
+  float delayMix{0.35f};
   std::vector<std::string> inputPortIds;
   std::vector<std::string> outputPortIds;
 };

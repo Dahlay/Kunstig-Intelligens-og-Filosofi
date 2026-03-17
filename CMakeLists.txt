@@ -1,9 +1,26 @@
 cmake_minimum_required(VERSION 3.24)
-project(ModularAudioPatcher VERSION 0.1.0 LANGUAGES C CXX)
+project(ModularAudioPatcher VERSION 1.0.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+
+# ── Version bookkeeping ───────────────────────────────────────────────────────
+set(MAP_VERSION_MAJOR 1)
+set(MAP_VERSION_MINOR 0)
+set(MAP_VERSION_PATCH 0)
+set(MAP_VERSION "${MAP_VERSION_MAJOR}.${MAP_VERSION_MINOR}.${MAP_VERSION_PATCH}")
+
+# ── CPack common settings (filled in per-platform below) ─────────────────────
+set(CPACK_PACKAGE_NAME        "ModularAudioPatcher")
+set(CPACK_PACKAGE_VENDOR      "Even")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Modular Audio Patcher – node-based audio workstation")
+set(CPACK_PACKAGE_VERSION     "${MAP_VERSION}")
+set(CPACK_PACKAGE_VERSION_MAJOR "${MAP_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${MAP_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${MAP_VERSION_PATCH}")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE.txt")
+set(CPACK_RESOURCE_FILE_README  "${CMAKE_SOURCE_DIR}/README.md")
 
 include(FetchContent)
 
@@ -24,7 +41,16 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(nlohmann_json)
 
 juce_add_gui_app(ModularAudioPatcher
-  PRODUCT_NAME "Modular Audio Patcher"
+  PRODUCT_NAME         "Modular Audio Patcher"
+  VERSION              "${MAP_VERSION}"
+  COMPANY_NAME         "Even"
+  COMPANY_WEBSITE      "https://example.com"
+  BUNDLE_ID            "com.even.modularaudiopatcher"
+  # macOS
+  MICROPHONE_PERMISSION_ENABLED   TRUE
+  MICROPHONE_PERMISSION_TEXT      "Modular Audio Patcher needs microphone access for audio input routing."
+  # Windows resources
+  ICON_BIG             ""
 )
 
 juce_generate_juce_header(ModularAudioPatcher)
@@ -48,6 +74,7 @@ target_sources(ModularAudioPatcher
     src/audio/processors/IProcessor.h
     src/persistence/PatchSerializer.h
     src/persistence/PatchSerializer.cpp
+    src/diagnostics/CrashLogger.h
 )
 
 target_include_directories(ModularAudioPatcher
@@ -59,6 +86,9 @@ target_compile_definitions(ModularAudioPatcher
   PRIVATE
     JUCE_WEB_BROWSER=0
     JUCE_USE_CURL=0
+    JUCE_APPLICATION_NAME_STRING="$<TARGET_PROPERTY:ModularAudioPatcher,JUCE_PRODUCT_NAME>"
+    JUCE_APPLICATION_VERSION_STRING="$<TARGET_PROPERTY:ModularAudioPatcher,JUCE_VERSION>"
+    MAP_VERSION_STRING="${MAP_VERSION}"
 )
 
 target_link_libraries(ModularAudioPatcher
@@ -100,3 +130,46 @@ if(BUILD_TESTING)
   include(Catch)
   catch_discover_tests(graph_tests)
 endif()
+
+# ── Packaging ─────────────────────────────────────────────────────────────────
+if(APPLE)
+  # DragNDrop .dmg via hdiutil (macOS native)
+  set(CPACK_GENERATOR "DragNDrop")
+  set(CPACK_DMG_VOLUME_NAME "Modular Audio Patcher ${MAP_VERSION}")
+  set(CPACK_DMG_FORMAT "UDZO")          # compressed UDIF
+  set(CPACK_BUNDLE_NAME "Modular Audio Patcher")
+  set(CPACK_BUNDLE_PLIST
+    "${CMAKE_SOURCE_DIR}/packaging/macos/Info.plist.in")
+  # Signing (opt-in via cmake -DMAP_SIGN=ON -DMAP_TEAM_ID=XXXXXXXXXX)
+  option(MAP_SIGN "Code-sign the macOS bundle" OFF)
+  if(MAP_SIGN)
+    set(MAP_TEAM_ID "" CACHE STRING "Apple Developer Team ID for code signing")
+    set_target_properties(ModularAudioPatcher PROPERTIES
+      XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY       "Developer ID Application"
+      XCODE_ATTRIBUTE_DEVELOPMENT_TEAM         "${MAP_TEAM_ID}"
+      XCODE_ATTRIBUTE_CODE_SIGN_STYLE          "Manual"
+      XCODE_ATTRIBUTE_OTHER_CODE_SIGN_FLAGS    "--timestamp --options=runtime"
+    )
+  endif()
+elseif(WIN32)
+  # NSIS installer on Windows (requires NSIS installed)
+  set(CPACK_GENERATOR "NSIS")
+  set(CPACK_NSIS_PACKAGE_NAME       "Modular Audio Patcher")
+  set(CPACK_NSIS_DISPLAY_NAME       "Modular Audio Patcher ${MAP_VERSION}")
+  set(CPACK_NSIS_INSTALL_ROOT       "$PROGRAMFILES64")
+  set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
+  set(CPACK_NSIS_MUI_ICON
+    "${CMAKE_SOURCE_DIR}/packaging/windows/installer.ico")
+  set(CPACK_NSIS_MUI_UNIICON
+    "${CMAKE_SOURCE_DIR}/packaging/windows/installer.ico")
+  set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS
+    "CreateShortcut \\\"$DESKTOP\\\\Modular Audio Patcher.lnk\\\" \\\"$INSTDIR\\\\ModularAudioPatcher.exe\\\"")
+  set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS
+    "Delete \\\"$DESKTOP\\\\Modular Audio Patcher.lnk\\\"")
+  # Install the built executable
+  install(TARGETS ModularAudioPatcher DESTINATION ".")
+elseif(UNIX)
+  set(CPACK_GENERATOR "TGZ")
+endif()
+
+include(CPack)

@@ -4,6 +4,12 @@
 
 namespace {
 constexpr int kToolbarHeight = 46;
+constexpr int kInspectorWidth = 270;
+
+void configureInspectorSlider(juce::Slider& slider, double min, double max, double step) {
+  slider.setRange(min, max, step);
+  slider.setTextBoxStyle(juce::Slider::TextBoxLeft, false, 72, 20);
+}
 }
 
 MainComponent::MainComponent() : canvas_(graph_) {
@@ -19,6 +25,13 @@ MainComponent::MainComponent() : canvas_(graph_) {
   addAndMakeVisible(redoButton_);
   addAndMakeVisible(bpmSlider_);
   addAndMakeVisible(bpmLabel_);
+  addAndMakeVisible(inspectorGroup_);
+  addAndMakeVisible(inspectorNodeLabel_);
+  addAndMakeVisible(gainSlider_);
+  addAndMakeVisible(filterCutoffSlider_);
+  addAndMakeVisible(delayMsSlider_);
+  addAndMakeVisible(delayFeedbackSlider_);
+  addAndMakeVisible(delayMixSlider_);
 
   status_.setColour(juce::Label::textColourId, juce::Colours::lightgrey);
   status_.setText("Ready", juce::dontSendNotification);
@@ -43,6 +56,22 @@ MainComponent::MainComponent() : canvas_(graph_) {
     status_.setText("BPM: " + juce::String(static_cast<int>(bpmSlider_.getValue())),
                     juce::dontSendNotification);
   };
+
+  inspectorGroup_.setText("Inspector");
+  inspectorNodeLabel_.setText("No node selected", juce::dontSendNotification);
+  inspectorNodeLabel_.setColour(juce::Label::textColourId, juce::Colours::lightgrey);
+
+  configureInspectorSlider(gainSlider_, 0.0, 2.0, 0.01);
+  configureInspectorSlider(filterCutoffSlider_, 50.0, 10000.0, 1.0);
+  configureInspectorSlider(delayMsSlider_, 1.0, 1000.0, 1.0);
+  configureInspectorSlider(delayFeedbackSlider_, 0.0, 0.95, 0.01);
+  configureInspectorSlider(delayMixSlider_, 0.0, 1.0, 0.01);
+
+  gainSlider_.onValueChange = [this] { applyInspectorToSelectedNode(); };
+  filterCutoffSlider_.onValueChange = [this] { applyInspectorToSelectedNode(); };
+  delayMsSlider_.onValueChange = [this] { applyInspectorToSelectedNode(); };
+  delayFeedbackSlider_.onValueChange = [this] { applyInspectorToSelectedNode(); };
+  delayMixSlider_.onValueChange = [this] { applyInspectorToSelectedNode(); };
 
   const std::vector<std::pair<juce::String, graph::NodeType>> nodeButtons = {
       {"Output", graph::NodeType::Output}, {"Synth", graph::NodeType::Synth}, {"Drum", graph::NodeType::Drum},
@@ -73,10 +102,12 @@ MainComponent::MainComponent() : canvas_(graph_) {
   });
   canvas_.setGraphChangedCallback([this] { rebuildAudioPlan(); });
   canvas_.setStatusCallback([this](const std::string& text) { status_.setText(text, juce::dontSendNotification); });
+  canvas_.setNodeSelectionCallback([this](const std::optional<std::string>& nodeId) { onNodeSelected(nodeId); });
 
   // Default patch
   addNode(graph::NodeType::Output);
   addNode(graph::NodeType::Synth);
+  refreshInspector();
 
   // Initial undo baseline
   undoStack_.push_back(persistence::PatchSerializer::toJson(graph_));
@@ -122,6 +153,18 @@ void MainComponent::resized() {
   bpmSlider_.setBounds(x + 270, 8, 170, 30);
 
   status_.setBounds(getWidth() - 360, 8, 350, 30);
+
+  auto inspectorArea = area.removeFromRight(kInspectorWidth);
+  inspectorGroup_.setBounds(inspectorArea.reduced(8, 8));
+
+  auto content = inspectorGroup_.getBounds().reduced(12, 28);
+  inspectorNodeLabel_.setBounds(content.removeFromTop(26));
+  gainSlider_.setBounds(content.removeFromTop(34));
+  filterCutoffSlider_.setBounds(content.removeFromTop(34));
+  delayMsSlider_.setBounds(content.removeFromTop(34));
+  delayFeedbackSlider_.setBounds(content.removeFromTop(34));
+  delayMixSlider_.setBounds(content.removeFromTop(34));
+
   canvas_.setBounds(area);
 }
 
@@ -131,7 +174,9 @@ void MainComponent::addNode(graph::NodeType type) {
   }
   const float x = 80.0f + static_cast<float>(graph_.getNodes().size() * 24);
   const float y = 100.0f + static_cast<float>(graph_.getNodes().size() * 24);
-  graph_.addNode(type, {x, y});
+  const auto nodeId = graph_.addNode(type, {x, y});
+  selectedNodeId_ = nodeId;
+  refreshInspector();
   canvas_.repaint();
   rebuildAudioPlan();
 }
@@ -182,6 +227,8 @@ void MainComponent::loadPatch() {
                                 pushUndoState();
                               }
                               graph_ = std::move(loaded);
+                              selectedNodeId_.reset();
+                              refreshInspector();
                               canvas_.repaint();
                               rebuildAudioPlan();
                               status_.setText("Patch loaded", juce::dontSendNotification);
@@ -236,6 +283,8 @@ void MainComponent::undo() {
   graph::PatchGraph loaded;
   if (persistence::PatchSerializer::fromJson(previous, loaded, error)) {
     graph_ = std::move(loaded);
+    selectedNodeId_.reset();
+    refreshInspector();
     canvas_.repaint();
     rebuildAudioPlan();
     status_.setText("Undo", juce::dontSendNotification);
@@ -260,6 +309,8 @@ void MainComponent::redo() {
   graph::PatchGraph loaded;
   if (persistence::PatchSerializer::fromJson(next, loaded, error)) {
     graph_ = std::move(loaded);
+    selectedNodeId_.reset();
+    refreshInspector();
     canvas_.repaint();
     rebuildAudioPlan();
     status_.setText("Redo", juce::dontSendNotification);
@@ -267,6 +318,91 @@ void MainComponent::redo() {
     status_.setText("Redo failed: " + error, juce::dontSendNotification);
   }
   applyingHistory_ = false;
+}
+
+void MainComponent::onNodeSelected(const std::optional<std::string>& nodeId) {
+  selectedNodeId_ = nodeId;
+  refreshInspector();
+}
+
+void MainComponent::refreshInspector() {
+  updatingInspector_ = true;
+
+  gainSlider_.setEnabled(false);
+  filterCutoffSlider_.setEnabled(false);
+  delayMsSlider_.setEnabled(false);
+  delayFeedbackSlider_.setEnabled(false);
+  delayMixSlider_.setEnabled(false);
+
+  if (!selectedNodeId_) {
+    inspectorNodeLabel_.setText("No node selected", juce::dontSendNotification);
+    updatingInspector_ = false;
+    return;
+  }
+
+  const auto* node = graph_.findNode(*selectedNodeId_);
+  if (!node) {
+    inspectorNodeLabel_.setText("Selection invalid", juce::dontSendNotification);
+    updatingInspector_ = false;
+    return;
+  }
+
+  const auto nodeName = [node]() {
+    switch (node->type) {
+      case graph::NodeType::Output:
+        return juce::String("Output");
+      case graph::NodeType::Synth:
+        return juce::String("Synth");
+      case graph::NodeType::Drum:
+        return juce::String("Drum");
+      case graph::NodeType::Gain:
+        return juce::String("Gain");
+      case graph::NodeType::Filter:
+        return juce::String("Filter");
+      case graph::NodeType::Delay:
+        return juce::String("Delay");
+      case graph::NodeType::Mixer:
+        return juce::String("Mixer");
+    }
+    return juce::String("Node");
+  }();
+
+  inspectorNodeLabel_.setText("Selected: " + nodeName, juce::dontSendNotification);
+
+  gainSlider_.setValue(node->gain, juce::dontSendNotification);
+  filterCutoffSlider_.setValue(node->filterCutoffHz, juce::dontSendNotification);
+  delayMsSlider_.setValue(node->delayMs, juce::dontSendNotification);
+  delayFeedbackSlider_.setValue(node->delayFeedback, juce::dontSendNotification);
+  delayMixSlider_.setValue(node->delayMix, juce::dontSendNotification);
+
+  gainSlider_.setEnabled(node->type == graph::NodeType::Gain);
+  filterCutoffSlider_.setEnabled(node->type == graph::NodeType::Filter);
+  delayMsSlider_.setEnabled(node->type == graph::NodeType::Delay);
+  delayFeedbackSlider_.setEnabled(node->type == graph::NodeType::Delay);
+  delayMixSlider_.setEnabled(node->type == graph::NodeType::Delay);
+
+  updatingInspector_ = false;
+}
+
+void MainComponent::applyInspectorToSelectedNode() {
+  if (updatingInspector_ || applyingHistory_ || !selectedNodeId_) {
+    return;
+  }
+
+  auto* node = graph_.findNode(*selectedNodeId_);
+  if (!node) {
+    return;
+  }
+
+  pushUndoState();
+
+  node->gain = static_cast<float>(gainSlider_.getValue());
+  node->filterCutoffHz = static_cast<float>(filterCutoffSlider_.getValue());
+  node->delayMs = static_cast<float>(delayMsSlider_.getValue());
+  node->delayFeedback = static_cast<float>(delayFeedbackSlider_.getValue());
+  node->delayMix = static_cast<float>(delayMixSlider_.getValue());
+
+  rebuildAudioPlan();
 }
 
 void MainComponent::toggleTransport() {

@@ -32,9 +32,9 @@ std::unique_ptr<IProcessor> makeProcessor(const Node& node, double sampleRate) {
     case NodeType::Output:
       return std::make_unique<OutputProcessor>();
     case NodeType::Filter:
-      return std::make_unique<FilterProcessor>(1200.0f, sampleRate);
+      return std::make_unique<FilterProcessor>(node.filterCutoffHz, sampleRate);
     case NodeType::Delay:
-      return std::make_unique<DelayProcessor>(sampleRate, 250.0f, 0.25f, 0.35f);
+      return std::make_unique<DelayProcessor>(sampleRate, node.delayMs, node.delayFeedback, node.delayMix);
     case NodeType::Mixer:
       return std::make_unique<MixerProcessor>(2);
   }

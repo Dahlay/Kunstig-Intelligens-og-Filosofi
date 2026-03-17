@@ -140,3 +140,100 @@
 
 - Add inspector panel with selected node parameter editing (start with `Gain`)
 - Add per-module parameter bindings for filter/delay/mixer
+
+## Milestone 8.5 (Inspector + Parameter Persistence)
+
+### Scope completed (M8.5)
+
+- Added node selection state (click-to-select with blue highlight on canvas)
+- Added Inspector panel with enabled/disabled sliders per node type:
+  - Gain knob (Gain node)
+  - Filter cutoff (Filter node)
+  - Delay ms / feedback / mix (Delay node)
+- Inspector changes apply live to graph and rebuild runtime plan
+- Parameter values (`filterCutoffHz`, `delayMs`, `delayFeedback`, `delayMix`) persisted in patch JSON
+- Serialization roundtrip test expanded to validate parameter preservation
+
+### Files changed (M8.5)
+
+- `src/graph/PatchGraph.h`
+- `src/graph/GraphCompiler.cpp`
+- `src/persistence/PatchSerializer.cpp`
+- `src/ui/CanvasView.h`
+- `src/ui/CanvasView.cpp`
+- `src/app/MainComponent.h`
+- `src/app/MainComponent.cpp`
+- `tests/GraphTests.cpp`
+
+### Test evidence (M8.5)
+
+- `ctest` passing: 6/6 tests
+- Serializer test now validates gain, delayMs, delayFeedback, delayMix roundtrip
+
+### Known limitations (M8.5)
+
+- Synth has no editable parameters yet (note pattern and voice count are fixed)
+- Mixer channel count and levels not yet inspector-bound
+
+### Next milestone checklist (M9)
+
+- Performance tuning + validate callback budget
+- Packaging and distribution (macOS app bundle / Windows installer)
+
+## Milestone 9 (Packaging + Distribution)
+
+### Scope completed (M9)
+
+- Bumped project version to `1.0.0`; version string propagated as compile-time macro `MAP_VERSION_STRING`
+- `juce_add_gui_app` extended with full metadata: `BUNDLE_ID`, `COMPANY_NAME`, `VERSION`, microphone permission text
+- CPack configured in `CMakeLists.txt`:
+  - **macOS**: `DragNDrop` generator (`.dmg` via hdiutil)
+  - **Windows**: `NSIS` generator (64-bit installer, registry entries, shortcuts)
+  - **Linux fallback**: `TGZ`
+- macOS packaging assets (`packaging/macos/`):
+  - `Info.plist.in` — bundle plist template with category, copyright, HighDPI, microphone usage
+  - `entitlements.plist` — hardened-runtime entitlements for notarization (audio-input)
+  - `notarize.sh` — codesign → zip → `notarytool submit` → staple one-liner script
+- Windows packaging assets (`packaging/windows/`):
+  - `installer.nsi` — full NSIS Modern UI 2 script (welcome, license, dir, files, uninstaller, Add/Remove Programs registry keys)
+  - `build_installer.bat` — one-shot CMake configure + build + makensis script
+- Crash logger (`src/diagnostics/CrashLogger.h`):
+  - POSIX signal handler (macOS/Linux): SIGSEGV, SIGABRT, SIGFPE, SIGILL, SIGBUS
+  - Windows `SetUnhandledExceptionFilter` with exception code capture
+  - Stack trace via `backtrace_symbols` on POSIX
+  - Plain-text report written to platform log directory with timestamp
+  - `CrashLogger::logWarning()` for non-fatal diagnostic notes
+  - Installed early in `JUCEApplication::initialise()`
+- Project documentation: added `README.md`, `LICENSE.txt` (MIT)
+
+### Files changed (M9)
+
+- `CMakeLists.txt`
+- `src/main.cpp`
+- `src/diagnostics/CrashLogger.h` *(new)*
+- `packaging/macos/Info.plist.in` *(new)*
+- `packaging/macos/entitlements.plist` *(new)*
+- `packaging/macos/notarize.sh` *(new)*
+- `packaging/windows/installer.nsi` *(new)*
+- `packaging/windows/build_installer.bat` *(new)*
+- `README.md` *(new)*
+- `LICENSE.txt` *(new)*
+- `docs/MILESTONE_LOG.md`
+
+### Test evidence (M9)
+
+- `cmake --build build -j` → `[100%] Built target ModularAudioPatcher`
+- `ctest --output-on-failure` → 100% tests passed, 0 failed out of 6
+
+### Known limitations (M9)
+
+- Actual `.dmg` and `.exe` installer have not been produced from this machine (requires macOS packaging step `cmake --build build --target package` and a Windows host for NSIS)
+- Installer icon placeholder (`installer.ico`) not yet bundled — NSIS will warn but still build
+- Notarization requires valid Apple Developer ID credentials
+
+### Next milestone checklist (M10)
+
+- Full manual QA pass against `docs/QA_CHECKLIST.md`
+- Validate callback CPU budget stays within 40% on target hardware
+- Smoke-test save/load/undo/redo round-trip
+- Check all quality gates from EXECUTION_PLAN sections 17–19

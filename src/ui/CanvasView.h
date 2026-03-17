@@ -15,12 +15,14 @@ class CanvasView : public juce::Component {
   using GraphChangedCallback = std::function<void()>;
   using GraphEditCallback = std::function<void()>;
   using StatusCallback = std::function<void(const std::string&)>;
+  using NodeSelectionCallback = std::function<void(const std::optional<std::string>&)>;
 
   explicit CanvasView(graph::PatchGraph& graph);
 
   void setGraphChangedCallback(GraphChangedCallback cb) { onGraphChanged_ = std::move(cb); }
   void setGraphEditCallback(GraphEditCallback cb) { onGraphEdit_ = std::move(cb); }
   void setStatusCallback(StatusCallback cb) { onStatus_ = std::move(cb); }
+  void setNodeSelectionCallback(NodeSelectionCallback cb) { onNodeSelection_ = std::move(cb); }
 
   void paint(juce::Graphics& g) override;
   void mouseDown(const juce::MouseEvent& event) override;
@@ -44,7 +46,9 @@ class CanvasView : public juce::Component {
   GraphChangedCallback onGraphChanged_;
   GraphEditCallback onGraphEdit_;
   StatusCallback onStatus_;
+  NodeSelectionCallback onNodeSelection_;
 
+  std::optional<std::string> selectedNodeId_;
   std::optional<std::string> draggingNodeId_;
   juce::Point<float> dragOffset_;
 

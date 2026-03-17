@@ -46,6 +46,8 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/homebrew/share/cmake/Modules/CMakePackageConfigHelpers.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInformation.cmake"
   "/opt/homebrew/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/opt/homebrew/share/cmake/Modules/CPack.cmake"
+  "/opt/homebrew/share/cmake/Modules/CPackComponent.cmake"
   "/opt/homebrew/share/cmake/Modules/CTest.cmake"
   "/opt/homebrew/share/cmake/Modules/CTestTargets.cmake"
   "/opt/homebrew/share/cmake/Modules/CTestUseLaunchers.cmake"
@@ -86,6 +88,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/opt/homebrew/share/cmake/Modules/Platform/Linker/Apple-AppleClang.cmake"
   "/opt/homebrew/share/cmake/Modules/Platform/UnixPaths.cmake"
   "/opt/homebrew/share/cmake/Modules/WriteBasicConfigVersionFile.cmake"
+  "/opt/homebrew/share/cmake/Templates/CPackConfig.cmake.in"
   "/opt/homebrew/share/cmake/Templates/CTestScript.cmake.in"
   )
 
@@ -102,6 +105,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
   "_deps/catch2-subbuild/CMakeLists.txt"
   "DartConfiguration.tcl"
   "CMakeFiles/CTestScript.cmake"
+  "CPackConfig.cmake"
+  "CPackSourceConfig.cmake"
   "ModularAudioPatcher_artefacts/JuceLibraryCode/Defs.txt"
   "ModularAudioPatcher_artefacts/Modular Audio Patcher.app/Contents/MacOS"
   "ModularAudioPatcher_artefacts/Modular Audio Patcher.app/Contents/Info.plist"

@@ -56,18 +56,27 @@ TEST_CASE("Patch serializer roundtrip preserves graph shape") {
   graph::PatchGraph graph;
   const auto synthId = graph.addNode(graph::NodeType::Synth, {10.0f, 12.0f});
   const auto gainId = graph.addNode(graph::NodeType::Gain, {100.0f, 120.0f});
+  const auto delayId = graph.addNode(graph::NodeType::Delay, {160.0f, 100.0f});
   const auto outId = graph.addNode(graph::NodeType::Output, {240.0f, 60.0f});
 
   const auto* synth = graph.findNode(synthId);
-  const auto* gain = graph.findNode(gainId);
+  auto* gain = graph.findNode(gainId);
+  auto* delay = graph.findNode(delayId);
   const auto* out = graph.findNode(outId);
   REQUIRE(synth != nullptr);
   REQUIRE(gain != nullptr);
+  REQUIRE(delay != nullptr);
   REQUIRE(out != nullptr);
+
+  gain->gain = 1.37f;
+  delay->delayMs = 420.0f;
+  delay->delayFeedback = 0.42f;
+  delay->delayMix = 0.57f;
 
   std::string error;
   REQUIRE(graph.connect(synth->outputPortIds.front(), gain->inputPortIds.front(), error));
-  REQUIRE(graph.connect(gain->outputPortIds.front(), out->inputPortIds.front(), error));
+  REQUIRE(graph.connect(gain->outputPortIds.front(), delay->inputPortIds.front(), error));
+  REQUIRE(graph.connect(delay->outputPortIds.front(), out->inputPortIds.front(), error));
 
   const auto json = persistence::PatchSerializer::toJson(graph);
 
@@ -76,6 +85,24 @@ TEST_CASE("Patch serializer roundtrip preserves graph shape") {
   REQUIRE(error.empty());
   REQUIRE(loaded.getNodes().size() == graph.getNodes().size());
   REQUIRE(loaded.getEdges().size() == graph.getEdges().size());
+
+  bool foundGain = false;
+  bool foundDelay = false;
+  for (const auto& [_, node] : loaded.getNodes()) {
+    if (node.type == graph::NodeType::Gain) {
+      foundGain = true;
+      REQUIRE(std::abs(node.gain - 1.37f) < 1.0e-3f);
+    }
+    if (node.type == graph::NodeType::Delay) {
+      foundDelay = true;
+      REQUIRE(std::abs(node.delayMs - 420.0f) < 1.0e-3f);
+      REQUIRE(std::abs(node.delayFeedback - 0.42f) < 1.0e-3f);
+      REQUIRE(std::abs(node.delayMix - 0.57f) < 1.0e-3f);
+    }
+  }
+
+  REQUIRE(foundGain);
+  REQUIRE(foundDelay);
 }
 
 TEST_CASE("Audio engine processes filter-delay-mixer graph") {
