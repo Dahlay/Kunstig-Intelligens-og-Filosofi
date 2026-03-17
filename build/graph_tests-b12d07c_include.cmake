@@ -1,0 +1,5 @@
+if(EXISTS "/Users/even/Desktop/test project/build/graph_tests-b12d07c_tests.cmake")
+  include("/Users/even/Desktop/test project/build/graph_tests-b12d07c_tests.cmake")
+else()
+  add_test(graph_tests_NOT_BUILT-b12d07c graph_tests_NOT_BUILT-b12d07c)
+endif()

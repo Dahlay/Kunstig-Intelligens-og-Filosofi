@@ -1,0 +1,5 @@
+add_test( [==[Graph can connect output to input]==] [==[/Users/even/Desktop/test project/build/graph_tests]==] [==[Graph can connect output to input]==]  )
+set_tests_properties( [==[Graph can connect output to input]==] PROPERTIES WORKING_DIRECTORY [==[/Users/even/Desktop/test project/build]==])
+add_test( [==[Compiler rejects graph without output]==] [==[/Users/even/Desktop/test project/build/graph_tests]==] [==[Compiler rejects graph without output]==]  )
+set_tests_properties( [==[Compiler rejects graph without output]==] PROPERTIES WORKING_DIRECTORY [==[/Users/even/Desktop/test project/build]==])
+set( graph_tests_TESTS [==[Graph can connect output to input]==] [==[Compiler rejects graph without output]==])

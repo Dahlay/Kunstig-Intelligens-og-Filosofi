@@ -1,0 +1,43 @@
+Start testing: Mar 17 22:53 CET
+----------------------------------------------------------
+1/2 Testing: Graph can connect output to input
+1/2 Test: Graph can connect output to input
+Command: "/Users/even/Desktop/test project/build/graph_tests" "Graph can connect output to input"
+Directory: /Users/even/Desktop/test project/build
+"Graph can connect output to input" start time: Mar 17 22:53 CET
+Output:
+----------------------------------------------------------
+Filters: "Graph can connect output to input"
+Randomness seeded to: 2594969845
+===============================================================================
+All tests passed (6 assertions in 1 test case)
+
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"Graph can connect output to input" end time: Mar 17 22:53 CET
+"Graph can connect output to input" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: Compiler rejects graph without output
+2/2 Test: Compiler rejects graph without output
+Command: "/Users/even/Desktop/test project/build/graph_tests" "Compiler rejects graph without output"
+Directory: /Users/even/Desktop/test project/build
+"Compiler rejects graph without output" start time: Mar 17 22:53 CET
+Output:
+----------------------------------------------------------
+Filters: "Compiler rejects graph without output"
+Randomness seeded to: 2940262537
+===============================================================================
+All tests passed (2 assertions in 1 test case)
+
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"Compiler rejects graph without output" end time: Mar 17 22:53 CET
+"Compiler rejects graph without output" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Mar 17 22:53 CET
