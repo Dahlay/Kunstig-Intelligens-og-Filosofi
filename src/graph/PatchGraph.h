@@ -46,9 +46,10 @@ struct Node {
   int synthWaveform{0};      // 0=sine, 1=saw, 2=square
   int synthChord{0};         // 0=lead/melody, >0 chord preset
   int synthRateDivision{1};  // 1=quarter, 2=eighth, 4=sixteenth
+  int synthTemplate{0};      // 0=Soft Pad, 1=Pluck, 2=Organ, 3=Wide Motion
   bool synthUseMidiDraw{false};
-  std::array<int, 16> synthStepNotes{{-1, -1, -1, -1, -1, -1, -1, -1,
-                                      -1, -1, -1, -1, -1, -1, -1, -1}};
+  std::array<uint16_t, 16> synthStepMasks{{0, 0, 0, 0, 0, 0, 0, 0,
+                                            0, 0, 0, 0, 0, 0, 0, 0}};
   std::vector<std::string> inputPortIds;
   std::vector<std::string> outputPortIds;
 };

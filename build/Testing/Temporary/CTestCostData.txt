@@ -1,8 +1,8 @@
-Graph can connect output to input 15 0.000973911
-Compiler rejects graph without output 15 0.000986647
-Validator rejects cycle-producing connection 13 0.00114789
-Patch serializer roundtrip preserves graph shape 14 0.00121678
-Audio engine processes filter-delay-mixer graph 12 0.00124723
-Transport stop produces silence 10 0.00136868
-Synth MIDI draw mode overrides chord preset 1 0.0150317
+Graph can connect output to input 17 0.000987495
+Compiler rejects graph without output 17 0.000925593
+Validator rejects cycle-producing connection 15 0.00106624
+Patch serializer roundtrip preserves graph shape 16 0.00100755
+Audio engine processes filter-delay-mixer graph 14 0.00107698
+Transport stop produces silence 12 0.00118389
+Synth MIDI draw mode overrides chord preset 3 0.00475424
 ---

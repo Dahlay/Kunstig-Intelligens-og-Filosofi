@@ -6,6 +6,7 @@
 
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <cmath>
 #include <vector>
 
@@ -235,15 +236,17 @@ class ToneProcessor final : public IProcessor {
 class SynthProcessor final : public IProcessor {
  public:
   SynthProcessor(int maxVoices = 8, int waveform = 0, int chord = 0, int rateDivision = 1,
+                 int synthTemplate = 0,
                  bool useMidiDraw = false,
-                 const std::array<int, 16>& stepNotes = {{-1, -1, -1, -1, -1, -1, -1, -1,
-                                                          -1, -1, -1, -1, -1, -1, -1, -1}})
+                 const std::array<uint16_t, 16>& stepMasks = {{0, 0, 0, 0, 0, 0, 0, 0,
+                                                               0, 0, 0, 0, 0, 0, 0, 0}})
       : voices_(static_cast<size_t>(std::max(1, maxVoices))),
         waveform_(std::clamp(waveform, 0, 2)),
         chord_(std::clamp(chord, 0, 6)),
         rateDivision_(rateDivision <= 0 ? 1 : rateDivision),
+        template_(std::clamp(synthTemplate, 0, 3)),
         useMidiDraw_(useMidiDraw),
-        stepNotes_(stepNotes) {}
+        stepMasks_(stepMasks) {}
 
   void process(const juce::AudioBuffer<float>&, juce::AudioBuffer<float>& output,
                const ProcessContext& context) override {
@@ -274,8 +277,9 @@ class SynthProcessor final : public IProcessor {
           continue;
         }
 
+        const auto cfg = templateConfig(template_);
         if (v.releasing) {
-          v.env -= 0.0016f;
+          v.env -= cfg.release;
           if (v.env <= 0.0f) {
             v.env = 0.0f;
             v.active = false;
@@ -283,11 +287,12 @@ class SynthProcessor final : public IProcessor {
             continue;
           }
         } else {
-          v.env = std::min(1.0f, v.env + 0.0025f);
+          v.env = std::min(1.0f, v.env + cfg.attack);
         }
 
         const float inc = static_cast<float>((2.0 * juce::MathConstants<double>::pi * v.freq) / context.sampleRate);
-        sampleValue += renderWave(v.phase) * (0.06f * v.env);
+        const float amp = cfg.level * v.env;
+        sampleValue += renderWave(v.phase) * amp;
         v.phase += inc;
         if (v.phase > 2.0f * juce::MathConstants<float>::pi) {
           v.phase -= 2.0f * juce::MathConstants<float>::pi;
@@ -308,6 +313,26 @@ class SynthProcessor final : public IProcessor {
     bool active{false};
     bool releasing{false};
   };
+
+  struct TemplateConfig {
+    float attack;
+    float release;
+    float level;
+  };
+
+  static TemplateConfig templateConfig(int t) {
+    switch (t) {
+      case 1:  // Pluck
+        return {0.010f, 0.0105f, 0.070f};
+      case 2:  // Organ
+        return {0.006f, 0.0014f, 0.055f};
+      case 3:  // Wide Motion
+        return {0.0023f, 0.0021f, 0.062f};
+      case 0:
+      default:  // Soft Pad
+        return {0.0014f, 0.0012f, 0.058f};
+    }
+  }
 
   void releaseAll() {
     for (auto& v : voices_) {
@@ -352,18 +377,26 @@ class SynthProcessor final : public IProcessor {
   }
 
   void triggerDrawStep() {
-    const int step = stepIndex_ % static_cast<int>(stepNotes_.size());
-    const int midiNote = stepNotes_[static_cast<size_t>(step)];
+    const int step = stepIndex_ % static_cast<int>(stepMasks_.size());
+    const uint16_t mask = stepMasks_[static_cast<size_t>(step)];
     ++stepIndex_;
 
-    if (midiNote < 0) {
+    if (mask == 0u) {
       releaseAll();
       return;
     }
 
-    const float hz = 440.0f * std::pow(2.0f, (static_cast<float>(midiNote) - 69.0f) / 12.0f);
-    triggerVoice(hz);
-    releaseSustainedExceptNewest(1);
+    int notesTriggered = 0;
+    for (int semitone = 0; semitone < 12; ++semitone) {
+      if ((mask & static_cast<uint16_t>(1u << semitone)) == 0u) {
+        continue;
+      }
+      const int midiNote = 60 + semitone;
+      const float hz = 440.0f * std::pow(2.0f, (static_cast<float>(midiNote) - 69.0f) / 12.0f);
+      triggerVoice(hz);
+      ++notesTriggered;
+    }
+    releaseSustainedExceptNewest(notesTriggered);
   }
 
   void releaseSustainedExceptNewest(int keepNewestVoices) {
@@ -408,9 +441,10 @@ class SynthProcessor final : public IProcessor {
   int waveform_{0};
   int chord_{0};
   int rateDivision_{1};
+  int template_{0};
   bool useMidiDraw_{false};
-  std::array<int, 16> stepNotes_{{-1, -1, -1, -1, -1, -1, -1, -1,
-                                  -1, -1, -1, -1, -1, -1, -1, -1}};
+  std::array<uint16_t, 16> stepMasks_{{0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0}};
   int stepIndex_{0};
   size_t voiceCursor_{0};
   size_t noteCursor_{0};

@@ -8,8 +8,8 @@ SynthMidiGrid::SynthMidiGrid() {
   setInterceptsMouseClicks(true, false);
 }
 
-void SynthMidiGrid::setNotes(const Notes& notes) {
-  notes_ = notes;
+void SynthMidiGrid::setStepMasks(const StepMasks& masks) {
+  stepMasks_ = masks;
   repaint();
 }
 
@@ -29,8 +29,9 @@ void SynthMidiGrid::paint(juce::Graphics& g) {
       const float y = r.getY() + static_cast<float>(row) * ch;
       juce::Rectangle<float> cell{x, y, cw, ch};
 
-      const int midiNote = kMidiMin + (kRows - 1 - row);
-      const bool active = notes_[static_cast<size_t>(step)] == midiNote;
+      const int semitone = kRows - 1 - row;
+      const uint16_t bit = static_cast<uint16_t>(1u << semitone);
+      const bool active = (stepMasks_[static_cast<size_t>(step)] & bit) != 0u;
 
       g.setColour(active ? juce::Colour(0xff8de3d1) : juce::Colour(0x24ffffff));
       g.fillRect(cell.reduced(1.0f));
@@ -61,18 +62,21 @@ void SynthMidiGrid::setCellAt(juce::Point<float> p, bool clearCell) {
   const int step = std::clamp(static_cast<int>((p.x - r.getX()) / cw), 0, kSteps - 1);
   const int row = std::clamp(static_cast<int>((p.y - r.getY()) / ch), 0, kRows - 1);
 
-  const int midiNote = kMidiMin + (kRows - 1 - row);
-  const int newValue = clearCell ? -1 : midiNote;
+  const int semitone = kRows - 1 - row;
+  const uint16_t bit = static_cast<uint16_t>(1u << semitone);
+  const uint16_t oldMask = stepMasks_[static_cast<size_t>(step)];
+  const uint16_t newMask = clearCell ? static_cast<uint16_t>(oldMask & ~bit)
+                                     : static_cast<uint16_t>(oldMask | bit);
 
-  if (notes_[static_cast<size_t>(step)] == newValue) {
+  if (newMask == oldMask) {
     return;
   }
 
-  notes_[static_cast<size_t>(step)] = newValue;
+  stepMasks_[static_cast<size_t>(step)] = newMask;
   repaint();
 
   if (onNotesChanged_) {
-    onNotesChanged_(notes_);
+    onNotesChanged_(stepMasks_);
   }
 }
 

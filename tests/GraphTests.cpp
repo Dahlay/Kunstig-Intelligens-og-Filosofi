@@ -73,9 +73,24 @@ TEST_CASE("Patch serializer roundtrip preserves graph shape") {
   synthMutable->synthWaveform = 2;
   synthMutable->synthChord = 4;
   synthMutable->synthRateDivision = 4;
+  synthMutable->synthTemplate = 3;
   synthMutable->synthUseMidiDraw = true;
-  synthMutable->synthStepNotes = {{60, -1, 64, -1, 67, -1, 69, -1,
-                                   72, -1, 71, -1, 69, -1, 67, -1}};
+  synthMutable->synthStepMasks = {{0b000000000001u,
+                                   0u,
+                                   0b000000010000u,
+                                   0u,
+                                   0b000010000000u,
+                                   0u,
+                                   0b001000000000u,
+                                   0u,
+                                   0b100000000000u,
+                                   0u,
+                                   0b010000000000u,
+                                   0u,
+                                   0b001000000000u,
+                                   0u,
+                                   0b000010000000u,
+                                   0u}};
   gain->gain = 1.37f;
   delay->delayMs = 420.0f;
   delay->delayFeedback = 0.42f;
@@ -103,11 +118,12 @@ TEST_CASE("Patch serializer roundtrip preserves graph shape") {
       REQUIRE(node.synthWaveform == 2);
       REQUIRE(node.synthChord == 4);
       REQUIRE(node.synthRateDivision == 4);
+      REQUIRE(node.synthTemplate == 3);
       REQUIRE(node.synthUseMidiDraw);
-      REQUIRE(node.synthStepNotes[0] == 60);
-      REQUIRE(node.synthStepNotes[1] == -1);
-      REQUIRE(node.synthStepNotes[8] == 72);
-      REQUIRE(node.synthStepNotes[15] == -1);
+      REQUIRE(node.synthStepMasks[0] == 0b000000000001u);
+      REQUIRE(node.synthStepMasks[1] == 0u);
+      REQUIRE(node.synthStepMasks[8] == 0b100000000000u);
+      REQUIRE(node.synthStepMasks[15] == 0u);
     }
     if (node.type == graph::NodeType::Gain) {
       foundGain = true;
@@ -192,8 +208,22 @@ TEST_CASE("Synth MIDI draw mode overrides chord preset") {
   synth->synthChord = 4;  // should be ignored in MIDI draw mode
   synth->synthUseMidiDraw = true;
   synth->synthRateDivision = 4;
-  synth->synthStepNotes = {{60, -1, 64, -1, 67, -1, 72, -1,
-                            67, -1, 64, -1, 60, -1, 55, -1}};
+  synth->synthStepMasks = {{0b000000010001u,
+                            0u,
+                            0b000000110000u,
+                            0u,
+                            0b000011100000u,
+                            0u,
+                            0b001000000000u,
+                            0u,
+                            0b000011100000u,
+                            0u,
+                            0b000000110000u,
+                            0u,
+                            0b000000010001u,
+                            0u,
+                            0b000000000111u,
+                            0u}};
 
   std::string error;
   REQUIRE(graph.connect(synth->outputPortIds.front(), out->inputPortIds.front(), error));

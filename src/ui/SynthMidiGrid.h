@@ -9,13 +9,13 @@ namespace ui {
 
 class SynthMidiGrid : public juce::Component {
  public:
-  using Notes = std::array<int, 16>;
-  using NotesChangedCallback = std::function<void(const Notes&)>;
+  using StepMasks = std::array<uint16_t, 16>;
+  using NotesChangedCallback = std::function<void(const StepMasks&)>;
 
   SynthMidiGrid();
 
-  void setNotes(const Notes& notes);
-  const Notes& getNotes() const noexcept { return notes_; }
+  void setStepMasks(const StepMasks& masks);
+  const StepMasks& getStepMasks() const noexcept { return stepMasks_; }
   void setNotesChangedCallback(NotesChangedCallback cb) { onNotesChanged_ = std::move(cb); }
 
   void paint(juce::Graphics& g) override;
@@ -29,7 +29,7 @@ class SynthMidiGrid : public juce::Component {
   static constexpr int kRows = 12;
   static constexpr int kMidiMin = 60;  // C4
 
-  Notes notes_{{-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1}};
+  StepMasks stepMasks_{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
   NotesChangedCallback onNotesChanged_;
 };
 

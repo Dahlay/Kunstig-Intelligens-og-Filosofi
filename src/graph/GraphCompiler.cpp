@@ -25,8 +25,8 @@ std::unique_ptr<IProcessor> makeProcessor(const Node& node, double sampleRate) {
   switch (node.type) {
     case NodeType::Synth:
       return std::make_unique<SynthProcessor>(8, node.synthWaveform, node.synthChord,
-                                              node.synthRateDivision, node.synthUseMidiDraw,
-                                              node.synthStepNotes);
+                                              node.synthRateDivision, node.synthTemplate,
+                                              node.synthUseMidiDraw, node.synthStepMasks);
     case NodeType::Drum:
       return std::make_unique<DrumProcessor>();
     case NodeType::Gain:

@@ -3,6 +3,7 @@
 #include <nlohmann/json.hpp>
 
 #include <array>
+#include <cstdint>
 #include <optional>
 #include <unordered_map>
 #include <vector>
@@ -43,8 +44,9 @@ std::string PatchSerializer::toJson(const graph::PatchGraph& graph) {
                            {"synthWaveform", node.synthWaveform},
                            {"synthChord", node.synthChord},
                            {"synthRateDivision", node.synthRateDivision},
+                           {"synthTemplate", node.synthTemplate},
                            {"synthUseMidiDraw", node.synthUseMidiDraw},
-                           {"synthStepNotes", node.synthStepNotes}});
+                           {"synthStepMasks", node.synthStepMasks}});
   }
 
   for (const auto& [edgeId, edge] : graph.getEdges()) {
@@ -147,13 +149,27 @@ bool PatchSerializer::fromJson(const std::string& jsonText, graph::PatchGraph& o
       if (n.contains("synthRateDivision")) {
         node->synthRateDivision = n["synthRateDivision"].get<int>();
       }
+      if (n.contains("synthTemplate")) {
+        node->synthTemplate = n["synthTemplate"].get<int>();
+      }
       if (n.contains("synthUseMidiDraw")) {
         node->synthUseMidiDraw = n["synthUseMidiDraw"].get<bool>();
       }
-      if (n.contains("synthStepNotes") && n["synthStepNotes"].is_array()) {
+      if (n.contains("synthStepMasks") && n["synthStepMasks"].is_array()) {
+        const auto& arr = n["synthStepMasks"];
+        for (size_t i = 0; i < node->synthStepMasks.size() && i < arr.size(); ++i) {
+          node->synthStepMasks[i] = static_cast<uint16_t>(arr[i].get<int>());
+        }
+      } else if (n.contains("synthStepNotes") && n["synthStepNotes"].is_array()) {
+        // Backward compatibility with old single-note-per-step format.
         const auto& arr = n["synthStepNotes"];
-        for (size_t i = 0; i < node->synthStepNotes.size() && i < arr.size(); ++i) {
-          node->synthStepNotes[i] = arr[i].get<int>();
+        for (size_t i = 0; i < node->synthStepMasks.size() && i < arr.size(); ++i) {
+          const int note = arr[i].get<int>();
+          if (note >= 60 && note < 72) {
+            node->synthStepMasks[i] = static_cast<uint16_t>(1u << (note - 60));
+          } else {
+            node->synthStepMasks[i] = 0;
+          }
         }
       }
     }

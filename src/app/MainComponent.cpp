@@ -67,6 +67,8 @@ MainComponent::MainComponent() : canvas_(graph_) {
   addAndMakeVisible(synthChordBox_);
   addAndMakeVisible(synthRateLabel_);
   addAndMakeVisible(synthRateBox_);
+  addAndMakeVisible(synthTemplateLabel_);
+  addAndMakeVisible(synthTemplateBox_);
   addAndMakeVisible(synthMidiLabel_);
   addAndMakeVisible(synthMidiDrawToggle_);
   addAndMakeVisible(synthMidiGrid_);
@@ -126,6 +128,13 @@ MainComponent::MainComponent() : canvas_(graph_) {
   synthRateBox_.addItem("1/8", 2);
   synthRateBox_.addItem("1/16", 3);
 
+  synthTemplateLabel_.setText("Shape", juce::dontSendNotification);
+  synthTemplateLabel_.setColour(juce::Label::textColourId, juce::Colour(0xff3a7fa9));
+  synthTemplateBox_.addItem("Soft Pad", 1);
+  synthTemplateBox_.addItem("Pluck", 2);
+  synthTemplateBox_.addItem("Organ", 3);
+  synthTemplateBox_.addItem("Wide Motion", 4);
+
   synthMidiLabel_.setText("MIDI", juce::dontSendNotification);
   synthMidiLabel_.setColour(juce::Label::textColourId, juce::Colour(0xff3a7fa9));
   synthMidiDrawToggle_.setButtonText("Draw");
@@ -134,8 +143,9 @@ MainComponent::MainComponent() : canvas_(graph_) {
   synthWaveformBox_.onChange = [this] { applyInspectorToSelectedNode(); };
   synthChordBox_.onChange = [this] { applyInspectorToSelectedNode(); };
   synthRateBox_.onChange = [this] { applyInspectorToSelectedNode(); };
+  synthTemplateBox_.onChange = [this] { applyInspectorToSelectedNode(); };
   synthMidiDrawToggle_.onClick = [this] { applyInspectorToSelectedNode(); };
-  synthMidiGrid_.setNotesChangedCallback([this](const ui::SynthMidiGrid::Notes&) {
+  synthMidiGrid_.setNotesChangedCallback([this](const ui::SynthMidiGrid::StepMasks&) {
     applyInspectorToSelectedNode();
   });
 
@@ -286,6 +296,9 @@ void MainComponent::resized() {
   auto rateRow = content.removeFromTop(28);
   synthRateLabel_.setBounds(rateRow.removeFromLeft(52));
   synthRateBox_.setBounds(rateRow);
+  auto shapeRow = content.removeFromTop(28);
+  synthTemplateLabel_.setBounds(shapeRow.removeFromLeft(52));
+  synthTemplateBox_.setBounds(shapeRow);
   auto midiRow = content.removeFromTop(24);
   synthMidiLabel_.setBounds(midiRow.removeFromLeft(52));
   synthMidiDrawToggle_.setBounds(midiRow.removeFromLeft(72));
@@ -480,8 +493,11 @@ void MainComponent::refreshInspector() {
   synthWaveformBox_.setEnabled(false);
   synthChordBox_.setEnabled(false);
   synthRateBox_.setEnabled(false);
+  synthTemplateBox_.setEnabled(false);
   synthMidiDrawToggle_.setEnabled(false);
   synthMidiGrid_.setEnabled(false);
+  synthTemplateLabel_.setVisible(false);
+  synthTemplateBox_.setVisible(false);
   synthMidiLabel_.setVisible(false);
   synthMidiDrawToggle_.setVisible(false);
   synthMidiGrid_.setVisible(false);
@@ -535,8 +551,9 @@ void MainComponent::refreshInspector() {
   } else {
     synthRateBox_.setSelectedId(3, juce::dontSendNotification);
   }
+  synthTemplateBox_.setSelectedId(node->synthTemplate + 1, juce::dontSendNotification);
   synthMidiDrawToggle_.setToggleState(node->synthUseMidiDraw, juce::dontSendNotification);
-  synthMidiGrid_.setNotes(node->synthStepNotes);
+  synthMidiGrid_.setStepMasks(node->synthStepMasks);
 
   gainSlider_.setEnabled(node->type == graph::NodeType::Gain);
   filterCutoffSlider_.setEnabled(node->type == graph::NodeType::Filter);
@@ -547,8 +564,11 @@ void MainComponent::refreshInspector() {
   synthWaveformBox_.setEnabled(isSynth);
   synthChordBox_.setEnabled(isSynth && !synthMidiDrawToggle_.getToggleState());
   synthRateBox_.setEnabled(isSynth);
+  synthTemplateBox_.setEnabled(isSynth);
   synthMidiDrawToggle_.setEnabled(isSynth);
   synthMidiGrid_.setEnabled(isSynth && synthMidiDrawToggle_.getToggleState());
+  synthTemplateLabel_.setVisible(isSynth);
+  synthTemplateBox_.setVisible(isSynth);
   synthMidiLabel_.setVisible(isSynth);
   synthMidiDrawToggle_.setVisible(isSynth);
   synthMidiGrid_.setVisible(isSynth);
@@ -577,8 +597,9 @@ void MainComponent::applyInspectorToSelectedNode() {
   node->synthChord = synthMidiDrawToggle_.getToggleState() ? 0 : std::max(0, synthChordBox_.getSelectedId() - 1);
   const int rateId = synthRateBox_.getSelectedId();
   node->synthRateDivision = (rateId == 3 ? 4 : (rateId == 2 ? 2 : 1));
+  node->synthTemplate = std::max(0, synthTemplateBox_.getSelectedId() - 1);
   node->synthUseMidiDraw = synthMidiDrawToggle_.getToggleState();
-  node->synthStepNotes = synthMidiGrid_.getNotes();
+  node->synthStepMasks = synthMidiGrid_.getStepMasks();
   if (node->synthUseMidiDraw) {
     synthChordBox_.setSelectedId(1, juce::dontSendNotification);
   }

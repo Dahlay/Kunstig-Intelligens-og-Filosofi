@@ -62,6 +62,8 @@ class MainComponent : public juce::AudioAppComponent {
   juce::ComboBox synthChordBox_;
   juce::Label synthRateLabel_;
   juce::ComboBox synthRateBox_;
+  juce::Label synthTemplateLabel_;
+  juce::ComboBox synthTemplateBox_;
   juce::Label synthMidiLabel_;
   juce::ToggleButton synthMidiDrawToggle_;
   ui::SynthMidiGrid synthMidiGrid_;
