@@ -67,6 +67,9 @@ MainComponent::MainComponent() : canvas_(graph_) {
   addAndMakeVisible(synthChordBox_);
   addAndMakeVisible(synthRateLabel_);
   addAndMakeVisible(synthRateBox_);
+  addAndMakeVisible(synthMidiLabel_);
+  addAndMakeVisible(synthMidiDrawToggle_);
+  addAndMakeVisible(synthMidiGrid_);
 
   status_.setColour(juce::Label::textColourId, juce::Colour(0xff2b5f86));
   status_.setColour(juce::Label::backgroundColourId, juce::Colour(0x82ffffff));
@@ -123,9 +126,18 @@ MainComponent::MainComponent() : canvas_(graph_) {
   synthRateBox_.addItem("1/8", 2);
   synthRateBox_.addItem("1/16", 3);
 
+  synthMidiLabel_.setText("MIDI", juce::dontSendNotification);
+  synthMidiLabel_.setColour(juce::Label::textColourId, juce::Colour(0xff3a7fa9));
+  synthMidiDrawToggle_.setButtonText("Draw");
+  synthMidiDrawToggle_.setColour(juce::ToggleButton::textColourId, juce::Colour(0xff2d638a));
+
   synthWaveformBox_.onChange = [this] { applyInspectorToSelectedNode(); };
   synthChordBox_.onChange = [this] { applyInspectorToSelectedNode(); };
   synthRateBox_.onChange = [this] { applyInspectorToSelectedNode(); };
+  synthMidiDrawToggle_.onClick = [this] { applyInspectorToSelectedNode(); };
+  synthMidiGrid_.setNotesChangedCallback([this](const ui::SynthMidiGrid::Notes&) {
+    applyInspectorToSelectedNode();
+  });
 
   configureInspectorSlider(gainSlider_, 0.0, 2.0, 0.01);
   configureInspectorSlider(filterCutoffSlider_, 50.0, 10000.0, 1.0);
@@ -274,6 +286,10 @@ void MainComponent::resized() {
   auto rateRow = content.removeFromTop(28);
   synthRateLabel_.setBounds(rateRow.removeFromLeft(52));
   synthRateBox_.setBounds(rateRow);
+  auto midiRow = content.removeFromTop(24);
+  synthMidiLabel_.setBounds(midiRow.removeFromLeft(52));
+  synthMidiDrawToggle_.setBounds(midiRow.removeFromLeft(72));
+  synthMidiGrid_.setBounds(content.removeFromTop(146));
   content.removeFromTop(6);
   gainSlider_.setBounds(content.removeFromTop(34));
   filterCutoffSlider_.setBounds(content.removeFromTop(34));
@@ -464,6 +480,11 @@ void MainComponent::refreshInspector() {
   synthWaveformBox_.setEnabled(false);
   synthChordBox_.setEnabled(false);
   synthRateBox_.setEnabled(false);
+  synthMidiDrawToggle_.setEnabled(false);
+  synthMidiGrid_.setEnabled(false);
+  synthMidiLabel_.setVisible(false);
+  synthMidiDrawToggle_.setVisible(false);
+  synthMidiGrid_.setVisible(false);
 
   if (!selectedNodeId_) {
     inspectorNodeLabel_.setText("No node selected", juce::dontSendNotification);
@@ -514,15 +535,23 @@ void MainComponent::refreshInspector() {
   } else {
     synthRateBox_.setSelectedId(3, juce::dontSendNotification);
   }
+  synthMidiDrawToggle_.setToggleState(node->synthUseMidiDraw, juce::dontSendNotification);
+  synthMidiGrid_.setNotes(node->synthStepNotes);
 
   gainSlider_.setEnabled(node->type == graph::NodeType::Gain);
   filterCutoffSlider_.setEnabled(node->type == graph::NodeType::Filter);
   delayMsSlider_.setEnabled(node->type == graph::NodeType::Delay);
   delayFeedbackSlider_.setEnabled(node->type == graph::NodeType::Delay);
   delayMixSlider_.setEnabled(node->type == graph::NodeType::Delay);
-  synthWaveformBox_.setEnabled(node->type == graph::NodeType::Synth);
-  synthChordBox_.setEnabled(node->type == graph::NodeType::Synth);
-  synthRateBox_.setEnabled(node->type == graph::NodeType::Synth);
+  const bool isSynth = node->type == graph::NodeType::Synth;
+  synthWaveformBox_.setEnabled(isSynth);
+  synthChordBox_.setEnabled(isSynth);
+  synthRateBox_.setEnabled(isSynth);
+  synthMidiDrawToggle_.setEnabled(isSynth);
+  synthMidiGrid_.setEnabled(isSynth && synthMidiDrawToggle_.getToggleState());
+  synthMidiLabel_.setVisible(isSynth);
+  synthMidiDrawToggle_.setVisible(isSynth);
+  synthMidiGrid_.setVisible(isSynth);
 
   updatingInspector_ = false;
 }
@@ -548,6 +577,9 @@ void MainComponent::applyInspectorToSelectedNode() {
   node->synthChord = std::max(0, synthChordBox_.getSelectedId() - 1);
   const int rateId = synthRateBox_.getSelectedId();
   node->synthRateDivision = (rateId == 3 ? 4 : (rateId == 2 ? 2 : 1));
+  node->synthUseMidiDraw = synthMidiDrawToggle_.getToggleState();
+  node->synthStepNotes = synthMidiGrid_.getNotes();
+  synthMidiGrid_.setEnabled(node->synthUseMidiDraw);
 
   rebuildAudioPlan();
 }

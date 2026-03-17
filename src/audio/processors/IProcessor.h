@@ -234,11 +234,16 @@ class ToneProcessor final : public IProcessor {
 
 class SynthProcessor final : public IProcessor {
  public:
-  SynthProcessor(int maxVoices = 8, int waveform = 0, int chord = 0, int rateDivision = 1)
+  SynthProcessor(int maxVoices = 8, int waveform = 0, int chord = 0, int rateDivision = 1,
+                 bool useMidiDraw = false,
+                 const std::array<int, 16>& stepNotes = {{-1, -1, -1, -1, -1, -1, -1, -1,
+                                                          -1, -1, -1, -1, -1, -1, -1, -1}})
       : voices_(static_cast<size_t>(std::max(1, maxVoices))),
         waveform_(std::clamp(waveform, 0, 2)),
         chord_(std::clamp(chord, 0, 6)),
-        rateDivision_(rateDivision <= 0 ? 1 : rateDivision) {}
+        rateDivision_(rateDivision <= 0 ? 1 : rateDivision),
+        useMidiDraw_(useMidiDraw),
+        stepNotes_(stepNotes) {}
 
   void process(const juce::AudioBuffer<float>&, juce::AudioBuffer<float>& output,
                const ProcessContext& context) override {
@@ -255,7 +260,11 @@ class SynthProcessor final : public IProcessor {
     for (int s = 0; s < context.numSamples; ++s) {
       if (context.playing && ((context.samplePosition + s) % samplesPerEvent == 0)) {
         if (chord_ == 0) {
-          triggerNextMelodyNote();
+          if (useMidiDraw_) {
+            triggerDrawStep();
+          } else {
+            triggerNextMelodyNote();
+          }
         } else {
           triggerChord(chord_);
         }
@@ -344,6 +353,21 @@ class SynthProcessor final : public IProcessor {
     releaseSustainedExceptNewest(1);
   }
 
+  void triggerDrawStep() {
+    const int step = stepIndex_ % static_cast<int>(stepNotes_.size());
+    const int midiNote = stepNotes_[static_cast<size_t>(step)];
+    ++stepIndex_;
+
+    if (midiNote < 0) {
+      releaseAll();
+      return;
+    }
+
+    const float hz = 440.0f * std::pow(2.0f, (static_cast<float>(midiNote) - 69.0f) / 12.0f);
+    triggerVoice(hz);
+    releaseSustainedExceptNewest(1);
+  }
+
   void releaseSustainedExceptNewest(int keepNewestVoices) {
     if (keepNewestVoices <= 0 || voices_.empty()) {
       return;
@@ -386,6 +410,10 @@ class SynthProcessor final : public IProcessor {
   int waveform_{0};
   int chord_{0};
   int rateDivision_{1};
+  bool useMidiDraw_{false};
+  std::array<int, 16> stepNotes_{{-1, -1, -1, -1, -1, -1, -1, -1,
+                                  -1, -1, -1, -1, -1, -1, -1, -1}};
+  int stepIndex_{0};
   size_t voiceCursor_{0};
   size_t noteCursor_{0};
 };

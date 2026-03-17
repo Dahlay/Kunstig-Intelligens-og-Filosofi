@@ -42,7 +42,9 @@ std::string PatchSerializer::toJson(const graph::PatchGraph& graph) {
                            {"delayMix", node.delayMix},
                            {"synthWaveform", node.synthWaveform},
                            {"synthChord", node.synthChord},
-                           {"synthRateDivision", node.synthRateDivision}});
+                           {"synthRateDivision", node.synthRateDivision},
+                           {"synthUseMidiDraw", node.synthUseMidiDraw},
+                           {"synthStepNotes", node.synthStepNotes}});
   }
 
   for (const auto& [edgeId, edge] : graph.getEdges()) {
@@ -144,6 +146,15 @@ bool PatchSerializer::fromJson(const std::string& jsonText, graph::PatchGraph& o
       }
       if (n.contains("synthRateDivision")) {
         node->synthRateDivision = n["synthRateDivision"].get<int>();
+      }
+      if (n.contains("synthUseMidiDraw")) {
+        node->synthUseMidiDraw = n["synthUseMidiDraw"].get<bool>();
+      }
+      if (n.contains("synthStepNotes") && n["synthStepNotes"].is_array()) {
+        const auto& arr = n["synthStepNotes"];
+        for (size_t i = 0; i < node->synthStepNotes.size() && i < arr.size(); ++i) {
+          node->synthStepNotes[i] = arr[i].get<int>();
+        }
       }
     }
 

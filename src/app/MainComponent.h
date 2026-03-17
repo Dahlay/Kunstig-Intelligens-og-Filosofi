@@ -3,6 +3,7 @@
 #include "audio/AudioEngine.h"
 #include "graph/PatchGraph.h"
 #include "ui/CanvasView.h"
+#include "ui/SynthMidiGrid.h"
 
 #include <juce_audio_utils/juce_audio_utils.h>
 #include <juce_gui_basics/juce_gui_basics.h>
@@ -61,6 +62,9 @@ class MainComponent : public juce::AudioAppComponent {
   juce::ComboBox synthChordBox_;
   juce::Label synthRateLabel_;
   juce::ComboBox synthRateBox_;
+  juce::Label synthMidiLabel_;
+  juce::ToggleButton synthMidiDrawToggle_;
+  ui::SynthMidiGrid synthMidiGrid_;
 
   std::unique_ptr<juce::FileChooser> fileChooser_;
   bool applyingHistory_{false};

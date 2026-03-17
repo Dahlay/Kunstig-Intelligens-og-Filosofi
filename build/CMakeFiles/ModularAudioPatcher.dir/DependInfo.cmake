@@ -32,6 +32,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/even/Desktop/test project/src/main.cpp" "CMakeFiles/ModularAudioPatcher.dir/src/main.cpp.o" "gcc" "CMakeFiles/ModularAudioPatcher.dir/src/main.cpp.o.d"
   "/Users/even/Desktop/test project/src/persistence/PatchSerializer.cpp" "CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.o" "gcc" "CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.o.d"
   "/Users/even/Desktop/test project/src/ui/CanvasView.cpp" "CMakeFiles/ModularAudioPatcher.dir/src/ui/CanvasView.cpp.o" "gcc" "CMakeFiles/ModularAudioPatcher.dir/src/ui/CanvasView.cpp.o.d"
+  "/Users/even/Desktop/test project/src/ui/SynthMidiGrid.cpp" "CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o" "gcc" "CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

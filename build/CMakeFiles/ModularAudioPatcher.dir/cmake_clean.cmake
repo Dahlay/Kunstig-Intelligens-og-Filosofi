@@ -47,6 +47,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.o.d"
   "CMakeFiles/ModularAudioPatcher.dir/src/ui/CanvasView.cpp.o"
   "CMakeFiles/ModularAudioPatcher.dir/src/ui/CanvasView.cpp.o.d"
+  "CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o"
+  "CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o.d"
   "ModularAudioPatcher_artefacts/JuceLibraryCode/JuceHeader.h"
   "ModularAudioPatcher_artefacts/JuceLibraryCode/ModularAudioPatcher/PkgInfo"
   "ModularAudioPatcher_artefacts/Modular Audio Patcher.app/Contents/MacOS/Modular Audio Patcher"

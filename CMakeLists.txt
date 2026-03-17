@@ -62,6 +62,8 @@ target_sources(ModularAudioPatcher
     src/app/MainComponent.cpp
     src/ui/CanvasView.h
     src/ui/CanvasView.cpp
+    src/ui/SynthMidiGrid.h
+    src/ui/SynthMidiGrid.cpp
     src/graph/PatchGraph.h
     src/graph/PatchGraph.cpp
     src/graph/GraphValidator.h

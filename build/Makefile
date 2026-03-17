@@ -1208,6 +1208,30 @@ src/ui/CanvasView.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ModularAudioPatcher.dir/build.make CMakeFiles/ModularAudioPatcher.dir/src/ui/CanvasView.cpp.s
 .PHONY : src/ui/CanvasView.cpp.s
 
+src/ui/SynthMidiGrid.o: src/ui/SynthMidiGrid.cpp.o
+.PHONY : src/ui/SynthMidiGrid.o
+
+# target to build an object file
+src/ui/SynthMidiGrid.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ModularAudioPatcher.dir/build.make CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o
+.PHONY : src/ui/SynthMidiGrid.cpp.o
+
+src/ui/SynthMidiGrid.i: src/ui/SynthMidiGrid.cpp.i
+.PHONY : src/ui/SynthMidiGrid.i
+
+# target to preprocess a source file
+src/ui/SynthMidiGrid.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ModularAudioPatcher.dir/build.make CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.i
+.PHONY : src/ui/SynthMidiGrid.cpp.i
+
+src/ui/SynthMidiGrid.s: src/ui/SynthMidiGrid.cpp.s
+.PHONY : src/ui/SynthMidiGrid.s
+
+# target to generate assembly for a file
+src/ui/SynthMidiGrid.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ModularAudioPatcher.dir/build.make CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.s
+.PHONY : src/ui/SynthMidiGrid.cpp.s
+
 tests/GraphTests.o: tests/GraphTests.cpp.o
 .PHONY : tests/GraphTests.o
 
@@ -1351,6 +1375,9 @@ help:
 	@echo "... src/ui/CanvasView.o"
 	@echo "... src/ui/CanvasView.i"
 	@echo "... src/ui/CanvasView.s"
+	@echo "... src/ui/SynthMidiGrid.o"
+	@echo "... src/ui/SynthMidiGrid.i"
+	@echo "... src/ui/SynthMidiGrid.s"
 	@echo "... tests/GraphTests.o"
 	@echo "... tests/GraphTests.i"
 	@echo "... tests/GraphTests.s"

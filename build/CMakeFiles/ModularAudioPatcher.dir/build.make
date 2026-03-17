@@ -126,10 +126,24 @@ CMakeFiles/ModularAudioPatcher.dir/src/ui/CanvasView.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ModularAudioPatcher.dir/src/ui/CanvasView.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/even/Desktop/test project/src/ui/CanvasView.cpp" -o CMakeFiles/ModularAudioPatcher.dir/src/ui/CanvasView.cpp.s
 
+CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
+CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o: /Users/even/Desktop/test\ project/src/ui/SynthMidiGrid.cpp
+CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o -MF CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o.d -o CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o -c "/Users/even/Desktop/test project/src/ui/SynthMidiGrid.cpp"
+
+CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/even/Desktop/test project/src/ui/SynthMidiGrid.cpp" > CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.i
+
+CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/even/Desktop/test project/src/ui/SynthMidiGrid.cpp" -o CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.s
+
 CMakeFiles/ModularAudioPatcher.dir/src/graph/PatchGraph.cpp.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/src/graph/PatchGraph.cpp.o: /Users/even/Desktop/test\ project/src/graph/PatchGraph.cpp
 CMakeFiles/ModularAudioPatcher.dir/src/graph/PatchGraph.cpp.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/src/graph/PatchGraph.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/src/graph/PatchGraph.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/src/graph/PatchGraph.cpp.o -MF CMakeFiles/ModularAudioPatcher.dir/src/graph/PatchGraph.cpp.o.d -o CMakeFiles/ModularAudioPatcher.dir/src/graph/PatchGraph.cpp.o -c "/Users/even/Desktop/test project/src/graph/PatchGraph.cpp"
 
 CMakeFiles/ModularAudioPatcher.dir/src/graph/PatchGraph.cpp.i: cmake_force
@@ -143,7 +157,7 @@ CMakeFiles/ModularAudioPatcher.dir/src/graph/PatchGraph.cpp.s: cmake_force
 CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphValidator.cpp.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphValidator.cpp.o: /Users/even/Desktop/test\ project/src/graph/GraphValidator.cpp
 CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphValidator.cpp.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphValidator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphValidator.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphValidator.cpp.o -MF CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphValidator.cpp.o.d -o CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphValidator.cpp.o -c "/Users/even/Desktop/test project/src/graph/GraphValidator.cpp"
 
 CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphValidator.cpp.i: cmake_force
@@ -157,7 +171,7 @@ CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphValidator.cpp.s: cmake_force
 CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphCompiler.cpp.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphCompiler.cpp.o: /Users/even/Desktop/test\ project/src/graph/GraphCompiler.cpp
 CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphCompiler.cpp.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphCompiler.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphCompiler.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphCompiler.cpp.o -MF CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphCompiler.cpp.o.d -o CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphCompiler.cpp.o -c "/Users/even/Desktop/test project/src/graph/GraphCompiler.cpp"
 
 CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphCompiler.cpp.i: cmake_force
@@ -171,7 +185,7 @@ CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphCompiler.cpp.s: cmake_force
 CMakeFiles/ModularAudioPatcher.dir/src/audio/AudioEngine.cpp.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/src/audio/AudioEngine.cpp.o: /Users/even/Desktop/test\ project/src/audio/AudioEngine.cpp
 CMakeFiles/ModularAudioPatcher.dir/src/audio/AudioEngine.cpp.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/src/audio/AudioEngine.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/src/audio/AudioEngine.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/src/audio/AudioEngine.cpp.o -MF CMakeFiles/ModularAudioPatcher.dir/src/audio/AudioEngine.cpp.o.d -o CMakeFiles/ModularAudioPatcher.dir/src/audio/AudioEngine.cpp.o -c "/Users/even/Desktop/test project/src/audio/AudioEngine.cpp"
 
 CMakeFiles/ModularAudioPatcher.dir/src/audio/AudioEngine.cpp.i: cmake_force
@@ -185,7 +199,7 @@ CMakeFiles/ModularAudioPatcher.dir/src/audio/AudioEngine.cpp.s: cmake_force
 CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.o: /Users/even/Desktop/test\ project/src/persistence/PatchSerializer.cpp
 CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.o -MF CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.o.d -o CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.o -c "/Users/even/Desktop/test project/src/persistence/PatchSerializer.cpp"
 
 CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.i: cmake_force
@@ -199,7 +213,7 @@ CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.s: cmake_
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.mm.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.mm.o: _deps/juce-src/modules/juce_audio_utils/juce_audio_utils.mm
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.mm.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.mm.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.mm.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.mm.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.mm.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.mm"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_utils/juce_audio_utils.mm.i: cmake_force
@@ -213,7 +227,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_utils/juce_
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_ara.cpp.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_ara.cpp.o: _deps/juce-src/modules/juce_audio_processors/juce_audio_processors_ara.cpp
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_ara.cpp.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_ara.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_ara.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_ara.cpp.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_ara.cpp.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_ara.cpp.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_ara.cpp"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_ara.cpp.i: cmake_force
@@ -227,7 +241,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_lv2_libs.cpp.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_lv2_libs.cpp.o: _deps/juce-src/modules/juce_audio_processors/juce_audio_processors_lv2_libs.cpp
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_lv2_libs.cpp.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_lv2_libs.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_lv2_libs.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_lv2_libs.cpp.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_lv2_libs.cpp.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_lv2_libs.cpp.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_lv2_libs.cpp"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors_lv2_libs.cpp.i: cmake_force
@@ -241,7 +255,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.mm.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.mm.o: _deps/juce-src/modules/juce_audio_processors/juce_audio_processors.mm
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.mm.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.mm.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.mm.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.mm.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.mm.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.mm"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/juce_audio_processors.mm.i: cmake_force
@@ -255,7 +269,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_processors/
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.mm.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.mm.o: _deps/juce-src/modules/juce_gui_extra/juce_gui_extra.mm
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.mm.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.mm.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.mm.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.mm.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.mm.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.mm"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_extra/juce_gui_extra.mm.i: cmake_force
@@ -269,7 +283,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_extra/juce_gu
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.mm.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.mm.o: _deps/juce-src/modules/juce_gui_basics/juce_gui_basics.mm
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.mm.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.mm.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.mm.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.mm.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.mm.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.mm"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_basics/juce_gui_basics.mm.i: cmake_force
@@ -283,7 +297,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_gui_basics/juce_g
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o: _deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Harfbuzz.cpp.i: cmake_force
@@ -297,7 +311,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_gra
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o: _deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building C object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building C object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics_Sheenbidi.c.i: cmake_force
@@ -311,7 +325,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_gra
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.mm.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.mm.o: _deps/juce-src/modules/juce_graphics/juce_graphics.mm
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.mm.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.mm.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.mm.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.mm.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.mm.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_graphics/juce_graphics.mm"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_graphics.mm.i: cmake_force
@@ -325,7 +339,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_graphics/juce_gra
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_events/juce_events.mm.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_events/juce_events.mm.o: _deps/juce-src/modules/juce_events/juce_events.mm
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_events/juce_events.mm.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_events/juce_events.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_events/juce_events.mm.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_events/juce_events.mm.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_events/juce_events.mm.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_events/juce_events.mm.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_events/juce_events.mm"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_events/juce_events.mm.i: cmake_force
@@ -339,7 +353,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_events/juce_event
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o: _deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.i: cmake_force
@@ -353,7 +367,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core_Co
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o: _deps/juce-src/modules/juce_core/juce_core.mm
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_core/juce_core.mm"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core.mm.i: cmake_force
@@ -367,7 +381,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_core/juce_core.mm
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.mm.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.mm.o: _deps/juce-src/modules/juce_data_structures/juce_data_structures.mm
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.mm.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.mm.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.mm.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.mm.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.mm.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_data_structures/juce_data_structures.mm"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_data_structures/juce_data_structures.mm.i: cmake_force
@@ -381,7 +395,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_data_structures/j
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o: _deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.i: cmake_force
@@ -395,7 +409,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_basics/juce
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.mm.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.mm.o: _deps/juce-src/modules/juce_audio_formats/juce_audio_formats.mm
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.mm.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.mm.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.mm.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.mm.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.mm.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.mm"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_formats/juce_audio_formats.mm.i: cmake_force
@@ -409,7 +423,7 @@ CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_formats/juc
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.mm.o: CMakeFiles/ModularAudioPatcher.dir/flags.make
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.mm.o: _deps/juce-src/modules/juce_audio_devices/juce_audio_devices.mm
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.mm.o: CMakeFiles/ModularAudioPatcher.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.mm.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.mm.o -MF CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.mm.o.d -o CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.mm.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.mm"
 
 CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.mm.i: cmake_force
@@ -425,6 +439,7 @@ ModularAudioPatcher_OBJECTS = \
 "CMakeFiles/ModularAudioPatcher.dir/src/main.cpp.o" \
 "CMakeFiles/ModularAudioPatcher.dir/src/app/MainComponent.cpp.o" \
 "CMakeFiles/ModularAudioPatcher.dir/src/ui/CanvasView.cpp.o" \
+"CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o" \
 "CMakeFiles/ModularAudioPatcher.dir/src/graph/PatchGraph.cpp.o" \
 "CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphValidator.cpp.o" \
 "CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphCompiler.cpp.o" \
@@ -453,6 +468,7 @@ ModularAudioPatcher_EXTERNAL_OBJECTS =
 ModularAudioPatcher_artefacts/Modular\ Audio\ Patcher.app/Contents/MacOS/Modular\ Audio\ Patcher: CMakeFiles/ModularAudioPatcher.dir/src/main.cpp.o
 ModularAudioPatcher_artefacts/Modular\ Audio\ Patcher.app/Contents/MacOS/Modular\ Audio\ Patcher: CMakeFiles/ModularAudioPatcher.dir/src/app/MainComponent.cpp.o
 ModularAudioPatcher_artefacts/Modular\ Audio\ Patcher.app/Contents/MacOS/Modular\ Audio\ Patcher: CMakeFiles/ModularAudioPatcher.dir/src/ui/CanvasView.cpp.o
+ModularAudioPatcher_artefacts/Modular\ Audio\ Patcher.app/Contents/MacOS/Modular\ Audio\ Patcher: CMakeFiles/ModularAudioPatcher.dir/src/ui/SynthMidiGrid.cpp.o
 ModularAudioPatcher_artefacts/Modular\ Audio\ Patcher.app/Contents/MacOS/Modular\ Audio\ Patcher: CMakeFiles/ModularAudioPatcher.dir/src/graph/PatchGraph.cpp.o
 ModularAudioPatcher_artefacts/Modular\ Audio\ Patcher.app/Contents/MacOS/Modular\ Audio\ Patcher: CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphValidator.cpp.o
 ModularAudioPatcher_artefacts/Modular\ Audio\ Patcher.app/Contents/MacOS/Modular\ Audio\ Patcher: CMakeFiles/ModularAudioPatcher.dir/src/graph/GraphCompiler.cpp.o
@@ -476,7 +492,7 @@ ModularAudioPatcher_artefacts/Modular\ Audio\ Patcher.app/Contents/MacOS/Modular
 ModularAudioPatcher_artefacts/Modular\ Audio\ Patcher.app/Contents/MacOS/Modular\ Audio\ Patcher: CMakeFiles/ModularAudioPatcher.dir/_deps/juce-src/modules/juce_audio_devices/juce_audio_devices.mm.o
 ModularAudioPatcher_artefacts/Modular\ Audio\ Patcher.app/Contents/MacOS/Modular\ Audio\ Patcher: CMakeFiles/ModularAudioPatcher.dir/build.make
 ModularAudioPatcher_artefacts/Modular\ Audio\ Patcher.app/Contents/MacOS/Modular\ Audio\ Patcher: CMakeFiles/ModularAudioPatcher.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Linking CXX executable \"ModularAudioPatcher_artefacts/Modular Audio Patcher.app/Contents/MacOS/Modular Audio Patcher\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_28) "Linking CXX executable \"ModularAudioPatcher_artefacts/Modular Audio Patcher.app/Contents/MacOS/Modular Audio Patcher\""
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ModularAudioPatcher.dir/link.txt --verbose=$(VERBOSE)
 	/opt/homebrew/bin/cmake -E copy "/Users/even/Desktop/test project/build/ModularAudioPatcher_artefacts/JuceLibraryCode/ModularAudioPatcher/PkgInfo" "/Users/even/Desktop/test project/build/ModularAudioPatcher_artefacts/Modular Audio Patcher.app/Contents"
 

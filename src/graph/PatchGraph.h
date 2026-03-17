@@ -1,6 +1,7 @@
 #pragma once
 
 #include <optional>
+#include <array>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -45,6 +46,9 @@ struct Node {
   int synthWaveform{0};      // 0=sine, 1=saw, 2=square
   int synthChord{0};         // 0=lead/melody, >0 chord preset
   int synthRateDivision{1};  // 1=quarter, 2=eighth, 4=sixteenth
+  bool synthUseMidiDraw{false};
+  std::array<int, 16> synthStepNotes{{-1, -1, -1, -1, -1, -1, -1, -1,
+                                      -1, -1, -1, -1, -1, -1, -1, -1}};
   std::vector<std::string> inputPortIds;
   std::vector<std::string> outputPortIds;
 };
