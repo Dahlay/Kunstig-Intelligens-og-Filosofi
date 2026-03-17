@@ -1,8 +1,11 @@
 #include "graph/GraphCompiler.h"
 #include "graph/PatchGraph.h"
 #include "persistence/PatchSerializer.h"
+#include "audio/AudioEngine.h"
 
 #include <catch2/catch_test_macros.hpp>
+
+#include <cmath>
 
 TEST_CASE("Graph can connect output to input") {
   graph::PatchGraph graph;
@@ -73,4 +76,57 @@ TEST_CASE("Patch serializer roundtrip preserves graph shape") {
   REQUIRE(error.empty());
   REQUIRE(loaded.getNodes().size() == graph.getNodes().size());
   REQUIRE(loaded.getEdges().size() == graph.getEdges().size());
+}
+
+TEST_CASE("Audio engine processes filter-delay-mixer graph") {
+  graph::PatchGraph graph;
+  const auto synthId = graph.addNode(graph::NodeType::Synth, {20.0f, 20.0f});
+  const auto drumId = graph.addNode(graph::NodeType::Drum, {20.0f, 120.0f});
+  const auto filterId = graph.addNode(graph::NodeType::Filter, {140.0f, 20.0f});
+  const auto delayId = graph.addNode(graph::NodeType::Delay, {260.0f, 20.0f});
+  const auto mixerId = graph.addNode(graph::NodeType::Mixer, {380.0f, 60.0f});
+  const auto outId = graph.addNode(graph::NodeType::Output, {500.0f, 60.0f});
+
+  const auto* synth = graph.findNode(synthId);
+  const auto* drum = graph.findNode(drumId);
+  const auto* filter = graph.findNode(filterId);
+  const auto* delay = graph.findNode(delayId);
+  const auto* mixer = graph.findNode(mixerId);
+  const auto* out = graph.findNode(outId);
+
+  REQUIRE(synth != nullptr);
+  REQUIRE(drum != nullptr);
+  REQUIRE(filter != nullptr);
+  REQUIRE(delay != nullptr);
+  REQUIRE(mixer != nullptr);
+  REQUIRE(out != nullptr);
+
+  std::string error;
+  REQUIRE(graph.connect(synth->outputPortIds.front(), filter->inputPortIds.front(), error));
+  REQUIRE(graph.connect(filter->outputPortIds.front(), delay->inputPortIds.front(), error));
+  REQUIRE(graph.connect(delay->outputPortIds.front(), mixer->inputPortIds[0], error));
+  REQUIRE(graph.connect(drum->outputPortIds.front(), mixer->inputPortIds[1], error));
+  REQUIRE(graph.connect(mixer->outputPortIds.front(), out->inputPortIds.front(), error));
+
+  audio::AudioEngine engine;
+  engine.prepare(48000.0, 256, 2);
+  REQUIRE(engine.setGraph(graph, error));
+  REQUIRE(error.empty());
+
+  juce::AudioBuffer<float> buffer(2, 256);
+  juce::MidiBuffer midi;
+  engine.processBlock(buffer, midi);
+
+  bool anyFiniteNonZero = false;
+  for (int ch = 0; ch < buffer.getNumChannels(); ++ch) {
+    for (int s = 0; s < buffer.getNumSamples(); ++s) {
+      const auto v = buffer.getSample(ch, s);
+      REQUIRE(std::isfinite(v));
+      if (std::abs(v) > 1.0e-6f) {
+        anyFiniteNonZero = true;
+      }
+    }
+  }
+
+  REQUIRE(anyFiniteNonZero);
 }

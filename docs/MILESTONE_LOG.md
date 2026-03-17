@@ -43,6 +43,37 @@
 - Add synth voice engine and drum sequencer timing
 - Add undo/redo command stack
 
+## Milestone 6 (Audio Engine MVP Processors)
+
+### Scope completed (M6)
+
+- Implemented `FilterProcessor` (one-pole LPF)
+- Implemented `DelayProcessor` (feedback delay with wet/dry mix)
+- Implemented `MixerProcessor` (input-normalized summing)
+- Updated compiler wiring to instantiate real processors
+
+### Files changed (M6)
+
+- `src/audio/processors/IProcessor.h`
+- `src/graph/GraphCompiler.cpp`
+- `tests/GraphTests.cpp`
+
+### Test evidence (M6)
+
+- `ctest` passing: 5/5 tests
+- Added runtime test for filter-delay-mixer signal chain
+
+### Known limitations (M6)
+
+- Processor parameters are currently fixed defaults (no inspector mapping yet)
+- Drum and synth are still tone generators
+
+### Next milestone checklist (M7)
+
+- Add proper synth voice allocation + ADSR
+- Add drum sequencer clocking from transport/BPM
+- Expose processor params in UI inspector
+
 ### Files changed
 
 - `CMakeLists.txt`

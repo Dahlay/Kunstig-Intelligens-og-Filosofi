@@ -6,4 +6,6 @@ add_test( [==[Validator rejects cycle-producing connection]==] [==[/Users/even/D
 set_tests_properties( [==[Validator rejects cycle-producing connection]==] PROPERTIES WORKING_DIRECTORY [==[/Users/even/Desktop/test project/build]==])
 add_test( [==[Patch serializer roundtrip preserves graph shape]==] [==[/Users/even/Desktop/test project/build/graph_tests]==] [==[Patch serializer roundtrip preserves graph shape]==]  )
 set_tests_properties( [==[Patch serializer roundtrip preserves graph shape]==] PROPERTIES WORKING_DIRECTORY [==[/Users/even/Desktop/test project/build]==])
-set( graph_tests_TESTS [==[Graph can connect output to input]==] [==[Compiler rejects graph without output]==] [==[Validator rejects cycle-producing connection]==] [==[Patch serializer roundtrip preserves graph shape]==])
+add_test( [==[Audio engine processes filter-delay-mixer graph]==] [==[/Users/even/Desktop/test project/build/graph_tests]==] [==[Audio engine processes filter-delay-mixer graph]==]  )
+set_tests_properties( [==[Audio engine processes filter-delay-mixer graph]==] PROPERTIES WORKING_DIRECTORY [==[/Users/even/Desktop/test project/build]==])
+set( graph_tests_TESTS [==[Graph can connect output to input]==] [==[Compiler rejects graph without output]==] [==[Validator rejects cycle-producing connection]==] [==[Patch serializer roundtrip preserves graph shape]==] [==[Audio engine processes filter-delay-mixer graph]==])
