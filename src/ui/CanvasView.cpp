@@ -9,10 +9,10 @@ constexpr float kNodeWidth = 170.0f;
 constexpr float kNodeHeight = 96.0f;
 constexpr float kOutputDiameter = 180.0f;
 constexpr float kPortRadius = 6.0f;
-constexpr juce::uint32 kCanvasTop = 0xff0a1024;
-constexpr juce::uint32 kCanvasBottom = 0xff111a39;
-constexpr juce::uint32 kCableCyan = 0xff6ff6ff;
-constexpr juce::uint32 kCableMagenta = 0xffff68ce;
+constexpr juce::uint32 kCanvasTop = 0xffdff3ff;
+constexpr juce::uint32 kCanvasBottom = 0xff95c9ee;
+constexpr juce::uint32 kCableGlass = 0xff62b7eb;
+constexpr juce::uint32 kCableMint = 0xff9ae4d3;
 
 juce::String nodeName(graph::NodeType t) {
   switch (t) {
@@ -126,22 +126,24 @@ std::optional<std::string> CanvasView::hitEdge(juce::Point<float> p) const {
 void CanvasView::paint(juce::Graphics& g) {
   juce::ColourGradient bg(juce::Colour(kCanvasTop), 0.0f, 0.0f,
                           juce::Colour(kCanvasBottom), 0.0f, static_cast<float>(getHeight()), false);
+  bg.addColour(0.50, juce::Colour(0xffbde7ff));
   g.setGradientFill(bg);
   g.fillAll();
 
-  // Grid + scanline feel
-  g.setColour(juce::Colour(0x224b7fd8));
+  // soft glass grid
+  g.setColour(juce::Colour(0x227bb8de));
   for (int x = 0; x < getWidth(); x += 32)
     g.drawVerticalLine(x, 0.0f, static_cast<float>(getHeight()));
   for (int y = 0; y < getHeight(); y += 32)
     g.drawHorizontalLine(y, 0.0f, static_cast<float>(getWidth()));
 
-  g.setColour(juce::Colour(0x19ff6ecf));
-  for (int y = 0; y < getHeight(); y += 4)
-    g.drawHorizontalLine(y, 0.0f, static_cast<float>(getWidth()));
+  // airy highlights
+  g.setColour(juce::Colour(0x28ffffff));
+  g.fillEllipse(32.0f, 44.0f, 180.0f, 180.0f);
+  g.fillEllipse(static_cast<float>(getWidth()) - 220.0f, 30.0f, 190.0f, 190.0f);
 
   // Cables
-  g.setColour(juce::Colour(kCableCyan).withAlpha(0.22f));
+  g.setColour(juce::Colour(kCableGlass).withAlpha(0.24f));
   for (const auto& [_, edge] : graph_.getEdges()) {
     const auto* from = graph_.findPort(edge.fromPortId);
     const auto* to = graph_.findPort(edge.toPortId);
@@ -155,12 +157,12 @@ void CanvasView::paint(juce::Graphics& g) {
     juce::Path path;
     path.startNewSubPath(a);
     path.cubicTo({a.x + 60.0f, a.y}, {b.x - 60.0f, b.y}, b);
-    // glow
+    // soft bloom
     g.strokePath(path, juce::PathStrokeType(6.0f));
-    // bright core
-    g.setColour(juce::Colour(kCableMagenta).withAlpha(0.92f));
+    // glossy core
+    g.setColour(juce::Colour(kCableMint).withAlpha(0.95f));
     g.strokePath(path, juce::PathStrokeType(2.2f));
-    g.setColour(juce::Colour(kCableCyan).withAlpha(0.20f));
+    g.setColour(juce::Colour(kCableGlass).withAlpha(0.24f));
   }
 
   if (cableFromPortId_) {
@@ -170,9 +172,9 @@ void CanvasView::paint(juce::Graphics& g) {
       juce::Path preview;
       preview.startNewSubPath(a);
       preview.cubicTo({a.x + 60.0f, a.y}, {cableMousePoint_.x - 60.0f, cableMousePoint_.y}, cableMousePoint_);
-      g.setColour(juce::Colour(kCableCyan).withAlpha(0.30f));
+      g.setColour(juce::Colour(kCableGlass).withAlpha(0.34f));
       g.strokePath(preview, juce::PathStrokeType(5.0f, juce::PathStrokeType::curved));
-      g.setColour(juce::Colour(0xfff2f9ff));
+      g.setColour(juce::Colour(0xffffffff));
       g.strokePath(preview, juce::PathStrokeType(1.8f, juce::PathStrokeType::curved));
     }
   }
@@ -182,36 +184,36 @@ void CanvasView::paint(juce::Graphics& g) {
     const auto r = nodeRect(node);
 
     if (node.type == graph::NodeType::Output) {
-      juce::DropShadow(juce::Colour(0xaa8a63ff), 22, {0, 0})
+      juce::DropShadow(juce::Colour(0x8899c5df), 22, {0, 0})
           .drawForRectangle(g, r.toNearestInt().expanded(3));
 
-      juce::ColourGradient outFill(juce::Colour(0xff5f55ff), r.getCentreX(), r.getY(),
-                                   juce::Colour(0xff182149), r.getCentreX(), r.getBottom(), false);
+      juce::ColourGradient outFill(juce::Colour(0xffecfbff), r.getCentreX(), r.getY(),
+                                   juce::Colour(0xff6eb0dc), r.getCentreX(), r.getBottom(), false);
       g.setGradientFill(outFill);
       g.fillEllipse(r);
 
-      g.setColour(juce::Colour(0xffe7f4ff));
+      g.setColour(juce::Colour(0xb8ffffff));
       g.drawEllipse(r, 2.4f);
 
       auto inner = r.reduced(20.0f);
-      g.setColour(juce::Colour(0x33ffffff));
+      g.setColour(juce::Colour(0x55ffffff));
       g.fillEllipse(inner);
-      g.setColour(juce::Colour(0xaaff8df0));
+      g.setColour(juce::Colour(0xaa8fd2ef));
       g.drawEllipse(inner, 1.2f);
 
       if (selectedNodeId_ && *selectedNodeId_ == nodeId) {
-        g.setColour(juce::Colour(0x88ff7ad7));
-        g.drawEllipse(r.expanded(4.0f), 6.0f);
+        g.setColour(juce::Colour(0x66ffffff));
+        g.drawEllipse(r.expanded(3.0f), 4.0f);
       }
 
-      g.setColour(juce::Colour(0xfff7fbff));
+      g.setColour(juce::Colour(0xff2a678e));
       g.setFont(juce::FontOptions(18.0f, juce::Font::bold));
       g.drawFittedText("OUTPUT", r.reduced(24.0f).toNearestInt(), juce::Justification::centred, 1);
 
       for (const auto& portId : node.inputPortIds) {
         if (const auto* port = graph_.findPort(portId)) {
           const auto p = getPortPoint(*port);
-          g.setColour(juce::Colour(0xff72ffe8));
+          g.setColour(juce::Colour(0xffbffff2));
           g.fillEllipse(p.x - kPortRadius, p.y - kPortRadius, kPortRadius * 2.0f, kPortRadius * 2.0f);
           g.setColour(juce::Colour(0xb0ffffff));
           g.drawEllipse(p.x - kPortRadius, p.y - kPortRadius, kPortRadius * 2.0f, kPortRadius * 2.0f, 1.0f);
@@ -220,24 +222,29 @@ void CanvasView::paint(juce::Graphics& g) {
       continue;
     }
 
-    juce::DropShadow(juce::Colour(0xaa56c9ff), 18, {0, 0})
+    juce::DropShadow(juce::Colour(0x667eb8dd), 16, {0, 0})
         .drawForRectangle(g, r.toNearestInt().expanded(2));
 
-    juce::ColourGradient nodeFill(juce::Colour(0xff2e447e), r.getTopLeft(),
-                                  juce::Colour(0xff151b33), r.getBottomRight(), false);
+    juce::ColourGradient nodeFill(juce::Colour(0xfff4fdff), r.getTopLeft(),
+                                  juce::Colour(0xff91c7e8), r.getBottomRight(), false);
     g.setGradientFill(nodeFill);
     g.fillRoundedRectangle(r, 10.0f);
-    g.setColour(juce::Colour(0xff93dfff).withAlpha(0.85f));
+    g.setColour(juce::Colour(0x9cffffff));
     g.drawRoundedRectangle(r, 10.0f, 1.4f);
 
+    auto rTop = r;
+    auto gloss = rTop.removeFromTop(22.0f);
+    g.setColour(juce::Colour(0x55ffffff));
+    g.fillRoundedRectangle(gloss, 10.0f);
+
     if (selectedNodeId_ && *selectedNodeId_ == nodeId) {
-      g.setColour(juce::Colour(kCableMagenta).withAlpha(0.35f));
-      g.drawRoundedRectangle(r.expanded(4.0f), 12.0f, 7.0f);
-      g.setColour(juce::Colour(0xfff7fdff));
+      g.setColour(juce::Colour(0x66ffffff));
+      g.drawRoundedRectangle(r.expanded(4.0f), 12.0f, 4.5f);
+      g.setColour(juce::Colour(0xffe5f8ff));
       g.drawRoundedRectangle(r.expanded(2.0f), 11.0f, 2.2f);
     }
 
-    g.setColour(juce::Colour(0xffecf8ff));
+    g.setColour(juce::Colour(0xff2b5e82));
     g.setFont(juce::FontOptions(14.0f, juce::Font::bold));
     auto header = r;
     g.drawText(nodeName(node.type), header.removeFromTop(26.0f).toNearestInt(),
@@ -246,7 +253,7 @@ void CanvasView::paint(juce::Graphics& g) {
     for (const auto& portId : node.inputPortIds) {
       if (const auto* port = graph_.findPort(portId)) {
         const auto p = getPortPoint(*port);
-        g.setColour(juce::Colour(0xff74ffe8));
+        g.setColour(juce::Colour(0xffb9f7f1));
         g.fillEllipse(p.x - kPortRadius, p.y - kPortRadius, kPortRadius * 2.0f, kPortRadius * 2.0f);
         g.setColour(juce::Colour(0x99ffffff));
         g.drawEllipse(p.x - kPortRadius, p.y - kPortRadius, kPortRadius * 2.0f, kPortRadius * 2.0f, 1.0f);
@@ -256,7 +263,7 @@ void CanvasView::paint(juce::Graphics& g) {
     for (const auto& portId : node.outputPortIds) {
       if (const auto* port = graph_.findPort(portId)) {
         const auto p = getPortPoint(*port);
-        g.setColour(juce::Colour(0xffff81d9));
+        g.setColour(juce::Colour(0xff9ad0ff));
         g.fillEllipse(p.x - kPortRadius, p.y - kPortRadius, kPortRadius * 2.0f, kPortRadius * 2.0f);
         g.setColour(juce::Colour(0x99ffffff));
         g.drawEllipse(p.x - kPortRadius, p.y - kPortRadius, kPortRadius * 2.0f, kPortRadius * 2.0f, 1.0f);
