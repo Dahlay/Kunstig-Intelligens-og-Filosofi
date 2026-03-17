@@ -28,6 +28,7 @@ class CanvasView : public juce::Component {
   void mouseDown(const juce::MouseEvent& event) override;
   void mouseDrag(const juce::MouseEvent& event) override;
   void mouseUp(const juce::MouseEvent& event) override;
+  bool keyPressed(const juce::KeyPress& key) override;
 
  private:
   struct PortHit {

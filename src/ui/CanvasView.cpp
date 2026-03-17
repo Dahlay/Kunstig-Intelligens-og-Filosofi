@@ -29,7 +29,9 @@ juce::String nodeName(graph::NodeType t) {
 }
 }  // namespace
 
-CanvasView::CanvasView(graph::PatchGraph& graph) : graph_(graph) {}
+CanvasView::CanvasView(graph::PatchGraph& graph) : graph_(graph) {
+  setWantsKeyboardFocus(true);
+}
 
 juce::Rectangle<float> CanvasView::nodeRect(const graph::Node& node) const {
   return {node.position.x, node.position.y, kNodeWidth, kNodeHeight};
@@ -73,22 +75,26 @@ std::optional<CanvasView::PortHit> CanvasView::hitPort(juce::Point<float> p) con
 }
 
 std::optional<std::string> CanvasView::hitEdge(juce::Point<float> p) const {
-  constexpr float kHitDistance = 8.0f;
+  constexpr float kHitDistance = 10.0f;
+  constexpr int kSamples = 24;
 
   for (const auto& [edgeId, edge] : graph_.getEdges()) {
     const auto* from = graph_.findPort(edge.fromPortId);
     const auto* to = graph_.findPort(edge.toPortId);
-    if (!from || !to) {
-      continue;
-    }
+    if (!from || !to) continue;
 
     const auto a = getPortPoint(*from);
     const auto b = getPortPoint(*to);
-    const auto mid = juce::Point<float>((a.x + b.x) * 0.5f, (a.y + b.y) * 0.5f);
+    const float c1x = a.x + 60.0f, c1y = a.y;
+    const float c2x = b.x - 60.0f, c2y = b.y;
 
-    if (p.getDistanceFrom(a) <= kHitDistance || p.getDistanceFrom(mid) <= kHitDistance ||
-        p.getDistanceFrom(b) <= kHitDistance) {
-      return edgeId;
+    for (int i = 0; i <= kSamples; ++i) {
+      const float t = static_cast<float>(i) / kSamples;
+      const float u = 1.0f - t;
+      const float x = u*u*u*a.x + 3*u*u*t*c1x + 3*u*t*t*c2x + t*t*t*b.x;
+      const float y = u*u*u*a.y + 3*u*u*t*c1y + 3*u*t*t*c2y + t*t*t*b.y;
+      if (p.getDistanceFrom({x, y}) <= kHitDistance)
+        return edgeId;
     }
   }
 
@@ -168,20 +174,38 @@ void CanvasView::paint(juce::Graphics& g) {
 
 void CanvasView::mouseDown(const juce::MouseEvent& event) {
   auto p = event.position;
+  grabKeyboardFocus();
 
   if (event.mods.isRightButtonDown()) {
+    // Right-click cable → disconnect
     if (auto edgeId = hitEdge(p)) {
-      if (onGraphEdit_) {
-        onGraphEdit_();
-      }
+      if (onGraphEdit_) onGraphEdit_();
       graph_.disconnect(*edgeId);
-      if (onGraphChanged_) {
-        onGraphChanged_();
-      }
-      if (onStatus_) {
-        onStatus_("Disconnected");
-      }
+      if (onGraphChanged_) onGraphChanged_();
+      if (onStatus_) onStatus_("Disconnected");
       repaint();
+      return;
+    }
+    // Right-click node → popup menu
+    if (auto nodeId = hitNode(p)) {
+      selectedNodeId_ = *nodeId;
+      if (onNodeSelection_) onNodeSelection_(selectedNodeId_);
+      repaint();
+      juce::PopupMenu menu;
+      menu.addItem(1, "Delete Node");
+      menu.showMenuAsync(juce::PopupMenu::Options{}.withTargetComponent(this),
+        [this, nid = *nodeId](int result) {
+          if (result == 1) {
+            if (onGraphEdit_) onGraphEdit_();
+            graph_.removeNode(nid);
+            if (selectedNodeId_ && *selectedNodeId_ == nid)
+              selectedNodeId_.reset();
+            if (onNodeSelection_) onNodeSelection_(selectedNodeId_);
+            if (onGraphChanged_) onGraphChanged_();
+            if (onStatus_) onStatus_("Node deleted");
+            repaint();
+          }
+        });
       return;
     }
   }
@@ -267,6 +291,21 @@ void CanvasView::mouseUp(const juce::MouseEvent& event) {
   }
 
   repaint();
+}
+
+bool CanvasView::keyPressed(const juce::KeyPress& key) {
+  if (selectedNodeId_ &&
+      (key == juce::KeyPress::deleteKey || key == juce::KeyPress::backspaceKey)) {
+    if (onGraphEdit_) onGraphEdit_();
+    graph_.removeNode(*selectedNodeId_);
+    selectedNodeId_.reset();
+    if (onNodeSelection_) onNodeSelection_(selectedNodeId_);
+    if (onGraphChanged_) onGraphChanged_();
+    if (onStatus_) onStatus_("Node deleted");
+    repaint();
+    return true;
+  }
+  return false;
 }
 
 }  // namespace ui
