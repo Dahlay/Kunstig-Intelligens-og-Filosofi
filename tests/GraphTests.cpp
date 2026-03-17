@@ -179,6 +179,52 @@ TEST_CASE("Audio engine processes filter-delay-mixer graph") {
   REQUIRE(anyFiniteNonZero);
 }
 
+TEST_CASE("Synth MIDI draw mode overrides chord preset") {
+  graph::PatchGraph graph;
+  const auto synthId = graph.addNode(graph::NodeType::Synth, {20.0f, 20.0f});
+  const auto outId = graph.addNode(graph::NodeType::Output, {220.0f, 20.0f});
+
+  auto* synth = graph.findNode(synthId);
+  const auto* out = graph.findNode(outId);
+  REQUIRE(synth != nullptr);
+  REQUIRE(out != nullptr);
+
+  synth->synthChord = 4;  // should be ignored in MIDI draw mode
+  synth->synthUseMidiDraw = true;
+  synth->synthRateDivision = 4;
+  synth->synthStepNotes = {{60, -1, 64, -1, 67, -1, 72, -1,
+                            67, -1, 64, -1, 60, -1, 55, -1}};
+
+  std::string error;
+  REQUIRE(graph.connect(synth->outputPortIds.front(), out->inputPortIds.front(), error));
+
+  audio::AudioEngine engine;
+  engine.prepare(48000.0, 256, 2);
+  engine.setBpm(120.0);
+  engine.setTransportPlaying(true);
+  REQUIRE(engine.setGraph(graph, error));
+
+  juce::AudioBuffer<float> buffer(2, 256);
+  juce::MidiBuffer midi;
+  bool anyFiniteNonZero = false;
+
+  for (int block = 0; block < 8; ++block) {
+    buffer.clear();
+    engine.processBlock(buffer, midi);
+    for (int ch = 0; ch < buffer.getNumChannels(); ++ch) {
+      for (int s = 0; s < buffer.getNumSamples(); ++s) {
+        const auto v = buffer.getSample(ch, s);
+        REQUIRE(std::isfinite(v));
+        if (std::abs(v) > 1.0e-6f) {
+          anyFiniteNonZero = true;
+        }
+      }
+    }
+  }
+
+  REQUIRE(anyFiniteNonZero);
+}
+
 TEST_CASE("Transport stop produces silence") {
   graph::PatchGraph graph;
   const auto synthId = graph.addNode(graph::NodeType::Synth, {20.0f, 20.0f});

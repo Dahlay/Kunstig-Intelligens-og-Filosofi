@@ -259,12 +259,10 @@ class SynthProcessor final : public IProcessor {
 
     for (int s = 0; s < context.numSamples; ++s) {
       if (context.playing && ((context.samplePosition + s) % samplesPerEvent == 0)) {
-        if (chord_ == 0) {
-          if (useMidiDraw_) {
-            triggerDrawStep();
-          } else {
-            triggerNextMelodyNote();
-          }
+        if (useMidiDraw_) {
+          triggerDrawStep();
+        } else if (chord_ == 0) {
+          triggerNextMelodyNote();
         } else {
           triggerChord(chord_);
         }

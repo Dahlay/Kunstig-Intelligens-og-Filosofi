@@ -545,7 +545,7 @@ void MainComponent::refreshInspector() {
   delayMixSlider_.setEnabled(node->type == graph::NodeType::Delay);
   const bool isSynth = node->type == graph::NodeType::Synth;
   synthWaveformBox_.setEnabled(isSynth);
-  synthChordBox_.setEnabled(isSynth);
+  synthChordBox_.setEnabled(isSynth && !synthMidiDrawToggle_.getToggleState());
   synthRateBox_.setEnabled(isSynth);
   synthMidiDrawToggle_.setEnabled(isSynth);
   synthMidiGrid_.setEnabled(isSynth && synthMidiDrawToggle_.getToggleState());
@@ -574,11 +574,15 @@ void MainComponent::applyInspectorToSelectedNode() {
   node->delayFeedback = static_cast<float>(delayFeedbackSlider_.getValue());
   node->delayMix = static_cast<float>(delayMixSlider_.getValue());
   node->synthWaveform = std::max(0, synthWaveformBox_.getSelectedId() - 1);
-  node->synthChord = std::max(0, synthChordBox_.getSelectedId() - 1);
+  node->synthChord = synthMidiDrawToggle_.getToggleState() ? 0 : std::max(0, synthChordBox_.getSelectedId() - 1);
   const int rateId = synthRateBox_.getSelectedId();
   node->synthRateDivision = (rateId == 3 ? 4 : (rateId == 2 ? 2 : 1));
   node->synthUseMidiDraw = synthMidiDrawToggle_.getToggleState();
   node->synthStepNotes = synthMidiGrid_.getNotes();
+  if (node->synthUseMidiDraw) {
+    synthChordBox_.setSelectedId(1, juce::dontSendNotification);
+  }
+  synthChordBox_.setEnabled(!node->synthUseMidiDraw);
   synthMidiGrid_.setEnabled(node->synthUseMidiDraw);
 
   rebuildAudioPlan();
