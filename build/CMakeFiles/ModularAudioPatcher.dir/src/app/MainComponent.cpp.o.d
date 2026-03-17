@@ -1538,4 +1538,5 @@ CMakeFiles/ModularAudioPatcher.dir/src/app/MainComponent.cpp.o: \
   /Users/even/Desktop/test\ project/build/_deps/juce-src/modules/juce_audio_utils/players/juce_SoundPlayer.h \
   /Users/even/Desktop/test\ project/build/_deps/juce-src/modules/juce_audio_utils/players/juce_AudioProcessorPlayer.h \
   /Users/even/Desktop/test\ project/build/_deps/juce-src/modules/juce_audio_utils/audio_cd/juce_AudioCDBurner.h \
-  /Users/even/Desktop/test\ project/build/_deps/juce-src/modules/juce_audio_utils/audio_cd/juce_AudioCDReader.h
+  /Users/even/Desktop/test\ project/build/_deps/juce-src/modules/juce_audio_utils/audio_cd/juce_AudioCDReader.h \
+  /Users/even/Desktop/test\ project/src/persistence/PatchSerializer.h

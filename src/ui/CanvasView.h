@@ -35,6 +35,7 @@ class CanvasView : public juce::Component {
   juce::Rectangle<float> nodeRect(const graph::Node& node) const;
   std::optional<std::string> hitNode(juce::Point<float> p) const;
   std::optional<PortHit> hitPort(juce::Point<float> p) const;
+  std::optional<std::string> hitEdge(juce::Point<float> p) const;
   juce::Point<float> getPortPoint(const graph::Port& port) const;
 
   graph::PatchGraph& graph_;

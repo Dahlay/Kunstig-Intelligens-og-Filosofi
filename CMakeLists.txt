@@ -89,10 +89,11 @@ if(BUILD_TESTING)
     src/graph/GraphValidator.cpp
     src/graph/GraphCompiler.cpp
     src/audio/AudioEngine.cpp
+    src/persistence/PatchSerializer.cpp
   )
 
   target_include_directories(graph_tests PRIVATE src)
-  target_link_libraries(graph_tests PRIVATE Catch2::Catch2WithMain juce::juce_audio_basics)
+  target_link_libraries(graph_tests PRIVATE Catch2::Catch2WithMain juce::juce_audio_basics nlohmann_json::nlohmann_json)
   target_compile_definitions(graph_tests PRIVATE JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1)
 
   include(CTest)

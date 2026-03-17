@@ -142,10 +142,24 @@ CMakeFiles/graph_tests.dir/src/audio/AudioEngine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/graph_tests.dir/src/audio/AudioEngine.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/even/Desktop/test project/src/audio/AudioEngine.cpp" -o CMakeFiles/graph_tests.dir/src/audio/AudioEngine.cpp.s
 
+CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o: CMakeFiles/graph_tests.dir/flags.make
+CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o: /Users/even/Desktop/test\ project/src/persistence/PatchSerializer.cpp
+CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o: CMakeFiles/graph_tests.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o -MF CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o.d -o CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o -c "/Users/even/Desktop/test project/src/persistence/PatchSerializer.cpp"
+
+CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/even/Desktop/test project/src/persistence/PatchSerializer.cpp" > CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.i
+
+CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/even/Desktop/test project/src/persistence/PatchSerializer.cpp" -o CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.s
+
 CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o: CMakeFiles/graph_tests.dir/flags.make
 CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o: _deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm
 CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o: CMakeFiles/graph_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o -MF CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o.d -o CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm"
 
 CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.i: cmake_force
@@ -159,7 +173,7 @@ CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_b
 CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o: CMakeFiles/graph_tests.dir/flags.make
 CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o: _deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp
 CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o: CMakeFiles/graph_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o -MF CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o.d -o CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp"
 
 CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.i: cmake_force
@@ -173,7 +187,7 @@ CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core_Compilatio
 CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o: CMakeFiles/graph_tests.dir/flags.make
 CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o: _deps/juce-src/modules/juce_core/juce_core.mm
 CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o: CMakeFiles/graph_tests.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o -MF CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o.d -o CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o -c "/Users/even/Desktop/test project/build/_deps/juce-src/modules/juce_core/juce_core.mm"
 
 CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core.mm.i: cmake_force
@@ -191,6 +205,7 @@ graph_tests_OBJECTS = \
 "CMakeFiles/graph_tests.dir/src/graph/GraphValidator.cpp.o" \
 "CMakeFiles/graph_tests.dir/src/graph/GraphCompiler.cpp.o" \
 "CMakeFiles/graph_tests.dir/src/audio/AudioEngine.cpp.o" \
+"CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o" \
 "CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o" \
 "CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o" \
 "CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o"
@@ -203,6 +218,7 @@ graph_tests: CMakeFiles/graph_tests.dir/src/graph/PatchGraph.cpp.o
 graph_tests: CMakeFiles/graph_tests.dir/src/graph/GraphValidator.cpp.o
 graph_tests: CMakeFiles/graph_tests.dir/src/graph/GraphCompiler.cpp.o
 graph_tests: CMakeFiles/graph_tests.dir/src/audio/AudioEngine.cpp.o
+graph_tests: CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o
 graph_tests: CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_audio_basics/juce_audio_basics.mm.o
 graph_tests: CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core_CompilationTime.cpp.o
 graph_tests: CMakeFiles/graph_tests.dir/_deps/juce-src/modules/juce_core/juce_core.mm.o
@@ -210,7 +226,7 @@ graph_tests: CMakeFiles/graph_tests.dir/build.make
 graph_tests: _deps/catch2-build/src/libCatch2Main.a
 graph_tests: _deps/catch2-build/src/libCatch2.a
 graph_tests: CMakeFiles/graph_tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable graph_tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable graph_tests"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/graph_tests.dir/link.txt --verbose=$(VERBOSE)
 	/opt/homebrew/bin/cmake -D TEST_TARGET=graph_tests -D "TEST_EXECUTABLE=/Users/even/Desktop/test project/build/graph_tests" -D TEST_EXECUTOR= -D "TEST_WORKING_DIR=/Users/even/Desktop/test project/build" -D TEST_SPEC= -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D TEST_LIST=graph_tests_TESTS -D TEST_REPORTER= -D TEST_OUTPUT_DIR= -D TEST_OUTPUT_PREFIX= -D TEST_OUTPUT_SUFFIX= -D TEST_DL_PATHS= -D "CTEST_FILE=/Users/even/Desktop/test project/build/graph_tests-b12d07c_tests.cmake" -P "/Users/even/Desktop/test project/build/_deps/catch2-src/extras/CatchAddTests.cmake"
 

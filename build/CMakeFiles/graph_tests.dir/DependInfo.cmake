@@ -15,6 +15,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/even/Desktop/test project/src/graph/GraphCompiler.cpp" "CMakeFiles/graph_tests.dir/src/graph/GraphCompiler.cpp.o" "gcc" "CMakeFiles/graph_tests.dir/src/graph/GraphCompiler.cpp.o.d"
   "/Users/even/Desktop/test project/src/graph/GraphValidator.cpp" "CMakeFiles/graph_tests.dir/src/graph/GraphValidator.cpp.o" "gcc" "CMakeFiles/graph_tests.dir/src/graph/GraphValidator.cpp.o.d"
   "/Users/even/Desktop/test project/src/graph/PatchGraph.cpp" "CMakeFiles/graph_tests.dir/src/graph/PatchGraph.cpp.o" "gcc" "CMakeFiles/graph_tests.dir/src/graph/PatchGraph.cpp.o.d"
+  "/Users/even/Desktop/test project/src/persistence/PatchSerializer.cpp" "CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o" "gcc" "CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o.d"
   "/Users/even/Desktop/test project/tests/GraphTests.cpp" "CMakeFiles/graph_tests.dir/tests/GraphTests.cpp.o" "gcc" "CMakeFiles/graph_tests.dir/tests/GraphTests.cpp.o.d"
   )
 

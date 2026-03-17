@@ -267,12 +267,12 @@ _deps/nlohmann_json-build/clean:
 CMakeFiles/ModularAudioPatcher.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ModularAudioPatcher.dir/build.make CMakeFiles/ModularAudioPatcher.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ModularAudioPatcher.dir/build.make CMakeFiles/ModularAudioPatcher.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93 "Built target ModularAudioPatcher"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93 "Built target ModularAudioPatcher"
 .PHONY : CMakeFiles/ModularAudioPatcher.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/ModularAudioPatcher.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/even/Desktop/test project/build/CMakeFiles" 18
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/even/Desktop/test project/build/CMakeFiles" 19
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/ModularAudioPatcher.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/even/Desktop/test project/build/CMakeFiles" 0
 .PHONY : CMakeFiles/ModularAudioPatcher.dir/rule
@@ -284,7 +284,7 @@ ModularAudioPatcher: CMakeFiles/ModularAudioPatcher.dir/rule
 # codegen rule for target.
 CMakeFiles/ModularAudioPatcher.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ModularAudioPatcher.dir/build.make CMakeFiles/ModularAudioPatcher.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93 "Finished codegen for target ModularAudioPatcher"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93 "Finished codegen for target ModularAudioPatcher"
 .PHONY : CMakeFiles/ModularAudioPatcher.dir/codegen
 
 # clean rule for target.
@@ -305,7 +305,7 @@ CMakeFiles/graph_tests.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2WithMain
 
 # Build rule for subdir invocation for target.
 CMakeFiles/graph_tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/even/Desktop/test project/build/CMakeFiles" 82
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/even/Desktop/test project/build/CMakeFiles" 81
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/graph_tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/even/Desktop/test project/build/CMakeFiles" 0
 .PHONY : CMakeFiles/graph_tests.dir/rule
@@ -1260,12 +1260,12 @@ _deps/catch2-build/src/CMakeFiles/Catch2.dir/clean:
 _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=74,75 "Built target Catch2WithMain"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=74 "Built target Catch2WithMain"
 .PHONY : _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/even/Desktop/test project/build/CMakeFiles" 75
+	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/even/Desktop/test project/build/CMakeFiles" 74
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/even/Desktop/test project/build/CMakeFiles" 0
 .PHONY : _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/rule
@@ -1277,7 +1277,7 @@ Catch2WithMain: _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/rule
 # codegen rule for target.
 _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=74,75 "Finished codegen for target Catch2WithMain"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir="/Users/even/Desktop/test project/build/CMakeFiles" --progress-num=74 "Finished codegen for target Catch2WithMain"
 .PHONY : _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/codegen
 
 # clean rule for target.

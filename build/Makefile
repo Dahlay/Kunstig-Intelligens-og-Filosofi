@@ -1143,6 +1143,7 @@ src/persistence/PatchSerializer.o: src/persistence/PatchSerializer.cpp.o
 # target to build an object file
 src/persistence/PatchSerializer.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ModularAudioPatcher.dir/build.make CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graph_tests.dir/build.make CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o
 .PHONY : src/persistence/PatchSerializer.cpp.o
 
 src/persistence/PatchSerializer.i: src/persistence/PatchSerializer.cpp.i
@@ -1151,6 +1152,7 @@ src/persistence/PatchSerializer.i: src/persistence/PatchSerializer.cpp.i
 # target to preprocess a source file
 src/persistence/PatchSerializer.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ModularAudioPatcher.dir/build.make CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graph_tests.dir/build.make CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.i
 .PHONY : src/persistence/PatchSerializer.cpp.i
 
 src/persistence/PatchSerializer.s: src/persistence/PatchSerializer.cpp.s
@@ -1159,6 +1161,7 @@ src/persistence/PatchSerializer.s: src/persistence/PatchSerializer.cpp.s
 # target to generate assembly for a file
 src/persistence/PatchSerializer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ModularAudioPatcher.dir/build.make CMakeFiles/ModularAudioPatcher.dir/src/persistence/PatchSerializer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/graph_tests.dir/build.make CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.s
 .PHONY : src/persistence/PatchSerializer.cpp.s
 
 src/ui/CanvasView.o: src/ui/CanvasView.cpp.o

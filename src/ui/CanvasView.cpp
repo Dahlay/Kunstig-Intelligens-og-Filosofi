@@ -72,6 +72,29 @@ std::optional<CanvasView::PortHit> CanvasView::hitPort(juce::Point<float> p) con
   return std::nullopt;
 }
 
+std::optional<std::string> CanvasView::hitEdge(juce::Point<float> p) const {
+  constexpr float kHitDistance = 8.0f;
+
+  for (const auto& [edgeId, edge] : graph_.getEdges()) {
+    const auto* from = graph_.findPort(edge.fromPortId);
+    const auto* to = graph_.findPort(edge.toPortId);
+    if (!from || !to) {
+      continue;
+    }
+
+    const auto a = getPortPoint(*from);
+    const auto b = getPortPoint(*to);
+    const auto mid = juce::Point<float>((a.x + b.x) * 0.5f, (a.y + b.y) * 0.5f);
+
+    if (p.getDistanceFrom(a) <= kHitDistance || p.getDistanceFrom(mid) <= kHitDistance ||
+        p.getDistanceFrom(b) <= kHitDistance) {
+      return edgeId;
+    }
+  }
+
+  return std::nullopt;
+}
+
 void CanvasView::paint(juce::Graphics& g) {
   g.fillAll(juce::Colour(0xff11151d));
 
@@ -140,6 +163,20 @@ void CanvasView::paint(juce::Graphics& g) {
 
 void CanvasView::mouseDown(const juce::MouseEvent& event) {
   auto p = event.position;
+
+  if (event.mods.isRightButtonDown()) {
+    if (auto edgeId = hitEdge(p)) {
+      graph_.disconnect(*edgeId);
+      if (onGraphChanged_) {
+        onGraphChanged_();
+      }
+      if (onStatus_) {
+        onStatus_("Disconnected");
+      }
+      repaint();
+      return;
+    }
+  }
 
   if (auto portHit = hitPort(p); portHit && portHit->direction == graph::PortDirection::Out) {
     cableFromPortId_ = portHit->portId;

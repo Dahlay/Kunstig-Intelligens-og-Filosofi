@@ -5,6 +5,12 @@
 
 namespace graph {
 
+void PatchGraph::clear() {
+  nodes_.clear();
+  ports_.clear();
+  edges_.clear();
+}
+
 std::string PatchGraph::makeId() {
   return juce::Uuid().toString().toStdString();
 }

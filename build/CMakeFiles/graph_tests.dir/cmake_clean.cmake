@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/graph_tests.dir/src/graph/GraphValidator.cpp.o.d"
   "CMakeFiles/graph_tests.dir/src/graph/PatchGraph.cpp.o"
   "CMakeFiles/graph_tests.dir/src/graph/PatchGraph.cpp.o.d"
+  "CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o"
+  "CMakeFiles/graph_tests.dir/src/persistence/PatchSerializer.cpp.o.d"
   "CMakeFiles/graph_tests.dir/tests/GraphTests.cpp.o"
   "CMakeFiles/graph_tests.dir/tests/GraphTests.cpp.o.d"
   "graph_tests"

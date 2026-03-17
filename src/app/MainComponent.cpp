@@ -1,5 +1,7 @@
 #include "MainComponent.h"
 
+#include "persistence/PatchSerializer.h"
+
 namespace {
 constexpr int kToolbarHeight = 46;
 }
@@ -26,6 +28,16 @@ MainComponent::MainComponent() : canvas_(graph_) {
     toolbar_.addAndMakeVisible(*button);
     buttons_.push_back(std::move(button));
   }
+
+  auto saveButton = std::make_unique<juce::TextButton>("Save");
+  saveButton->onClick = [this] { savePatch(); };
+  toolbar_.addAndMakeVisible(*saveButton);
+  buttons_.push_back(std::move(saveButton));
+
+  auto loadButton = std::make_unique<juce::TextButton>("Load");
+  loadButton->onClick = [this] { loadPatch(); };
+  toolbar_.addAndMakeVisible(*loadButton);
+  buttons_.push_back(std::move(loadButton));
 
   canvas_.setGraphChangedCallback([this] { rebuildAudioPlan(); });
   canvas_.setStatusCallback([this](const std::string& text) { status_.setText(text, juce::dontSendNotification); });
@@ -62,8 +74,8 @@ void MainComponent::resized() {
 
   int x = 8;
   for (auto& button : buttons_) {
-    button->setBounds(x, 8, 86, 30);
-    x += 90;
+    button->setBounds(x, 8, 92, 30);
+    x += 96;
   }
 
   status_.setBounds(getWidth() - 360, 8, 350, 30);
@@ -76,6 +88,55 @@ void MainComponent::addNode(graph::NodeType type) {
   graph_.addNode(type, {x, y});
   canvas_.repaint();
   rebuildAudioPlan();
+}
+
+void MainComponent::savePatch() {
+  fileChooser_ = std::make_unique<juce::FileChooser>(
+      "Save patch", juce::File::getSpecialLocation(juce::File::userDocumentsDirectory), "*.json");
+
+  fileChooser_->launchAsync(juce::FileBrowserComponent::saveMode |
+                                juce::FileBrowserComponent::canSelectFiles,
+                            [this](const juce::FileChooser& chooser) {
+                              const auto file = chooser.getResult();
+                              if (file == juce::File()) {
+                                return;
+                              }
+
+                              if (!file.replaceWithText(persistence::PatchSerializer::toJson(graph_))) {
+                                status_.setText("Failed to save patch", juce::dontSendNotification);
+                                return;
+                              }
+
+                              status_.setText("Patch saved", juce::dontSendNotification);
+                            });
+}
+
+void MainComponent::loadPatch() {
+  fileChooser_ = std::make_unique<juce::FileChooser>(
+      "Load patch", juce::File::getSpecialLocation(juce::File::userDocumentsDirectory), "*.json");
+
+  fileChooser_->launchAsync(juce::FileBrowserComponent::openMode |
+                                juce::FileBrowserComponent::canSelectFiles,
+                            [this](const juce::FileChooser& chooser) {
+                              const auto file = chooser.getResult();
+                              if (file == juce::File()) {
+                                return;
+                              }
+
+                              const auto jsonText = file.loadFileAsString().toStdString();
+
+                              std::string error;
+                              graph::PatchGraph loaded;
+                              if (!persistence::PatchSerializer::fromJson(jsonText, loaded, error)) {
+                                status_.setText(error, juce::dontSendNotification);
+                                return;
+                              }
+
+                              graph_ = std::move(loaded);
+                              canvas_.repaint();
+                              rebuildAudioPlan();
+                              status_.setText("Patch loaded", juce::dontSendNotification);
+                            });
 }
 
 void MainComponent::rebuildAudioPlan() {

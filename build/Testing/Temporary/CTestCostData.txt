@@ -1,3 +1,5 @@
-Graph can connect output to input 1 0.0157266
-Compiler rejects graph without output 1 0.0139893
+Graph can connect output to input 3 0.00578294
+Compiler rejects graph without output 3 0.00525639
+Validator rejects cycle-producing connection 1 0.0149567
+Patch serializer roundtrip preserves graph shape 2 0.00718931
 ---

@@ -1195,6 +1195,7 @@ CMakeFiles/graph_tests.dir/tests/GraphTests.cpp.o: \
   /Users/even/Desktop/test\ project/build/_deps/juce-src/modules/juce_audio_basics/utilities/juce_AudioWorkgroup.h \
   /Users/even/Desktop/test\ project/build/_deps/juce-src/modules/juce_audio_basics/midi/ump/juce_UMPBytesOnGroup.h \
   /Users/even/Desktop/test\ project/build/_deps/juce-src/modules/juce_audio_basics/midi/ump/juce_UMPDeviceInfo.h \
+  /Users/even/Desktop/test\ project/src/persistence/PatchSerializer.h \
   /Users/even/Desktop/test\ project/build/_deps/catch2-src/src/catch2/../catch2/catch_test_macros.hpp \
   /Users/even/Desktop/test\ project/build/_deps/catch2-src/src/catch2/../catch2/internal/catch_test_macro_impl.hpp \
   /Users/even/Desktop/test\ project/build/_deps/catch2-build/generated-includes/catch2/catch_user_config.hpp \

@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DJUCE_GLOBAL_MODULE_SETTINGS_INCLUDED=1 -DJUCE_MODULE_AVAILABLE_juce_audio_basics=1 -DJUCE_MODULE_AVAILABLE_juce_core=1 -DNDEBUG=1 -D_NDEBUG=1
 
-CXX_INCLUDES = -I"/Users/even/Desktop/test project/src" -I"/Users/even/Desktop/test project/build/_deps/catch2-src/src/catch2/.." -I"/Users/even/Desktop/test project/build/_deps/catch2-build/generated-includes" -I"/Users/even/Desktop/test project/build/_deps/juce-src/modules"
+CXX_INCLUDES = -I"/Users/even/Desktop/test project/src" -I"/Users/even/Desktop/test project/build/_deps/catch2-src/src/catch2/.." -I"/Users/even/Desktop/test project/build/_deps/catch2-build/generated-includes" -I"/Users/even/Desktop/test project/build/_deps/juce-src/modules" -I"/Users/even/Desktop/test project/build/_deps/nlohmann_json-src/include"
 
 CXX_FLAGSarm64 = -std=c++20 -arch arm64
 

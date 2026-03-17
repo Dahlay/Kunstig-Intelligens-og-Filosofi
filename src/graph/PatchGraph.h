@@ -50,6 +50,7 @@ struct Edge {
 
 class PatchGraph {
  public:
+  void clear();
   std::string addNode(NodeType type, Node::Position position);
   bool removeNode(const std::string& nodeId);
 
