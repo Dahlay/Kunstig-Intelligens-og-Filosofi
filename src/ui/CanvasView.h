@@ -13,11 +13,13 @@ namespace ui {
 class CanvasView : public juce::Component {
  public:
   using GraphChangedCallback = std::function<void()>;
+  using GraphEditCallback = std::function<void()>;
   using StatusCallback = std::function<void(const std::string&)>;
 
   explicit CanvasView(graph::PatchGraph& graph);
 
   void setGraphChangedCallback(GraphChangedCallback cb) { onGraphChanged_ = std::move(cb); }
+  void setGraphEditCallback(GraphEditCallback cb) { onGraphEdit_ = std::move(cb); }
   void setStatusCallback(StatusCallback cb) { onStatus_ = std::move(cb); }
 
   void paint(juce::Graphics& g) override;
@@ -40,6 +42,7 @@ class CanvasView : public juce::Component {
 
   graph::PatchGraph& graph_;
   GraphChangedCallback onGraphChanged_;
+  GraphEditCallback onGraphEdit_;
   StatusCallback onStatus_;
 
   std::optional<std::string> draggingNodeId_;

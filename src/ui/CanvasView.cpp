@@ -166,6 +166,9 @@ void CanvasView::mouseDown(const juce::MouseEvent& event) {
 
   if (event.mods.isRightButtonDown()) {
     if (auto edgeId = hitEdge(p)) {
+      if (onGraphEdit_) {
+        onGraphEdit_();
+      }
       graph_.disconnect(*edgeId);
       if (onGraphChanged_) {
         onGraphChanged_();
@@ -187,6 +190,9 @@ void CanvasView::mouseDown(const juce::MouseEvent& event) {
 
   if (auto nodeId = hitNode(p)) {
     draggingNodeId_ = *nodeId;
+    if (onGraphEdit_) {
+      onGraphEdit_();
+    }
     if (const auto* node = graph_.findNode(*nodeId)) {
       dragOffset_ = {p.x - node->position.x, p.y - node->position.y};
     }
@@ -227,6 +233,9 @@ void CanvasView::mouseUp(const juce::MouseEvent& event) {
 
   std::string error;
   if (auto target = hitPort(event.position); target && target->direction == graph::PortDirection::In) {
+    if (onGraphEdit_) {
+      onGraphEdit_();
+    }
     if (graph_.connect(fromPortId, target->portId, error)) {
       if (onGraphChanged_) {
         onGraphChanged_();

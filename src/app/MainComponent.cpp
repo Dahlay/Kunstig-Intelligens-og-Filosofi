@@ -9,11 +9,14 @@ constexpr int kToolbarHeight = 46;
 MainComponent::MainComponent() : canvas_(graph_) {
   setSize(1280, 800);
   setAudioChannels(0, 2);
+  setWantsKeyboardFocus(true);
 
   addAndMakeVisible(toolbar_);
   addAndMakeVisible(canvas_);
   addAndMakeVisible(status_);
   addAndMakeVisible(transportButton_);
+  addAndMakeVisible(undoButton_);
+  addAndMakeVisible(redoButton_);
   addAndMakeVisible(bpmSlider_);
   addAndMakeVisible(bpmLabel_);
 
@@ -22,6 +25,12 @@ MainComponent::MainComponent() : canvas_(graph_) {
 
   transportButton_.setButtonText("Stop");
   transportButton_.onClick = [this] { toggleTransport(); };
+
+  undoButton_.setButtonText("Undo");
+  undoButton_.onClick = [this] { undo(); };
+
+  redoButton_.setButtonText("Redo");
+  redoButton_.onClick = [this] { redo(); };
 
   bpmLabel_.setText("BPM", juce::dontSendNotification);
   bpmLabel_.setColour(juce::Label::textColourId, juce::Colours::lightgrey);
@@ -57,12 +66,20 @@ MainComponent::MainComponent() : canvas_(graph_) {
   toolbar_.addAndMakeVisible(*loadButton);
   buttons_.push_back(std::move(loadButton));
 
+  canvas_.setGraphEditCallback([this] {
+    if (!applyingHistory_) {
+      pushUndoState();
+    }
+  });
   canvas_.setGraphChangedCallback([this] { rebuildAudioPlan(); });
   canvas_.setStatusCallback([this](const std::string& text) { status_.setText(text, juce::dontSendNotification); });
 
   // Default patch
   addNode(graph::NodeType::Output);
   addNode(graph::NodeType::Synth);
+
+  // Initial undo baseline
+  undoStack_.push_back(persistence::PatchSerializer::toJson(graph_));
 }
 
 MainComponent::~MainComponent() {
@@ -99,14 +116,19 @@ void MainComponent::resized() {
   }
 
   transportButton_.setBounds(x + 8, 8, 74, 30);
-  bpmLabel_.setBounds(x + 90, 10, 34, 24);
-  bpmSlider_.setBounds(x + 124, 8, 170, 30);
+  undoButton_.setBounds(x + 88, 8, 68, 30);
+  redoButton_.setBounds(x + 160, 8, 68, 30);
+  bpmLabel_.setBounds(x + 236, 10, 34, 24);
+  bpmSlider_.setBounds(x + 270, 8, 170, 30);
 
   status_.setBounds(getWidth() - 360, 8, 350, 30);
   canvas_.setBounds(area);
 }
 
 void MainComponent::addNode(graph::NodeType type) {
+  if (!applyingHistory_) {
+    pushUndoState();
+  }
   const float x = 80.0f + static_cast<float>(graph_.getNodes().size() * 24);
   const float y = 100.0f + static_cast<float>(graph_.getNodes().size() * 24);
   graph_.addNode(type, {x, y});
@@ -156,11 +178,95 @@ void MainComponent::loadPatch() {
                                 return;
                               }
 
+                              if (!applyingHistory_) {
+                                pushUndoState();
+                              }
                               graph_ = std::move(loaded);
                               canvas_.repaint();
                               rebuildAudioPlan();
                               status_.setText("Patch loaded", juce::dontSendNotification);
                             });
+}
+
+bool MainComponent::keyPressed(const juce::KeyPress& key) {
+  const auto mods = key.getModifiers();
+  if (mods.isCommandDown() && key.getTextCharacter() == 'z' && mods.isShiftDown()) {
+    redo();
+    return true;
+  }
+
+  if (mods.isCommandDown() && key.getTextCharacter() == 'z') {
+    undo();
+    return true;
+  }
+
+  if (mods.isCommandDown() && key.getTextCharacter() == 's') {
+    savePatch();
+    return true;
+  }
+
+  if (mods.isCommandDown() && key.getTextCharacter() == 'o') {
+    loadPatch();
+    return true;
+  }
+
+  return false;
+}
+
+void MainComponent::pushUndoState() {
+  undoStack_.push_back(persistence::PatchSerializer::toJson(graph_));
+  if (undoStack_.size() > 200) {
+    undoStack_.erase(undoStack_.begin());
+  }
+  redoStack_.clear();
+}
+
+void MainComponent::undo() {
+  if (undoStack_.empty()) {
+    status_.setText("Nothing to undo", juce::dontSendNotification);
+    return;
+  }
+
+  applyingHistory_ = true;
+  const auto previous = undoStack_.back();
+  undoStack_.pop_back();
+  redoStack_.push_back(persistence::PatchSerializer::toJson(graph_));
+
+  std::string error;
+  graph::PatchGraph loaded;
+  if (persistence::PatchSerializer::fromJson(previous, loaded, error)) {
+    graph_ = std::move(loaded);
+    canvas_.repaint();
+    rebuildAudioPlan();
+    status_.setText("Undo", juce::dontSendNotification);
+  } else {
+    status_.setText("Undo failed: " + error, juce::dontSendNotification);
+  }
+  applyingHistory_ = false;
+}
+
+void MainComponent::redo() {
+  if (redoStack_.empty()) {
+    status_.setText("Nothing to redo", juce::dontSendNotification);
+    return;
+  }
+
+  applyingHistory_ = true;
+  const auto next = redoStack_.back();
+  redoStack_.pop_back();
+  undoStack_.push_back(persistence::PatchSerializer::toJson(graph_));
+
+  std::string error;
+  graph::PatchGraph loaded;
+  if (persistence::PatchSerializer::fromJson(next, loaded, error)) {
+    graph_ = std::move(loaded);
+    canvas_.repaint();
+    rebuildAudioPlan();
+    status_.setText("Redo", juce::dontSendNotification);
+  } else {
+    status_.setText("Redo failed: " + error, juce::dontSendNotification);
+  }
+  applyingHistory_ = false;
 }
 
 void MainComponent::toggleTransport() {

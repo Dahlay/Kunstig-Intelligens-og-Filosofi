@@ -1,14 +1,14 @@
-Start testing: Mar 17 23:15 CET
+Start testing: Mar 17 23:18 CET
 ----------------------------------------------------------
 1/6 Testing: Graph can connect output to input
 1/6 Test: Graph can connect output to input
 Command: "/Users/even/Desktop/test project/build/graph_tests" "Graph can connect output to input"
 Directory: /Users/even/Desktop/test project/build
-"Graph can connect output to input" start time: Mar 17 23:15 CET
+"Graph can connect output to input" start time: Mar 17 23:18 CET
 Output:
 ----------------------------------------------------------
 Filters: "Graph can connect output to input"
-Randomness seeded to: 3412268962
+Randomness seeded to: 850749848
 ===============================================================================
 All tests passed (6 assertions in 1 test case)
 
@@ -16,7 +16,7 @@ All tests passed (6 assertions in 1 test case)
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"Graph can connect output to input" end time: Mar 17 23:15 CET
+"Graph can connect output to input" end time: Mar 17 23:18 CET
 "Graph can connect output to input" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -24,11 +24,11 @@ Test Passed.
 2/6 Test: Compiler rejects graph without output
 Command: "/Users/even/Desktop/test project/build/graph_tests" "Compiler rejects graph without output"
 Directory: /Users/even/Desktop/test project/build
-"Compiler rejects graph without output" start time: Mar 17 23:15 CET
+"Compiler rejects graph without output" start time: Mar 17 23:18 CET
 Output:
 ----------------------------------------------------------
 Filters: "Compiler rejects graph without output"
-Randomness seeded to: 986194697
+Randomness seeded to: 4094972906
 ===============================================================================
 All tests passed (2 assertions in 1 test case)
 
@@ -36,7 +36,7 @@ All tests passed (2 assertions in 1 test case)
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"Compiler rejects graph without output" end time: Mar 17 23:15 CET
+"Compiler rejects graph without output" end time: Mar 17 23:18 CET
 "Compiler rejects graph without output" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -44,11 +44,11 @@ Test Passed.
 3/6 Test: Validator rejects cycle-producing connection
 Command: "/Users/even/Desktop/test project/build/graph_tests" "Validator rejects cycle-producing connection"
 Directory: /Users/even/Desktop/test project/build
-"Validator rejects cycle-producing connection" start time: Mar 17 23:15 CET
+"Validator rejects cycle-producing connection" start time: Mar 17 23:18 CET
 Output:
 ----------------------------------------------------------
 Filters: "Validator rejects cycle-producing connection"
-Randomness seeded to: 2802677644
+Randomness seeded to: 3617736311
 ===============================================================================
 All tests passed (5 assertions in 1 test case)
 
@@ -56,7 +56,7 @@ All tests passed (5 assertions in 1 test case)
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"Validator rejects cycle-producing connection" end time: Mar 17 23:15 CET
+"Validator rejects cycle-producing connection" end time: Mar 17 23:18 CET
 "Validator rejects cycle-producing connection" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -64,19 +64,19 @@ Test Passed.
 4/6 Test: Patch serializer roundtrip preserves graph shape
 Command: "/Users/even/Desktop/test project/build/graph_tests" "Patch serializer roundtrip preserves graph shape"
 Directory: /Users/even/Desktop/test project/build
-"Patch serializer roundtrip preserves graph shape" start time: Mar 17 23:15 CET
+"Patch serializer roundtrip preserves graph shape" start time: Mar 17 23:18 CET
 Output:
 ----------------------------------------------------------
 Filters: "Patch serializer roundtrip preserves graph shape"
-Randomness seeded to: 890703805
+Randomness seeded to: 1741550534
 ===============================================================================
 All tests passed (9 assertions in 1 test case)
 
 <end of output>
-Test time =   0.01 sec
+Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"Patch serializer roundtrip preserves graph shape" end time: Mar 17 23:15 CET
+"Patch serializer roundtrip preserves graph shape" end time: Mar 17 23:18 CET
 "Patch serializer roundtrip preserves graph shape" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -84,11 +84,11 @@ Test Passed.
 5/6 Test: Audio engine processes filter-delay-mixer graph
 Command: "/Users/even/Desktop/test project/build/graph_tests" "Audio engine processes filter-delay-mixer graph"
 Directory: /Users/even/Desktop/test project/build
-"Audio engine processes filter-delay-mixer graph" start time: Mar 17 23:15 CET
+"Audio engine processes filter-delay-mixer graph" start time: Mar 17 23:18 CET
 Output:
 ----------------------------------------------------------
 Filters: "Audio engine processes filter-delay-mixer graph"
-Randomness seeded to: 2568101097
+Randomness seeded to: 890522933
 ===============================================================================
 All tests passed (526 assertions in 1 test case)
 
@@ -96,7 +96,7 @@ All tests passed (526 assertions in 1 test case)
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"Audio engine processes filter-delay-mixer graph" end time: Mar 17 23:15 CET
+"Audio engine processes filter-delay-mixer graph" end time: Mar 17 23:18 CET
 "Audio engine processes filter-delay-mixer graph" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -104,11 +104,11 @@ Test Passed.
 6/6 Test: Transport stop produces silence
 Command: "/Users/even/Desktop/test project/build/graph_tests" "Transport stop produces silence"
 Directory: /Users/even/Desktop/test project/build
-"Transport stop produces silence" start time: Mar 17 23:15 CET
+"Transport stop produces silence" start time: Mar 17 23:18 CET
 Output:
 ----------------------------------------------------------
 Filters: "Transport stop produces silence"
-Randomness seeded to: 2592759426
+Randomness seeded to: 2223877728
 ===============================================================================
 All tests passed (516 assertions in 1 test case)
 
@@ -116,8 +116,8 @@ All tests passed (516 assertions in 1 test case)
 Test time =   0.02 sec
 ----------------------------------------------------------
 Test Passed.
-"Transport stop produces silence" end time: Mar 17 23:15 CET
+"Transport stop produces silence" end time: Mar 17 23:18 CET
 "Transport stop produces silence" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Mar 17 23:15 CET
+End testing: Mar 17 23:18 CET

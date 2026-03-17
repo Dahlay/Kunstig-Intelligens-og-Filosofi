@@ -17,8 +17,12 @@ class MainComponent : public juce::AudioAppComponent {
   void releaseResources() override;
 
   void resized() override;
+  bool keyPressed(const juce::KeyPress& key) override;
 
  private:
+  void pushUndoState();
+  void undo();
+  void redo();
   void addNode(graph::NodeType type);
   void savePatch();
   void loadPatch();
@@ -32,9 +36,15 @@ class MainComponent : public juce::AudioAppComponent {
   ui::CanvasView canvas_;
   juce::Label status_;
   juce::TextButton transportButton_;
+  juce::TextButton undoButton_;
+  juce::TextButton redoButton_;
   juce::Slider bpmSlider_;
   juce::Label bpmLabel_;
   std::unique_ptr<juce::FileChooser> fileChooser_;
+  bool applyingHistory_{false};
+
+  std::vector<std::string> undoStack_;
+  std::vector<std::string> redoStack_;
 
   std::vector<std::unique_ptr<juce::TextButton>> buttons_;
 

@@ -110,25 +110,33 @@
 - Expose processor and instrument params in inspector
 - Expand patch compatibility/version migration handling
 
-### Files changed
+## Milestone 8 (Undo/Redo + Usability)
 
-- `CMakeLists.txt`
-- `src/**`
-- `tests/GraphTests.cpp`
+### Scope completed (M8)
 
-### Test evidence
+- Added graph history stack with undo/redo snapshot restore
+- Added toolbar Undo/Redo buttons
+- Added keyboard shortcuts: Cmd+Z, Cmd+Shift+Z, Cmd+S, Cmd+O
+- Added pre-edit callback plumbing from canvas to capture history before mutations
 
-- Added graph connection test
-- Added compiler error-path test
+### Files changed (M8)
 
-### Known limitations
+- `src/ui/CanvasView.h`
+- `src/ui/CanvasView.cpp`
+- `src/app/MainComponent.h`
+- `src/app/MainComponent.cpp`
 
-- Patch deserialization is placeholder
-- No undo/redo yet
-- Filter/Delay/Mixer are pass-through placeholders
+### Test evidence (M8)
 
-### Next milestone checklist
+- `ctest` passing: 6/6 tests
+- Full app target builds successfully
 
-- Add richer graph tests (cycle and single-input policy)
-- Improve cable UX (disconnect, validation feedback)
-- Add save/load roundtrip
+### Known limitations (M8)
+
+- Undo granularity for drag is coarse snapshot-per-edit-start
+- Inspector parameter editing is still pending
+
+### Next milestone checklist (M8.5)
+
+- Add inspector panel with selected node parameter editing (start with `Gain`)
+- Add per-module parameter bindings for filter/delay/mixer
