@@ -74,6 +74,42 @@
 - Add drum sequencer clocking from transport/BPM
 - Expose processor params in UI inspector
 
+## Milestone 7 (Instruments + Transport)
+
+### Scope completed (M7)
+
+- Added transport-aware processing context (`playing`, `bpm`, `samplePosition`)
+- Implemented `SynthProcessor` with polyphonic voice cycling and ADSR-style envelope behavior
+- Implemented `DrumProcessor` with BPM-locked 16-step sequencing (kick/snare/hat)
+- Added transport controls in UI (Start/Stop + BPM slider)
+- Wired engine transport state into audio callback execution
+
+### Files changed (M7)
+
+- `src/audio/processors/IProcessor.h`
+- `src/audio/AudioEngine.h`
+- `src/audio/AudioEngine.cpp`
+- `src/graph/GraphCompiler.cpp`
+- `src/app/MainComponent.h`
+- `src/app/MainComponent.cpp`
+- `tests/GraphTests.cpp`
+
+### Test evidence (M7)
+
+- `ctest` passing: 6/6 tests
+- Added transport stop silence regression test
+
+### Known limitations (M7)
+
+- Synth/drum pattern and timbre are fixed defaults (not yet editable in inspector)
+- No MIDI input routing yet
+
+### Next milestone checklist (M8)
+
+- Implement undo/redo command stack
+- Expose processor and instrument params in inspector
+- Expand patch compatibility/version migration handling
+
 ### Files changed
 
 - `CMakeLists.txt`

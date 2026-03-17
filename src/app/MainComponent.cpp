@@ -13,9 +13,27 @@ MainComponent::MainComponent() : canvas_(graph_) {
   addAndMakeVisible(toolbar_);
   addAndMakeVisible(canvas_);
   addAndMakeVisible(status_);
+  addAndMakeVisible(transportButton_);
+  addAndMakeVisible(bpmSlider_);
+  addAndMakeVisible(bpmLabel_);
 
   status_.setColour(juce::Label::textColourId, juce::Colours::lightgrey);
   status_.setText("Ready", juce::dontSendNotification);
+
+  transportButton_.setButtonText("Stop");
+  transportButton_.onClick = [this] { toggleTransport(); };
+
+  bpmLabel_.setText("BPM", juce::dontSendNotification);
+  bpmLabel_.setColour(juce::Label::textColourId, juce::Colours::lightgrey);
+
+  bpmSlider_.setRange(40.0, 240.0, 1.0);
+  bpmSlider_.setValue(120.0);
+  bpmSlider_.setTextBoxStyle(juce::Slider::TextBoxLeft, false, 54, 20);
+  bpmSlider_.onValueChange = [this] {
+    engine_.setBpm(bpmSlider_.getValue());
+    status_.setText("BPM: " + juce::String(static_cast<int>(bpmSlider_.getValue())),
+                    juce::dontSendNotification);
+  };
 
   const std::vector<std::pair<juce::String, graph::NodeType>> nodeButtons = {
       {"Output", graph::NodeType::Output}, {"Synth", graph::NodeType::Synth}, {"Drum", graph::NodeType::Drum},
@@ -53,6 +71,8 @@ MainComponent::~MainComponent() {
 
 void MainComponent::prepareToPlay(int samplesPerBlockExpected, double sampleRate) {
   engine_.prepare(sampleRate, samplesPerBlockExpected, 2);
+  engine_.setTransportPlaying(true);
+  engine_.setBpm(bpmSlider_.getValue());
   rebuildAudioPlan();
 }
 
@@ -77,6 +97,10 @@ void MainComponent::resized() {
     button->setBounds(x, 8, 92, 30);
     x += 96;
   }
+
+  transportButton_.setBounds(x + 8, 8, 74, 30);
+  bpmLabel_.setBounds(x + 90, 10, 34, 24);
+  bpmSlider_.setBounds(x + 124, 8, 170, 30);
 
   status_.setBounds(getWidth() - 360, 8, 350, 30);
   canvas_.setBounds(area);
@@ -137,6 +161,13 @@ void MainComponent::loadPatch() {
                               rebuildAudioPlan();
                               status_.setText("Patch loaded", juce::dontSendNotification);
                             });
+}
+
+void MainComponent::toggleTransport() {
+  const bool newState = !engine_.isTransportPlaying();
+  engine_.setTransportPlaying(newState);
+  transportButton_.setButtonText(newState ? "Stop" : "Start");
+  status_.setText(newState ? "Transport running" : "Transport stopped", juce::dontSendNotification);
 }
 
 void MainComponent::rebuildAudioPlan() {

@@ -33,6 +33,21 @@ void AudioEngine::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffe
 
   const int numSamples = std::min(buffer.getNumSamples(), plan->blockSize);
 
+  ProcessContext context;
+  context.numSamples = numSamples;
+  context.sampleRate = plan->sampleRate;
+  context.bpm = bpm_;
+  context.playing = playing_;
+  context.samplePosition = samplePosition_;
+
+  if (!playing_) {
+    for (auto& node : plan->nodes) {
+      node.inputMix.clear();
+      node.buffer.clear();
+    }
+    return;
+  }
+
   for (auto& node : plan->nodes) {
     node.inputMix.clear();
 
@@ -47,7 +62,7 @@ void AudioEngine::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffe
       }
     }
 
-    node.processor->process(node.inputMix, node.buffer, numSamples, plan->sampleRate);
+    node.processor->process(node.inputMix, node.buffer, context);
   }
 
   if (plan->outputNodeIndex >= 0 && plan->outputNodeIndex < static_cast<int>(plan->nodes.size())) {
@@ -56,6 +71,8 @@ void AudioEngine::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffe
       buffer.copyFrom(ch, 0, out, ch, 0, numSamples);
     }
   }
+
+  samplePosition_ += numSamples;
 }
 
 }  // namespace audio

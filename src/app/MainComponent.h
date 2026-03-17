@@ -22,6 +22,7 @@ class MainComponent : public juce::AudioAppComponent {
   void addNode(graph::NodeType type);
   void savePatch();
   void loadPatch();
+  void toggleTransport();
   void rebuildAudioPlan();
 
   graph::PatchGraph graph_;
@@ -30,6 +31,9 @@ class MainComponent : public juce::AudioAppComponent {
   juce::Component toolbar_;
   ui::CanvasView canvas_;
   juce::Label status_;
+  juce::TextButton transportButton_;
+  juce::Slider bpmSlider_;
+  juce::Label bpmLabel_;
   std::unique_ptr<juce::FileChooser> fileChooser_;
 
   std::vector<std::unique_ptr<juce::TextButton>> buttons_;

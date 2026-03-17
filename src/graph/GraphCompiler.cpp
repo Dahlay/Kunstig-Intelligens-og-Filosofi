@@ -17,14 +17,16 @@ using audio::DelayProcessor;
 using audio::MixerProcessor;
 using audio::OutputProcessor;
 using audio::PassthroughProcessor;
+using audio::DrumProcessor;
+using audio::SynthProcessor;
 using audio::ToneProcessor;
 
 std::unique_ptr<IProcessor> makeProcessor(const Node& node, double sampleRate) {
   switch (node.type) {
     case NodeType::Synth:
-      return std::make_unique<ToneProcessor>(220.0f, sampleRate);
+      return std::make_unique<SynthProcessor>(8);
     case NodeType::Drum:
-      return std::make_unique<ToneProcessor>(110.0f, sampleRate);
+      return std::make_unique<DrumProcessor>();
     case NodeType::Gain:
       return std::make_unique<GainProcessor>(node.gain);
     case NodeType::Output:
@@ -37,7 +39,7 @@ std::unique_ptr<IProcessor> makeProcessor(const Node& node, double sampleRate) {
       return std::make_unique<MixerProcessor>(2);
   }
 
-  return std::make_unique<PassthroughProcessor>();
+  return std::make_unique<ToneProcessor>(220.0f, sampleRate);
 }
 
 }  // namespace

@@ -8,4 +8,6 @@ add_test( [==[Patch serializer roundtrip preserves graph shape]==] [==[/Users/ev
 set_tests_properties( [==[Patch serializer roundtrip preserves graph shape]==] PROPERTIES WORKING_DIRECTORY [==[/Users/even/Desktop/test project/build]==])
 add_test( [==[Audio engine processes filter-delay-mixer graph]==] [==[/Users/even/Desktop/test project/build/graph_tests]==] [==[Audio engine processes filter-delay-mixer graph]==]  )
 set_tests_properties( [==[Audio engine processes filter-delay-mixer graph]==] PROPERTIES WORKING_DIRECTORY [==[/Users/even/Desktop/test project/build]==])
-set( graph_tests_TESTS [==[Graph can connect output to input]==] [==[Compiler rejects graph without output]==] [==[Validator rejects cycle-producing connection]==] [==[Patch serializer roundtrip preserves graph shape]==] [==[Audio engine processes filter-delay-mixer graph]==])
+add_test( [==[Transport stop produces silence]==] [==[/Users/even/Desktop/test project/build/graph_tests]==] [==[Transport stop produces silence]==]  )
+set_tests_properties( [==[Transport stop produces silence]==] PROPERTIES WORKING_DIRECTORY [==[/Users/even/Desktop/test project/build]==])
+set( graph_tests_TESTS [==[Graph can connect output to input]==] [==[Compiler rejects graph without output]==] [==[Validator rejects cycle-producing connection]==] [==[Patch serializer roundtrip preserves graph shape]==] [==[Audio engine processes filter-delay-mixer graph]==] [==[Transport stop produces silence]==])

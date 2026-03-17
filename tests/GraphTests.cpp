@@ -130,3 +130,33 @@ TEST_CASE("Audio engine processes filter-delay-mixer graph") {
 
   REQUIRE(anyFiniteNonZero);
 }
+
+TEST_CASE("Transport stop produces silence") {
+  graph::PatchGraph graph;
+  const auto synthId = graph.addNode(graph::NodeType::Synth, {20.0f, 20.0f});
+  const auto outId = graph.addNode(graph::NodeType::Output, {220.0f, 20.0f});
+
+  const auto* synth = graph.findNode(synthId);
+  const auto* out = graph.findNode(outId);
+  REQUIRE(synth != nullptr);
+  REQUIRE(out != nullptr);
+
+  std::string error;
+  REQUIRE(graph.connect(synth->outputPortIds.front(), out->inputPortIds.front(), error));
+
+  audio::AudioEngine engine;
+  engine.prepare(48000.0, 256, 2);
+  engine.setBpm(120.0);
+  engine.setTransportPlaying(false);
+  REQUIRE(engine.setGraph(graph, error));
+
+  juce::AudioBuffer<float> buffer(2, 256);
+  juce::MidiBuffer midi;
+  engine.processBlock(buffer, midi);
+
+  for (int ch = 0; ch < buffer.getNumChannels(); ++ch) {
+    for (int s = 0; s < buffer.getNumSamples(); ++s) {
+      REQUIRE(std::abs(buffer.getSample(ch, s)) <= 1.0e-7f);
+    }
+  }
+}
