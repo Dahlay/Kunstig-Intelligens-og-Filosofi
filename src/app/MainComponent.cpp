@@ -6,9 +6,31 @@ namespace {
 constexpr int kToolbarHeight = 46;
 constexpr int kInspectorWidth = 270;
 
+constexpr juce::uint32 kBgTop = 0xff090b1a;
+constexpr juce::uint32 kBgBottom = 0xff101a38;
+constexpr juce::uint32 kNeonCyan = 0xff5de6ff;
+constexpr juce::uint32 kNeonMagenta = 0xffff55c7;
+constexpr juce::uint32 kPanelGlass = 0x33263b74;
+
 void configureInspectorSlider(juce::Slider& slider, double min, double max, double step) {
   slider.setRange(min, max, step);
   slider.setTextBoxStyle(juce::Slider::TextBoxLeft, false, 72, 20);
+}
+
+void configureY2KButton(juce::TextButton& button) {
+  button.setColour(juce::TextButton::buttonColourId, juce::Colour(0xff263a72));
+  button.setColour(juce::TextButton::buttonOnColourId, juce::Colour(kNeonMagenta));
+  button.setColour(juce::TextButton::textColourOffId, juce::Colour(0xffe8f2ff));
+  button.setColour(juce::TextButton::textColourOnId, juce::Colour(0xff081222));
+}
+
+void configureY2KSlider(juce::Slider& slider) {
+  slider.setColour(juce::Slider::thumbColourId, juce::Colour(kNeonCyan));
+  slider.setColour(juce::Slider::trackColourId, juce::Colour(0xff5e6cff));
+  slider.setColour(juce::Slider::rotarySliderFillColourId, juce::Colour(kNeonCyan));
+  slider.setColour(juce::Slider::textBoxTextColourId, juce::Colour(0xffdffbff));
+  slider.setColour(juce::Slider::textBoxOutlineColourId, juce::Colour(0xff4d7ad8));
+  slider.setColour(juce::Slider::textBoxBackgroundColourId, juce::Colour(0xaa111b35));
 }
 }
 
@@ -16,6 +38,14 @@ MainComponent::MainComponent() : canvas_(graph_) {
   setSize(1280, 800);
   setAudioChannels(0, 2);
   setWantsKeyboardFocus(true);
+  setLookAndFeel(&y2kLookAndFeel_);
+
+  y2kLookAndFeel_.setColour(juce::ResizableWindow::backgroundColourId, juce::Colour(kBgBottom));
+  y2kLookAndFeel_.setColour(juce::PopupMenu::backgroundColourId, juce::Colour(0xf0142246));
+  y2kLookAndFeel_.setColour(juce::PopupMenu::highlightedBackgroundColourId, juce::Colour(0xff3e4ad8));
+  y2kLookAndFeel_.setColour(juce::PopupMenu::highlightedTextColourId, juce::Colour(0xfff6fcff));
+  y2kLookAndFeel_.setColour(juce::GroupComponent::textColourId, juce::Colour(kNeonCyan));
+  y2kLookAndFeel_.setColour(juce::GroupComponent::outlineColourId, juce::Colour(0x88457dff));
 
   addAndMakeVisible(toolbar_);
   addAndMakeVisible(canvas_);
@@ -33,24 +63,29 @@ MainComponent::MainComponent() : canvas_(graph_) {
   addAndMakeVisible(delayFeedbackSlider_);
   addAndMakeVisible(delayMixSlider_);
 
-  status_.setColour(juce::Label::textColourId, juce::Colours::lightgrey);
+  status_.setColour(juce::Label::textColourId, juce::Colour(0xffb6c6ff));
+  status_.setColour(juce::Label::backgroundColourId, juce::Colour(0x55243b75));
   status_.setText("Ready", juce::dontSendNotification);
 
   transportButton_.setButtonText("Stop");
   transportButton_.onClick = [this] { toggleTransport(); };
+  configureY2KButton(transportButton_);
 
   undoButton_.setButtonText("Undo");
   undoButton_.onClick = [this] { undo(); };
+  configureY2KButton(undoButton_);
 
   redoButton_.setButtonText("Redo");
   redoButton_.onClick = [this] { redo(); };
+  configureY2KButton(redoButton_);
 
   bpmLabel_.setText("BPM", juce::dontSendNotification);
-  bpmLabel_.setColour(juce::Label::textColourId, juce::Colours::lightgrey);
+  bpmLabel_.setColour(juce::Label::textColourId, juce::Colour(kNeonCyan));
 
   bpmSlider_.setRange(40.0, 240.0, 1.0);
   bpmSlider_.setValue(120.0);
   bpmSlider_.setTextBoxStyle(juce::Slider::TextBoxLeft, false, 54, 20);
+  configureY2KSlider(bpmSlider_);
   bpmSlider_.onValueChange = [this] {
     engine_.setBpm(bpmSlider_.getValue());
     status_.setText("BPM: " + juce::String(static_cast<int>(bpmSlider_.getValue())),
@@ -59,13 +94,18 @@ MainComponent::MainComponent() : canvas_(graph_) {
 
   inspectorGroup_.setText("Inspector");
   inspectorNodeLabel_.setText("No node selected", juce::dontSendNotification);
-  inspectorNodeLabel_.setColour(juce::Label::textColourId, juce::Colours::lightgrey);
+  inspectorNodeLabel_.setColour(juce::Label::textColourId, juce::Colour(0xffc7dcff));
 
   configureInspectorSlider(gainSlider_, 0.0, 2.0, 0.01);
   configureInspectorSlider(filterCutoffSlider_, 50.0, 10000.0, 1.0);
   configureInspectorSlider(delayMsSlider_, 1.0, 1000.0, 1.0);
   configureInspectorSlider(delayFeedbackSlider_, 0.0, 0.95, 0.01);
   configureInspectorSlider(delayMixSlider_, 0.0, 1.0, 0.01);
+  configureY2KSlider(gainSlider_);
+  configureY2KSlider(filterCutoffSlider_);
+  configureY2KSlider(delayMsSlider_);
+  configureY2KSlider(delayFeedbackSlider_);
+  configureY2KSlider(delayMixSlider_);
 
   gainSlider_.onValueChange = [this] { applyInspectorToSelectedNode(); };
   filterCutoffSlider_.onValueChange = [this] { applyInspectorToSelectedNode(); };
@@ -81,17 +121,20 @@ MainComponent::MainComponent() : canvas_(graph_) {
   for (const auto& [label, type] : nodeButtons) {
     auto button = std::make_unique<juce::TextButton>(label);
     button->onClick = [this, type] { addNode(type); };
+    configureY2KButton(*button);
     toolbar_.addAndMakeVisible(*button);
     buttons_.push_back(std::move(button));
   }
 
   auto saveButton = std::make_unique<juce::TextButton>("Save");
   saveButton->onClick = [this] { savePatch(); };
+  configureY2KButton(*saveButton);
   toolbar_.addAndMakeVisible(*saveButton);
   buttons_.push_back(std::move(saveButton));
 
   auto loadButton = std::make_unique<juce::TextButton>("Load");
   loadButton->onClick = [this] { loadPatch(); };
+  configureY2KButton(*loadButton);
   toolbar_.addAndMakeVisible(*loadButton);
   buttons_.push_back(std::move(loadButton));
 
@@ -115,6 +158,33 @@ MainComponent::MainComponent() : canvas_(graph_) {
 
 MainComponent::~MainComponent() {
   shutdownAudio();
+  setLookAndFeel(nullptr);
+}
+
+void MainComponent::paint(juce::Graphics& g) {
+  juce::ColourGradient bg(juce::Colour(kBgTop), 0.0f, 0.0f,
+                          juce::Colour(kBgBottom), 0.0f, static_cast<float>(getHeight()), false);
+  g.setGradientFill(bg);
+  g.fillAll();
+
+  // subtle chrome ribbons
+  juce::Path ribbon;
+  ribbon.startNewSubPath(0.0f, 58.0f);
+  ribbon.cubicTo(getWidth() * 0.20f, 28.0f, getWidth() * 0.36f, 86.0f, getWidth() * 0.52f, 54.0f);
+  ribbon.cubicTo(getWidth() * 0.70f, 26.0f, getWidth() * 0.84f, 84.0f, static_cast<float>(getWidth()), 46.0f);
+  g.setColour(juce::Colour(kNeonCyan).withAlpha(0.14f));
+  g.strokePath(ribbon, juce::PathStrokeType(2.0f));
+
+  // y2k scanlines
+  g.setColour(juce::Colour(kNeonMagenta).withAlpha(0.05f));
+  for (int y = 0; y < getHeight(); y += 4) {
+    g.drawHorizontalLine(y, 0.0f, static_cast<float>(getWidth()));
+  }
+
+  // toolbar / inspector glass overlays
+  g.setColour(juce::Colour(kPanelGlass));
+  g.fillRoundedRectangle(toolbar_.getBounds().toFloat().reduced(2.0f, 2.0f), 10.0f);
+  g.fillRoundedRectangle(inspectorGroup_.getBounds().toFloat().expanded(4.0f), 12.0f);
 }
 
 void MainComponent::prepareToPlay(int samplesPerBlockExpected, double sampleRate) {
@@ -169,6 +239,18 @@ void MainComponent::resized() {
 }
 
 void MainComponent::addNode(graph::NodeType type) {
+  if (type == graph::NodeType::Output) {
+    for (const auto& [nodeId, node] : graph_.getNodes()) {
+      if (node.type == graph::NodeType::Output) {
+        selectedNodeId_ = nodeId;
+        refreshInspector();
+        canvas_.repaint();
+        status_.setText("Output is fixed in the center", juce::dontSendNotification);
+        return;
+      }
+    }
+  }
+
   if (!applyingHistory_) {
     pushUndoState();
   }

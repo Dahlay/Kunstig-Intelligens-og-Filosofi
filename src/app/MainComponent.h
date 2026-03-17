@@ -14,6 +14,8 @@ class MainComponent : public juce::AudioAppComponent {
   MainComponent();
   ~MainComponent() override;
 
+  void paint(juce::Graphics& g) override;
+
   void prepareToPlay(int samplesPerBlockExpected, double sampleRate) override;
   void getNextAudioBlock(const juce::AudioSourceChannelInfo& bufferToFill) override;
   void releaseResources() override;
@@ -58,6 +60,8 @@ class MainComponent : public juce::AudioAppComponent {
   bool applyingHistory_{false};
   bool updatingInspector_{false};
   std::optional<std::string> selectedNodeId_;
+
+  juce::LookAndFeel_V4 y2kLookAndFeel_;
 
   std::vector<std::string> undoStack_;
   std::vector<std::string> redoStack_;

@@ -1,12 +1,18 @@
 #include "CanvasView.h"
 
 #include <algorithm>
+#include <cmath>
 
 namespace ui {
 namespace {
 constexpr float kNodeWidth = 170.0f;
 constexpr float kNodeHeight = 96.0f;
+constexpr float kOutputDiameter = 180.0f;
 constexpr float kPortRadius = 6.0f;
+constexpr juce::uint32 kCanvasTop = 0xff0a1024;
+constexpr juce::uint32 kCanvasBottom = 0xff111a39;
+constexpr juce::uint32 kCableCyan = 0xff6ff6ff;
+constexpr juce::uint32 kCableMagenta = 0xffff68ce;
 
 juce::String nodeName(graph::NodeType t) {
   switch (t) {
@@ -34,6 +40,11 @@ CanvasView::CanvasView(graph::PatchGraph& graph) : graph_(graph) {
 }
 
 juce::Rectangle<float> CanvasView::nodeRect(const graph::Node& node) const {
+  if (node.type == graph::NodeType::Output) {
+    const float x = (static_cast<float>(getWidth()) - kOutputDiameter) * 0.5f;
+    const float y = (static_cast<float>(getHeight()) - kOutputDiameter) * 0.5f;
+    return {x, y, kOutputDiameter, kOutputDiameter};
+  }
   return {node.position.x, node.position.y, kNodeWidth, kNodeHeight};
 }
 
@@ -44,6 +55,17 @@ juce::Point<float> CanvasView::getPortPoint(const graph::Port& port) const {
   }
 
   const auto rect = nodeRect(*node);
+  if (node->type == graph::NodeType::Output && port.direction == graph::PortDirection::In) {
+    auto idx = std::find(node->inputPortIds.begin(), node->inputPortIds.end(), port.id);
+    const int i = idx == node->inputPortIds.end() ? 0 : static_cast<int>(std::distance(node->inputPortIds.begin(), idx));
+    const int total = std::max(1, static_cast<int>(node->inputPortIds.size()));
+    const float angle = -juce::MathConstants<float>::halfPi +
+                        (juce::MathConstants<float>::twoPi * static_cast<float>(i)) / static_cast<float>(total);
+    const auto c = rect.getCentre();
+    const float r = rect.getWidth() * 0.5f + 2.0f;
+    return {c.x + std::cos(angle) * r, c.y + std::sin(angle) * r};
+  }
+
   if (port.direction == graph::PortDirection::In) {
     auto idx = std::find(node->inputPortIds.begin(), node->inputPortIds.end(), port.id);
     const int i = idx == node->inputPortIds.end() ? 0 : static_cast<int>(std::distance(node->inputPortIds.begin(), idx));
@@ -102,10 +124,24 @@ std::optional<std::string> CanvasView::hitEdge(juce::Point<float> p) const {
 }
 
 void CanvasView::paint(juce::Graphics& g) {
-  g.fillAll(juce::Colour(0xff11151d));
+  juce::ColourGradient bg(juce::Colour(kCanvasTop), 0.0f, 0.0f,
+                          juce::Colour(kCanvasBottom), 0.0f, static_cast<float>(getHeight()), false);
+  g.setGradientFill(bg);
+  g.fillAll();
+
+  // Grid + scanline feel
+  g.setColour(juce::Colour(0x224b7fd8));
+  for (int x = 0; x < getWidth(); x += 32)
+    g.drawVerticalLine(x, 0.0f, static_cast<float>(getHeight()));
+  for (int y = 0; y < getHeight(); y += 32)
+    g.drawHorizontalLine(y, 0.0f, static_cast<float>(getWidth()));
+
+  g.setColour(juce::Colour(0x19ff6ecf));
+  for (int y = 0; y < getHeight(); y += 4)
+    g.drawHorizontalLine(y, 0.0f, static_cast<float>(getWidth()));
 
   // Cables
-  g.setColour(juce::Colours::orange.withAlpha(0.9f));
+  g.setColour(juce::Colour(kCableCyan).withAlpha(0.22f));
   for (const auto& [_, edge] : graph_.getEdges()) {
     const auto* from = graph_.findPort(edge.fromPortId);
     const auto* to = graph_.findPort(edge.toPortId);
@@ -119,7 +155,12 @@ void CanvasView::paint(juce::Graphics& g) {
     juce::Path path;
     path.startNewSubPath(a);
     path.cubicTo({a.x + 60.0f, a.y}, {b.x - 60.0f, b.y}, b);
-    g.strokePath(path, juce::PathStrokeType(2.0f));
+    // glow
+    g.strokePath(path, juce::PathStrokeType(6.0f));
+    // bright core
+    g.setColour(juce::Colour(kCableMagenta).withAlpha(0.92f));
+    g.strokePath(path, juce::PathStrokeType(2.2f));
+    g.setColour(juce::Colour(kCableCyan).withAlpha(0.20f));
   }
 
   if (cableFromPortId_) {
@@ -129,8 +170,10 @@ void CanvasView::paint(juce::Graphics& g) {
       juce::Path preview;
       preview.startNewSubPath(a);
       preview.cubicTo({a.x + 60.0f, a.y}, {cableMousePoint_.x - 60.0f, cableMousePoint_.y}, cableMousePoint_);
-      g.setColour(juce::Colours::lightskyblue);
-      g.strokePath(preview, juce::PathStrokeType(2.0f, juce::PathStrokeType::curved));
+      g.setColour(juce::Colour(kCableCyan).withAlpha(0.30f));
+      g.strokePath(preview, juce::PathStrokeType(5.0f, juce::PathStrokeType::curved));
+      g.setColour(juce::Colour(0xfff2f9ff));
+      g.strokePath(preview, juce::PathStrokeType(1.8f, juce::PathStrokeType::curved));
     }
   }
 
@@ -138,17 +181,63 @@ void CanvasView::paint(juce::Graphics& g) {
   for (const auto& [nodeId, node] : graph_.getNodes()) {
     const auto r = nodeRect(node);
 
-    g.setColour(juce::Colour(0xff242b38));
+    if (node.type == graph::NodeType::Output) {
+      juce::DropShadow(juce::Colour(0xaa8a63ff), 22, {0, 0})
+          .drawForRectangle(g, r.toNearestInt().expanded(3));
+
+      juce::ColourGradient outFill(juce::Colour(0xff5f55ff), r.getCentreX(), r.getY(),
+                                   juce::Colour(0xff182149), r.getCentreX(), r.getBottom(), false);
+      g.setGradientFill(outFill);
+      g.fillEllipse(r);
+
+      g.setColour(juce::Colour(0xffe7f4ff));
+      g.drawEllipse(r, 2.4f);
+
+      auto inner = r.reduced(20.0f);
+      g.setColour(juce::Colour(0x33ffffff));
+      g.fillEllipse(inner);
+      g.setColour(juce::Colour(0xaaff8df0));
+      g.drawEllipse(inner, 1.2f);
+
+      if (selectedNodeId_ && *selectedNodeId_ == nodeId) {
+        g.setColour(juce::Colour(0x88ff7ad7));
+        g.drawEllipse(r.expanded(4.0f), 6.0f);
+      }
+
+      g.setColour(juce::Colour(0xfff7fbff));
+      g.setFont(juce::FontOptions(18.0f, juce::Font::bold));
+      g.drawFittedText("OUTPUT", r.reduced(24.0f).toNearestInt(), juce::Justification::centred, 1);
+
+      for (const auto& portId : node.inputPortIds) {
+        if (const auto* port = graph_.findPort(portId)) {
+          const auto p = getPortPoint(*port);
+          g.setColour(juce::Colour(0xff72ffe8));
+          g.fillEllipse(p.x - kPortRadius, p.y - kPortRadius, kPortRadius * 2.0f, kPortRadius * 2.0f);
+          g.setColour(juce::Colour(0xb0ffffff));
+          g.drawEllipse(p.x - kPortRadius, p.y - kPortRadius, kPortRadius * 2.0f, kPortRadius * 2.0f, 1.0f);
+        }
+      }
+      continue;
+    }
+
+    juce::DropShadow(juce::Colour(0xaa56c9ff), 18, {0, 0})
+        .drawForRectangle(g, r.toNearestInt().expanded(2));
+
+    juce::ColourGradient nodeFill(juce::Colour(0xff2e447e), r.getTopLeft(),
+                                  juce::Colour(0xff151b33), r.getBottomRight(), false);
+    g.setGradientFill(nodeFill);
     g.fillRoundedRectangle(r, 10.0f);
-    g.setColour(juce::Colour(0xff4c5d7a));
-    g.drawRoundedRectangle(r, 10.0f, 1.2f);
+    g.setColour(juce::Colour(0xff93dfff).withAlpha(0.85f));
+    g.drawRoundedRectangle(r, 10.0f, 1.4f);
 
     if (selectedNodeId_ && *selectedNodeId_ == nodeId) {
-      g.setColour(juce::Colours::deepskyblue);
+      g.setColour(juce::Colour(kCableMagenta).withAlpha(0.35f));
+      g.drawRoundedRectangle(r.expanded(4.0f), 12.0f, 7.0f);
+      g.setColour(juce::Colour(0xfff7fdff));
       g.drawRoundedRectangle(r.expanded(2.0f), 11.0f, 2.2f);
     }
 
-    g.setColour(juce::Colours::white);
+    g.setColour(juce::Colour(0xffecf8ff));
     g.setFont(juce::FontOptions(14.0f, juce::Font::bold));
     auto header = r;
     g.drawText(nodeName(node.type), header.removeFromTop(26.0f).toNearestInt(),
@@ -157,16 +246,20 @@ void CanvasView::paint(juce::Graphics& g) {
     for (const auto& portId : node.inputPortIds) {
       if (const auto* port = graph_.findPort(portId)) {
         const auto p = getPortPoint(*port);
-        g.setColour(juce::Colours::lightgreen);
+        g.setColour(juce::Colour(0xff74ffe8));
         g.fillEllipse(p.x - kPortRadius, p.y - kPortRadius, kPortRadius * 2.0f, kPortRadius * 2.0f);
+        g.setColour(juce::Colour(0x99ffffff));
+        g.drawEllipse(p.x - kPortRadius, p.y - kPortRadius, kPortRadius * 2.0f, kPortRadius * 2.0f, 1.0f);
       }
     }
 
     for (const auto& portId : node.outputPortIds) {
       if (const auto* port = graph_.findPort(portId)) {
         const auto p = getPortPoint(*port);
-        g.setColour(juce::Colours::goldenrod);
+        g.setColour(juce::Colour(0xffff81d9));
         g.fillEllipse(p.x - kPortRadius, p.y - kPortRadius, kPortRadius * 2.0f, kPortRadius * 2.0f);
+        g.setColour(juce::Colour(0x99ffffff));
+        g.drawEllipse(p.x - kPortRadius, p.y - kPortRadius, kPortRadius * 2.0f, kPortRadius * 2.0f, 1.0f);
       }
     }
   }
@@ -196,6 +289,11 @@ void CanvasView::mouseDown(const juce::MouseEvent& event) {
       menu.showMenuAsync(juce::PopupMenu::Options{}.withTargetComponent(this),
         [this, nid = *nodeId](int result) {
           if (result == 1) {
+            const auto* node = graph_.findNode(nid);
+            if (node && node->type == graph::NodeType::Output) {
+              if (onStatus_) onStatus_("Output is fixed and cannot be deleted");
+              return;
+            }
             if (onGraphEdit_) onGraphEdit_();
             graph_.removeNode(nid);
             if (selectedNodeId_ && *selectedNodeId_ == nid)
@@ -255,6 +353,9 @@ void CanvasView::mouseDrag(const juce::MouseEvent& event) {
   }
 
   if (auto* node = graph_.findNode(*draggingNodeId_)) {
+    if (node->type == graph::NodeType::Output) {
+      return;
+    }
     node->position = {p.x - dragOffset_.x, p.y - dragOffset_.y};
     repaint();
     if (onGraphChanged_) {
@@ -296,6 +397,11 @@ void CanvasView::mouseUp(const juce::MouseEvent& event) {
 bool CanvasView::keyPressed(const juce::KeyPress& key) {
   if (selectedNodeId_ &&
       (key == juce::KeyPress::deleteKey || key == juce::KeyPress::backspaceKey)) {
+    const auto* node = graph_.findNode(*selectedNodeId_);
+    if (node && node->type == graph::NodeType::Output) {
+      if (onStatus_) onStatus_("Output is fixed and cannot be deleted");
+      return true;
+    }
     if (onGraphEdit_) onGraphEdit_();
     graph_.removeNode(*selectedNodeId_);
     selectedNodeId_.reset();

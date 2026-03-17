@@ -28,7 +28,9 @@ std::vector<Port> PatchGraph::makeDefaultPorts(NodeType type, const std::string&
 
   switch (type) {
     case NodeType::Output:
-      ports.push_back(makePort(PortDirection::In));
+      for (int i = 0; i < 12; ++i) {
+        ports.push_back(makePort(PortDirection::In));
+      }
       break;
     case NodeType::Synth:
     case NodeType::Drum:
