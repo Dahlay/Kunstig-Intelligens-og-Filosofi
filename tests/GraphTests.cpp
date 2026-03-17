@@ -62,12 +62,17 @@ TEST_CASE("Patch serializer roundtrip preserves graph shape") {
   const auto* synth = graph.findNode(synthId);
   auto* gain = graph.findNode(gainId);
   auto* delay = graph.findNode(delayId);
+  auto* synthMutable = graph.findNode(synthId);
   const auto* out = graph.findNode(outId);
   REQUIRE(synth != nullptr);
+  REQUIRE(synthMutable != nullptr);
   REQUIRE(gain != nullptr);
   REQUIRE(delay != nullptr);
   REQUIRE(out != nullptr);
 
+  synthMutable->synthWaveform = 2;
+  synthMutable->synthChord = 4;
+  synthMutable->synthRateDivision = 4;
   gain->gain = 1.37f;
   delay->delayMs = 420.0f;
   delay->delayFeedback = 0.42f;
@@ -88,7 +93,14 @@ TEST_CASE("Patch serializer roundtrip preserves graph shape") {
 
   bool foundGain = false;
   bool foundDelay = false;
+  bool foundSynth = false;
   for (const auto& [_, node] : loaded.getNodes()) {
+    if (node.type == graph::NodeType::Synth) {
+      foundSynth = true;
+      REQUIRE(node.synthWaveform == 2);
+      REQUIRE(node.synthChord == 4);
+      REQUIRE(node.synthRateDivision == 4);
+    }
     if (node.type == graph::NodeType::Gain) {
       foundGain = true;
       REQUIRE(std::abs(node.gain - 1.37f) < 1.0e-3f);
@@ -101,6 +113,7 @@ TEST_CASE("Patch serializer roundtrip preserves graph shape") {
     }
   }
 
+  REQUIRE(foundSynth);
   REQUIRE(foundGain);
   REQUIRE(foundDelay);
 }

@@ -1,7 +1,7 @@
-Graph can connect output to input 12 0.00123148
-Compiler rejects graph without output 12 0.00113767
-Validator rejects cycle-producing connection 10 0.0013865
-Patch serializer roundtrip preserves graph shape 11 0.00141058
-Audio engine processes filter-delay-mixer graph 9 0.00176924
-Transport stop produces silence 7 0.00213746
+Graph can connect output to input 13 0.00121636
+Compiler rejects graph without output 13 0.00109727
+Validator rejects cycle-producing connection 11 0.00142876
+Patch serializer roundtrip preserves graph shape 12 0.00121111
+Audio engine processes filter-delay-mixer graph 10 0.0015638
+Transport stop produces silence 8 0.0017947
 ---

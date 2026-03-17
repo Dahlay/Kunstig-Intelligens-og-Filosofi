@@ -234,7 +234,11 @@ class ToneProcessor final : public IProcessor {
 
 class SynthProcessor final : public IProcessor {
  public:
-  explicit SynthProcessor(int maxVoices = 8) : voices_(static_cast<size_t>(std::max(1, maxVoices))) {}
+  SynthProcessor(int maxVoices = 8, int waveform = 0, int chord = 0, int rateDivision = 1)
+      : voices_(static_cast<size_t>(std::max(1, maxVoices))),
+        waveform_(std::clamp(waveform, 0, 2)),
+        chord_(std::clamp(chord, 0, 6)),
+        rateDivision_(rateDivision <= 0 ? 1 : rateDivision) {}
 
   void process(const juce::AudioBuffer<float>&, juce::AudioBuffer<float>& output,
                const ProcessContext& context) override {
@@ -246,10 +250,15 @@ class SynthProcessor final : public IProcessor {
 
     const int samplesPerBeat =
         std::max(1, static_cast<int>(context.sampleRate * (60.0 / std::max(1.0, context.bpm))));
+    const int samplesPerEvent = std::max(1, samplesPerBeat / std::max(1, rateDivision_));
 
     for (int s = 0; s < context.numSamples; ++s) {
-      if (context.playing && ((context.samplePosition + s) % samplesPerBeat == 0)) {
-        triggerNextNote();
+      if (context.playing && ((context.samplePosition + s) % samplesPerEvent == 0)) {
+        if (chord_ == 0) {
+          triggerNextMelodyNote();
+        } else {
+          triggerChord(chord_);
+        }
       }
 
       float sampleValue = 0.0f;
@@ -271,7 +280,7 @@ class SynthProcessor final : public IProcessor {
         }
 
         const float inc = static_cast<float>((2.0 * juce::MathConstants<double>::pi * v.freq) / context.sampleRate);
-        sampleValue += std::sin(v.phase) * (0.07f * v.env);
+        sampleValue += renderWave(v.phase) * (0.06f * v.env);
         v.phase += inc;
         if (v.phase > 2.0f * juce::MathConstants<float>::pi) {
           v.phase -= 2.0f * juce::MathConstants<float>::pi;
@@ -301,28 +310,82 @@ class SynthProcessor final : public IProcessor {
     }
   }
 
-  void triggerNextNote() {
-    static constexpr std::array<float, 8> notes = {110.0f, 138.59f, 164.81f, 220.0f,
-                                                    261.63f, 329.63f, 392.0f, 440.0f};
-
+  void triggerVoice(float frequency) {
     auto& v = voices_[voiceCursor_ % voices_.size()];
-    v.freq = notes[noteCursor_ % notes.size()];
+    v.freq = frequency;
     v.phase = 0.0f;
     v.env = 0.0f;
     v.active = true;
     v.releasing = false;
-
     ++voiceCursor_;
+  }
+
+  float renderWave(float phase) const {
+    switch (waveform_) {
+      case 1: {  // saw
+        const float norm = phase / juce::MathConstants<float>::twoPi;
+        return (norm * 2.0f) - 1.0f;
+      }
+      case 2:  // square
+        return phase < juce::MathConstants<float>::pi ? 1.0f : -1.0f;
+      case 0:
+      default:
+        return std::sin(phase);
+    }
+  }
+
+  void triggerNextMelodyNote() {
+    static constexpr std::array<float, 8> notes = {110.0f, 138.59f, 164.81f, 220.0f,
+                                                    261.63f, 329.63f, 392.0f, 440.0f};
+
+    triggerVoice(notes[noteCursor_ % notes.size()]);
     ++noteCursor_;
 
-    for (auto& other : voices_) {
-      if (&other != &v && other.active && !other.releasing) {
-        other.releasing = true;
+    releaseSustainedExceptNewest(1);
+  }
+
+  void releaseSustainedExceptNewest(int keepNewestVoices) {
+    if (keepNewestVoices <= 0 || voices_.empty()) {
+      return;
+    }
+    const size_t keep = static_cast<size_t>(keepNewestVoices);
+    const size_t total = voices_.size();
+    for (size_t i = 0; i < total; ++i) {
+      const size_t newestIndex = (voiceCursor_ + total - 1 - (i % total)) % total;
+      const bool shouldKeep = i < keep;
+      auto& v = voices_[newestIndex];
+      if (!shouldKeep && v.active && !v.releasing) {
+        v.releasing = true;
       }
     }
   }
 
+  void triggerChord(int chordIndex) {
+    // 1:Cmaj 2:Amin 3:Fmaj7 4:G7 5:Dmin 6:Emin7
+    static constexpr std::array<std::array<float, 4>, 6> chords = {
+        std::array<float, 4>{261.63f, 329.63f, 392.00f, 0.0f},   // C E G
+        std::array<float, 4>{220.00f, 261.63f, 329.63f, 0.0f},   // A C E
+        std::array<float, 4>{174.61f, 220.00f, 261.63f, 329.63f},// F A C E
+        std::array<float, 4>{196.00f, 246.94f, 293.66f, 349.23f},// G B D F
+        std::array<float, 4>{146.83f, 174.61f, 220.00f, 0.0f},   // D F A
+        std::array<float, 4>{164.81f, 196.00f, 246.94f, 293.66f} // E G B D
+    };
+
+    const int idx = std::clamp(chordIndex, 1, 6) - 1;
+    int notesTriggered = 0;
+    for (float f : chords[static_cast<size_t>(idx)]) {
+      if (f > 1.0f) {
+        triggerVoice(f);
+        ++notesTriggered;
+      }
+    }
+    releaseSustainedExceptNewest(notesTriggered);
+  }
+
   std::vector<Voice> voices_;
+  int waveform_{0};
+  int chord_{0};
+  int rateDivision_{1};
   size_t voiceCursor_{0};
   size_t noteCursor_{0};
 };

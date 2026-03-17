@@ -42,6 +42,9 @@ struct Node {
   float delayMs{250.0f};
   float delayFeedback{0.25f};
   float delayMix{0.35f};
+  int synthWaveform{0};      // 0=sine, 1=saw, 2=square
+  int synthChord{0};         // 0=lead/melody, >0 chord preset
+  int synthRateDivision{1};  // 1=quarter, 2=eighth, 4=sixteenth
   std::vector<std::string> inputPortIds;
   std::vector<std::string> outputPortIds;
 };

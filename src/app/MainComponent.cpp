@@ -61,6 +61,12 @@ MainComponent::MainComponent() : canvas_(graph_) {
   addAndMakeVisible(delayMsSlider_);
   addAndMakeVisible(delayFeedbackSlider_);
   addAndMakeVisible(delayMixSlider_);
+  addAndMakeVisible(synthWaveformLabel_);
+  addAndMakeVisible(synthWaveformBox_);
+  addAndMakeVisible(synthChordLabel_);
+  addAndMakeVisible(synthChordBox_);
+  addAndMakeVisible(synthRateLabel_);
+  addAndMakeVisible(synthRateBox_);
 
   status_.setColour(juce::Label::textColourId, juce::Colour(0xff2b5f86));
   status_.setColour(juce::Label::backgroundColourId, juce::Colour(0x82ffffff));
@@ -94,6 +100,32 @@ MainComponent::MainComponent() : canvas_(graph_) {
   inspectorGroup_.setText("Inspector");
   inspectorNodeLabel_.setText("No node selected", juce::dontSendNotification);
   inspectorNodeLabel_.setColour(juce::Label::textColourId, juce::Colour(0xff3c7395));
+
+  synthWaveformLabel_.setText("Wave", juce::dontSendNotification);
+  synthWaveformLabel_.setColour(juce::Label::textColourId, juce::Colour(0xff3a7fa9));
+  synthWaveformBox_.addItem("Sine", 1);
+  synthWaveformBox_.addItem("Saw", 2);
+  synthWaveformBox_.addItem("Square", 3);
+
+  synthChordLabel_.setText("Chord", juce::dontSendNotification);
+  synthChordLabel_.setColour(juce::Label::textColourId, juce::Colour(0xff3a7fa9));
+  synthChordBox_.addItem("Lead (single)", 1);
+  synthChordBox_.addItem("C Major", 2);
+  synthChordBox_.addItem("A Minor", 3);
+  synthChordBox_.addItem("F Maj7", 4);
+  synthChordBox_.addItem("G7", 5);
+  synthChordBox_.addItem("D Minor", 6);
+  synthChordBox_.addItem("E Min7", 7);
+
+  synthRateLabel_.setText("Rate", juce::dontSendNotification);
+  synthRateLabel_.setColour(juce::Label::textColourId, juce::Colour(0xff3a7fa9));
+  synthRateBox_.addItem("1/4", 1);
+  synthRateBox_.addItem("1/8", 2);
+  synthRateBox_.addItem("1/16", 3);
+
+  synthWaveformBox_.onChange = [this] { applyInspectorToSelectedNode(); };
+  synthChordBox_.onChange = [this] { applyInspectorToSelectedNode(); };
+  synthRateBox_.onChange = [this] { applyInspectorToSelectedNode(); };
 
   configureInspectorSlider(gainSlider_, 0.0, 2.0, 0.01);
   configureInspectorSlider(filterCutoffSlider_, 50.0, 10000.0, 1.0);
@@ -233,6 +265,16 @@ void MainComponent::resized() {
 
   auto content = inspectorGroup_.getBounds().reduced(12, 28);
   inspectorNodeLabel_.setBounds(content.removeFromTop(26));
+  auto synthRow = content.removeFromTop(28);
+  synthWaveformLabel_.setBounds(synthRow.removeFromLeft(52));
+  synthWaveformBox_.setBounds(synthRow);
+  auto chordRow = content.removeFromTop(28);
+  synthChordLabel_.setBounds(chordRow.removeFromLeft(52));
+  synthChordBox_.setBounds(chordRow);
+  auto rateRow = content.removeFromTop(28);
+  synthRateLabel_.setBounds(rateRow.removeFromLeft(52));
+  synthRateBox_.setBounds(rateRow);
+  content.removeFromTop(6);
   gainSlider_.setBounds(content.removeFromTop(34));
   filterCutoffSlider_.setBounds(content.removeFromTop(34));
   delayMsSlider_.setBounds(content.removeFromTop(34));
@@ -419,6 +461,9 @@ void MainComponent::refreshInspector() {
   delayMsSlider_.setEnabled(false);
   delayFeedbackSlider_.setEnabled(false);
   delayMixSlider_.setEnabled(false);
+  synthWaveformBox_.setEnabled(false);
+  synthChordBox_.setEnabled(false);
+  synthRateBox_.setEnabled(false);
 
   if (!selectedNodeId_) {
     inspectorNodeLabel_.setText("No node selected", juce::dontSendNotification);
@@ -460,12 +505,24 @@ void MainComponent::refreshInspector() {
   delayMsSlider_.setValue(node->delayMs, juce::dontSendNotification);
   delayFeedbackSlider_.setValue(node->delayFeedback, juce::dontSendNotification);
   delayMixSlider_.setValue(node->delayMix, juce::dontSendNotification);
+  synthWaveformBox_.setSelectedId(node->synthWaveform + 1, juce::dontSendNotification);
+  synthChordBox_.setSelectedId(node->synthChord + 1, juce::dontSendNotification);
+  if (node->synthRateDivision <= 1) {
+    synthRateBox_.setSelectedId(1, juce::dontSendNotification);
+  } else if (node->synthRateDivision <= 2) {
+    synthRateBox_.setSelectedId(2, juce::dontSendNotification);
+  } else {
+    synthRateBox_.setSelectedId(3, juce::dontSendNotification);
+  }
 
   gainSlider_.setEnabled(node->type == graph::NodeType::Gain);
   filterCutoffSlider_.setEnabled(node->type == graph::NodeType::Filter);
   delayMsSlider_.setEnabled(node->type == graph::NodeType::Delay);
   delayFeedbackSlider_.setEnabled(node->type == graph::NodeType::Delay);
   delayMixSlider_.setEnabled(node->type == graph::NodeType::Delay);
+  synthWaveformBox_.setEnabled(node->type == graph::NodeType::Synth);
+  synthChordBox_.setEnabled(node->type == graph::NodeType::Synth);
+  synthRateBox_.setEnabled(node->type == graph::NodeType::Synth);
 
   updatingInspector_ = false;
 }
@@ -487,6 +544,10 @@ void MainComponent::applyInspectorToSelectedNode() {
   node->delayMs = static_cast<float>(delayMsSlider_.getValue());
   node->delayFeedback = static_cast<float>(delayFeedbackSlider_.getValue());
   node->delayMix = static_cast<float>(delayMixSlider_.getValue());
+  node->synthWaveform = std::max(0, synthWaveformBox_.getSelectedId() - 1);
+  node->synthChord = std::max(0, synthChordBox_.getSelectedId() - 1);
+  const int rateId = synthRateBox_.getSelectedId();
+  node->synthRateDivision = (rateId == 3 ? 4 : (rateId == 2 ? 2 : 1));
 
   rebuildAudioPlan();
 }

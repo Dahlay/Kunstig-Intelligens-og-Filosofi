@@ -55,6 +55,12 @@ class MainComponent : public juce::AudioAppComponent {
   juce::Slider delayMsSlider_;
   juce::Slider delayFeedbackSlider_;
   juce::Slider delayMixSlider_;
+  juce::Label synthWaveformLabel_;
+  juce::ComboBox synthWaveformBox_;
+  juce::Label synthChordLabel_;
+  juce::ComboBox synthChordBox_;
+  juce::Label synthRateLabel_;
+  juce::ComboBox synthRateBox_;
 
   std::unique_ptr<juce::FileChooser> fileChooser_;
   bool applyingHistory_{false};
