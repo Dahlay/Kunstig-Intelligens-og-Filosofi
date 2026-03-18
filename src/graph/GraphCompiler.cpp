@@ -20,6 +20,7 @@ using audio::PassthroughProcessor;
 using audio::DrumProcessor;
 using audio::SynthProcessor;
 using audio::ToneProcessor;
+using audio::BassProcessor;
 
 std::unique_ptr<IProcessor> makeProcessor(const Node& node, double sampleRate) {
   switch (node.type) {
@@ -39,6 +40,10 @@ std::unique_ptr<IProcessor> makeProcessor(const Node& node, double sampleRate) {
       return std::make_unique<DelayProcessor>(sampleRate, node.delayMs, node.delayFeedback, node.delayMix);
     case NodeType::Mixer:
       return std::make_unique<MixerProcessor>(2);
+    case NodeType::Bass:
+      return std::make_unique<BassProcessor>(node.bassWaveform, node.bassOctave,
+                                             node.bassRateDivision, node.bassUseMidiDraw,
+                                             node.bassStepMasks);
   }
 
   return std::make_unique<ToneProcessor>(220.0f, sampleRate);

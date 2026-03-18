@@ -450,6 +450,138 @@ class SynthProcessor final : public IProcessor {
   size_t noteCursor_{0};
 };
 
+// ─── Bass Processor ───────────────────────────────────────────────────────────
+class BassProcessor final : public IProcessor {
+ public:
+  BassProcessor(int waveform = 1, int octave = 0, int rateDivision = 2,
+                bool useMidiDraw = false,
+                const std::array<uint16_t, 16>& stepMasks = {{0, 0, 0, 0, 0, 0, 0, 0,
+                                                              0, 0, 0, 0, 0, 0, 0, 0}})
+      : waveform_(std::clamp(waveform, 0, 2)),
+        octave_(std::clamp(octave, 0, 1)),
+        rateDivision_(rateDivision <= 0 ? 1 : rateDivision),
+        useMidiDraw_(useMidiDraw),
+        stepMasks_(stepMasks) {}
+
+  void process(const juce::AudioBuffer<float>&, juce::AudioBuffer<float>& output,
+               const ProcessContext& context) override {
+    output.clear();
+
+    if (!context.playing) {
+      voices_[0].active = false; voices_[0].env = 0.0f;
+      voices_[1].active = false; voices_[1].env = 0.0f;
+      return;
+    }
+
+    const int samplesPerBeat =
+        std::max(1, static_cast<int>(context.sampleRate * (60.0 / std::max(1.0, context.bpm))));
+    const int samplesPerStep = std::max(1, samplesPerBeat / std::max(1, rateDivision_));
+
+    for (int s = 0; s < context.numSamples; ++s) {
+      if ((context.samplePosition + s) % samplesPerStep == 0) {
+        if (useMidiDraw_) {
+          triggerDrawStep();
+        } else {
+          triggerGrooveStep();
+        }
+      }
+
+      float sampleVal = 0.0f;
+      for (auto& v : voices_) {
+        if (!v.active && v.env <= 1.0e-5f) continue;
+        if (v.releasing) {
+          v.env -= kRelease;
+          if (v.env <= 0.0f) { v.env = 0.0f; v.active = false; v.releasing = false; continue; }
+        } else {
+          v.env = std::min(1.0f, v.env + kAttack);
+        }
+        const float inc = static_cast<float>(
+            (2.0 * juce::MathConstants<double>::pi * v.freq) / context.sampleRate);
+        sampleVal += renderWave(v.phase) * (kLevel * v.env);
+        v.phase += inc;
+        if (v.phase > juce::MathConstants<float>::twoPi)
+          v.phase -= juce::MathConstants<float>::twoPi;
+      }
+
+      for (int ch = 0; ch < output.getNumChannels(); ++ch)
+        output.setSample(ch, s, sampleVal);
+    }
+  }
+
+ private:
+  static constexpr float kAttack  = 0.040f;  // punchy ~0.5 ms
+  static constexpr float kRelease = 0.0015f; // ~13 ms tail
+  static constexpr float kLevel   = 0.072f;
+
+  struct Voice {
+    float freq{80.0f};
+    float phase{0.0f};
+    float env{0.0f};
+    bool active{false};
+    bool releasing{false};
+  };
+
+  float bassNoteHz(int semitone) const {
+    const int midiNote = 24 + octave_ * 12 + semitone;
+    return 440.0f * std::pow(2.0f, (static_cast<float>(midiNote) - 69.0f) / 12.0f);
+  }
+
+  void triggerVoice(float hz) {
+    auto& v  = voices_[cursor_ & 1u];
+    auto& ov = voices_[(cursor_ + 1u) & 1u];
+    v.freq = hz; v.phase = 0.0f; v.env = 0.0f;
+    v.active = true; v.releasing = false;
+    if (ov.active && !ov.releasing) ov.releasing = true;
+    ++cursor_;
+  }
+
+  void triggerGrooveStep() {
+    // 16-step walking groove: C root, G fifth, F fourth, with rests
+    static constexpr std::array<int, 16> kGroove = {
+        0, -1, 7, -1, 0, -1, 5, -1, 0, -1, 7, -1, 0, -1, 7, 4};
+    const int semi = kGroove[static_cast<size_t>(grooveStep_ % 16)];
+    ++grooveStep_;
+    if (semi < 0) {
+      for (auto& v : voices_) { if (v.active && !v.releasing) v.releasing = true; }
+      return;
+    }
+    triggerVoice(bassNoteHz(semi));
+  }
+
+  void triggerDrawStep() {
+    const int step = drawStep_ % static_cast<int>(stepMasks_.size());
+    const uint16_t mask = stepMasks_[static_cast<size_t>(step)];
+    ++drawStep_;
+    if (mask == 0u) {
+      for (auto& v : voices_) { if (v.active && !v.releasing) v.releasing = true; }
+      return;
+    }
+    for (int semi = 0; semi < 12; ++semi) {
+      if (mask & static_cast<uint16_t>(1u << semi))
+        triggerVoice(bassNoteHz(semi));
+    }
+  }
+
+  float renderWave(float phase) const {
+    switch (waveform_) {
+      case 1: return (phase / juce::MathConstants<float>::twoPi) * 2.0f - 1.0f;  // saw
+      case 2: return phase < juce::MathConstants<float>::pi ? 1.0f : -1.0f;       // square
+      default: return std::sin(phase);
+    }
+  }
+
+  int waveform_{1};
+  int octave_{0};
+  int rateDivision_{2};
+  bool useMidiDraw_{false};
+  std::array<uint16_t, 16> stepMasks_{{0, 0, 0, 0, 0, 0, 0, 0,
+                                       0, 0, 0, 0, 0, 0, 0, 0}};
+  Voice voices_[2]{};
+  unsigned int cursor_{0};
+  int grooveStep_{0};
+  int drawStep_{0};
+};
+
 class DrumProcessor final : public IProcessor {
  public:
   void process(const juce::AudioBuffer<float>&, juce::AudioBuffer<float>& output,

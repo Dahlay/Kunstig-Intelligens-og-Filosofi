@@ -73,6 +73,16 @@ MainComponent::MainComponent() : canvas_(graph_) {
   addAndMakeVisible(synthMidiDrawToggle_);
   addAndMakeVisible(synthMidiGrid_);
 
+  addAndMakeVisible(bassWaveformLabel_);
+  addAndMakeVisible(bassWaveformBox_);
+  addAndMakeVisible(bassOctaveLabel_);
+  addAndMakeVisible(bassOctaveBox_);
+  addAndMakeVisible(bassRateLabel_);
+  addAndMakeVisible(bassRateBox_);
+  addAndMakeVisible(bassMidiLabel_);
+  addAndMakeVisible(bassMidiDrawToggle_);
+  addAndMakeVisible(bassMidiGrid_);
+
   status_.setColour(juce::Label::textColourId, juce::Colour(0xff2b5f86));
   status_.setColour(juce::Label::backgroundColourId, juce::Colour(0x82ffffff));
   status_.setText("Ready", juce::dontSendNotification);
@@ -149,6 +159,43 @@ MainComponent::MainComponent() : canvas_(graph_) {
     applyInspectorToSelectedNode();
   });
 
+  bassWaveformLabel_.setText("Wave", juce::dontSendNotification);
+  bassWaveformLabel_.setColour(juce::Label::textColourId, juce::Colour(0xff3a7fa9));
+  bassWaveformBox_.addItem("Sine", 1);
+  bassWaveformBox_.addItem("Saw", 2);
+  bassWaveformBox_.addItem("Square", 3);
+  bassWaveformBox_.setSelectedId(2, juce::dontSendNotification);
+
+  bassOctaveLabel_.setText("Octave", juce::dontSendNotification);
+  bassOctaveLabel_.setColour(juce::Label::textColourId, juce::Colour(0xff3a7fa9));
+  bassOctaveBox_.addItem("C1 \xe2\x80\x93 B1", 1);
+  bassOctaveBox_.addItem("C2 \xe2\x80\x93 B2", 2);
+  bassOctaveBox_.setSelectedId(1, juce::dontSendNotification);
+
+  bassRateLabel_.setText("Rate", juce::dontSendNotification);
+  bassRateLabel_.setColour(juce::Label::textColourId, juce::Colour(0xff3a7fa9));
+  bassRateBox_.addItem("1/4", 1);
+  bassRateBox_.addItem("1/8", 2);
+  bassRateBox_.addItem("1/16", 3);
+  bassRateBox_.setSelectedId(2, juce::dontSendNotification);
+
+  bassMidiLabel_.setText("MIDI", juce::dontSendNotification);
+  bassMidiLabel_.setColour(juce::Label::textColourId, juce::Colour(0xff3a7fa9));
+  bassMidiDrawToggle_.setButtonText("Draw");
+  bassMidiDrawToggle_.setColour(juce::ToggleButton::textColourId, juce::Colour(0xff2d638a));
+
+  bassWaveformBox_.onChange = [this] { applyInspectorToSelectedNode(); };
+  bassOctaveBox_.onChange   = [this] { applyInspectorToSelectedNode(); };
+  bassRateBox_.onChange     = [this] { applyInspectorToSelectedNode(); };
+  bassMidiDrawToggle_.onClick = [this] { applyInspectorToSelectedNode(); };
+  bassMidiGrid_.setNotesChangedCallback([this](const ui::SynthMidiGrid::StepMasks&) {
+    applyInspectorToSelectedNode();
+  });
+  bassMidiGrid_.setStepMasks({{0b000000000001u, 0u, 0b000000010000u, 0u,
+                               0b000010000000u, 0u, 0b000000010000u, 0u,
+                               0b000000000001u, 0u, 0b000000010000u, 0u,
+                               0b000010000000u, 0u, 0b000001000000u, 0u}});
+
   configureInspectorSlider(gainSlider_, 0.0, 2.0, 0.01);
   configureInspectorSlider(filterCutoffSlider_, 50.0, 10000.0, 1.0);
   configureInspectorSlider(delayMsSlider_, 1.0, 1000.0, 1.0);
@@ -169,7 +216,7 @@ MainComponent::MainComponent() : canvas_(graph_) {
   const std::vector<std::pair<juce::String, graph::NodeType>> nodeButtons = {
       {"Output", graph::NodeType::Output}, {"Synth", graph::NodeType::Synth}, {"Drum", graph::NodeType::Drum},
       {"Gain", graph::NodeType::Gain},     {"Filter", graph::NodeType::Filter}, {"Delay", graph::NodeType::Delay},
-      {"Mixer", graph::NodeType::Mixer}};
+      {"Mixer", graph::NodeType::Mixer},   {"Bass", graph::NodeType::Bass}};
 
   for (const auto& [label, type] : nodeButtons) {
     auto button = std::make_unique<juce::TextButton>(label);
@@ -303,6 +350,20 @@ void MainComponent::resized() {
   synthMidiLabel_.setBounds(midiRow.removeFromLeft(52));
   synthMidiDrawToggle_.setBounds(midiRow.removeFromLeft(72));
   synthMidiGrid_.setBounds(content.removeFromTop(146));
+  content.removeFromTop(8);
+  auto bassWaveRow = content.removeFromTop(28);
+  bassWaveformLabel_.setBounds(bassWaveRow.removeFromLeft(52));
+  bassWaveformBox_.setBounds(bassWaveRow);
+  auto bassOctRow = content.removeFromTop(28);
+  bassOctaveLabel_.setBounds(bassOctRow.removeFromLeft(52));
+  bassOctaveBox_.setBounds(bassOctRow);
+  auto bassRateRow = content.removeFromTop(28);
+  bassRateLabel_.setBounds(bassRateRow.removeFromLeft(52));
+  bassRateBox_.setBounds(bassRateRow);
+  auto bassMidiRow = content.removeFromTop(24);
+  bassMidiLabel_.setBounds(bassMidiRow.removeFromLeft(52));
+  bassMidiDrawToggle_.setBounds(bassMidiRow.removeFromLeft(72));
+  bassMidiGrid_.setBounds(content.removeFromTop(110));
   content.removeFromTop(6);
   gainSlider_.setBounds(content.removeFromTop(34));
   filterCutoffSlider_.setBounds(content.removeFromTop(34));
@@ -496,11 +557,25 @@ void MainComponent::refreshInspector() {
   synthTemplateBox_.setEnabled(false);
   synthMidiDrawToggle_.setEnabled(false);
   synthMidiGrid_.setEnabled(false);
+  bassWaveformBox_.setEnabled(false);
+  bassOctaveBox_.setEnabled(false);
+  bassRateBox_.setEnabled(false);
+  bassMidiDrawToggle_.setEnabled(false);
+  bassMidiGrid_.setEnabled(false);
   synthTemplateLabel_.setVisible(false);
   synthTemplateBox_.setVisible(false);
   synthMidiLabel_.setVisible(false);
   synthMidiDrawToggle_.setVisible(false);
   synthMidiGrid_.setVisible(false);
+  bassWaveformLabel_.setVisible(false);
+  bassWaveformBox_.setVisible(false);
+  bassOctaveLabel_.setVisible(false);
+  bassOctaveBox_.setVisible(false);
+  bassRateLabel_.setVisible(false);
+  bassRateBox_.setVisible(false);
+  bassMidiLabel_.setVisible(false);
+  bassMidiDrawToggle_.setVisible(false);
+  bassMidiGrid_.setVisible(false);
 
   if (!selectedNodeId_) {
     inspectorNodeLabel_.setText("No node selected", juce::dontSendNotification);
@@ -531,6 +606,8 @@ void MainComponent::refreshInspector() {
         return juce::String("Delay");
       case graph::NodeType::Mixer:
         return juce::String("Mixer");
+      case graph::NodeType::Bass:
+        return juce::String("Bass");
     }
     return juce::String("Node");
   }();
@@ -554,6 +631,17 @@ void MainComponent::refreshInspector() {
   synthTemplateBox_.setSelectedId(node->synthTemplate + 1, juce::dontSendNotification);
   synthMidiDrawToggle_.setToggleState(node->synthUseMidiDraw, juce::dontSendNotification);
   synthMidiGrid_.setStepMasks(node->synthStepMasks);
+  bassWaveformBox_.setSelectedId(node->bassWaveform + 1, juce::dontSendNotification);
+  bassOctaveBox_.setSelectedId(node->bassOctave + 1, juce::dontSendNotification);
+  if (node->bassRateDivision <= 1) {
+    bassRateBox_.setSelectedId(1, juce::dontSendNotification);
+  } else if (node->bassRateDivision <= 2) {
+    bassRateBox_.setSelectedId(2, juce::dontSendNotification);
+  } else {
+    bassRateBox_.setSelectedId(3, juce::dontSendNotification);
+  }
+  bassMidiDrawToggle_.setToggleState(node->bassUseMidiDraw, juce::dontSendNotification);
+  bassMidiGrid_.setStepMasks(node->bassStepMasks);
 
   gainSlider_.setEnabled(node->type == graph::NodeType::Gain);
   filterCutoffSlider_.setEnabled(node->type == graph::NodeType::Filter);
@@ -572,6 +660,22 @@ void MainComponent::refreshInspector() {
   synthMidiLabel_.setVisible(isSynth);
   synthMidiDrawToggle_.setVisible(isSynth);
   synthMidiGrid_.setVisible(isSynth);
+
+  const bool isBass = node->type == graph::NodeType::Bass;
+  bassWaveformBox_.setEnabled(isBass);
+  bassOctaveBox_.setEnabled(isBass);
+  bassRateBox_.setEnabled(isBass);
+  bassMidiDrawToggle_.setEnabled(isBass);
+  bassMidiGrid_.setEnabled(isBass && bassMidiDrawToggle_.getToggleState());
+  bassWaveformLabel_.setVisible(isBass);
+  bassWaveformBox_.setVisible(isBass);
+  bassOctaveLabel_.setVisible(isBass);
+  bassOctaveBox_.setVisible(isBass);
+  bassRateLabel_.setVisible(isBass);
+  bassRateBox_.setVisible(isBass);
+  bassMidiLabel_.setVisible(isBass);
+  bassMidiDrawToggle_.setVisible(isBass);
+  bassMidiGrid_.setVisible(isBass);
 
   updatingInspector_ = false;
 }
@@ -600,11 +704,18 @@ void MainComponent::applyInspectorToSelectedNode() {
   node->synthTemplate = std::max(0, synthTemplateBox_.getSelectedId() - 1);
   node->synthUseMidiDraw = synthMidiDrawToggle_.getToggleState();
   node->synthStepMasks = synthMidiGrid_.getStepMasks();
+  node->bassWaveform = std::max(0, bassWaveformBox_.getSelectedId() - 1);
+  node->bassOctave = std::max(0, bassOctaveBox_.getSelectedId() - 1);
+  const int bassRateId = bassRateBox_.getSelectedId();
+  node->bassRateDivision = (bassRateId == 3 ? 4 : (bassRateId == 2 ? 2 : 1));
+  node->bassUseMidiDraw = bassMidiDrawToggle_.getToggleState();
+  node->bassStepMasks = bassMidiGrid_.getStepMasks();
   if (node->synthUseMidiDraw) {
     synthChordBox_.setSelectedId(1, juce::dontSendNotification);
   }
   synthChordBox_.setEnabled(!node->synthUseMidiDraw);
   synthMidiGrid_.setEnabled(node->synthUseMidiDraw);
+  bassMidiGrid_.setEnabled(node->bassUseMidiDraw);
 
   rebuildAudioPlan();
 }

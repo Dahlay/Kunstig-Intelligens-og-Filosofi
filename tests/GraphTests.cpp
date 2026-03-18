@@ -55,16 +55,19 @@ TEST_CASE("Validator rejects cycle-producing connection") {
 TEST_CASE("Patch serializer roundtrip preserves graph shape") {
   graph::PatchGraph graph;
   const auto synthId = graph.addNode(graph::NodeType::Synth, {10.0f, 12.0f});
+  const auto bassId = graph.addNode(graph::NodeType::Bass, {40.0f, 40.0f});
   const auto gainId = graph.addNode(graph::NodeType::Gain, {100.0f, 120.0f});
   const auto delayId = graph.addNode(graph::NodeType::Delay, {160.0f, 100.0f});
   const auto outId = graph.addNode(graph::NodeType::Output, {240.0f, 60.0f});
 
   const auto* synth = graph.findNode(synthId);
+  auto* bass = graph.findNode(bassId);
   auto* gain = graph.findNode(gainId);
   auto* delay = graph.findNode(delayId);
   auto* synthMutable = graph.findNode(synthId);
   const auto* out = graph.findNode(outId);
   REQUIRE(synth != nullptr);
+  REQUIRE(bass != nullptr);
   REQUIRE(synthMutable != nullptr);
   REQUIRE(gain != nullptr);
   REQUIRE(delay != nullptr);
@@ -91,6 +94,14 @@ TEST_CASE("Patch serializer roundtrip preserves graph shape") {
                                    0u,
                                    0b000010000000u,
                                    0u}};
+  bass->bassWaveform = 2;
+  bass->bassOctave = 1;
+  bass->bassRateDivision = 4;
+  bass->bassUseMidiDraw = true;
+  bass->bassStepMasks = {{0b000000000001u, 0u, 0b000000010000u, 0u,
+                          0b000010000000u, 0u, 0b000001000000u, 0u,
+                          0b000000000001u, 0u, 0b000000010000u, 0u,
+                          0b000010000000u, 0u, 0b000001000000u, 0u}};
   gain->gain = 1.37f;
   delay->delayMs = 420.0f;
   delay->delayFeedback = 0.42f;
@@ -100,6 +111,7 @@ TEST_CASE("Patch serializer roundtrip preserves graph shape") {
   REQUIRE(graph.connect(synth->outputPortIds.front(), gain->inputPortIds.front(), error));
   REQUIRE(graph.connect(gain->outputPortIds.front(), delay->inputPortIds.front(), error));
   REQUIRE(graph.connect(delay->outputPortIds.front(), out->inputPortIds.front(), error));
+  REQUIRE(graph.connect(bass->outputPortIds.front(), out->inputPortIds[1], error));
 
   const auto json = persistence::PatchSerializer::toJson(graph);
 
@@ -112,6 +124,7 @@ TEST_CASE("Patch serializer roundtrip preserves graph shape") {
   bool foundGain = false;
   bool foundDelay = false;
   bool foundSynth = false;
+  bool foundBass = false;
   for (const auto& [_, node] : loaded.getNodes()) {
     if (node.type == graph::NodeType::Synth) {
       foundSynth = true;
@@ -124,6 +137,15 @@ TEST_CASE("Patch serializer roundtrip preserves graph shape") {
       REQUIRE(node.synthStepMasks[1] == 0u);
       REQUIRE(node.synthStepMasks[8] == 0b100000000000u);
       REQUIRE(node.synthStepMasks[15] == 0u);
+    }
+    if (node.type == graph::NodeType::Bass) {
+      foundBass = true;
+      REQUIRE(node.bassWaveform == 2);
+      REQUIRE(node.bassOctave == 1);
+      REQUIRE(node.bassRateDivision == 4);
+      REQUIRE(node.bassUseMidiDraw);
+      REQUIRE(node.bassStepMasks[0] == 0b000000000001u);
+      REQUIRE(node.bassStepMasks[6] == 0b000001000000u);
     }
     if (node.type == graph::NodeType::Gain) {
       foundGain = true;
@@ -138,6 +160,7 @@ TEST_CASE("Patch serializer roundtrip preserves graph shape") {
   }
 
   REQUIRE(foundSynth);
+  REQUIRE(foundBass);
   REQUIRE(foundGain);
   REQUIRE(foundDelay);
 }

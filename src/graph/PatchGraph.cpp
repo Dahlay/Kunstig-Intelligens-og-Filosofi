@@ -34,6 +34,7 @@ std::vector<Port> PatchGraph::makeDefaultPorts(NodeType type, const std::string&
       break;
     case NodeType::Synth:
     case NodeType::Drum:
+    case NodeType::Bass:
       ports.push_back(makePort(PortDirection::Out));
       break;
     case NodeType::Gain:

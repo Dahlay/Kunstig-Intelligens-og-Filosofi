@@ -68,6 +68,16 @@ class MainComponent : public juce::AudioAppComponent {
   juce::ToggleButton synthMidiDrawToggle_;
   ui::SynthMidiGrid synthMidiGrid_;
 
+  juce::Label bassWaveformLabel_;
+  juce::ComboBox bassWaveformBox_;
+  juce::Label bassOctaveLabel_;
+  juce::ComboBox bassOctaveBox_;
+  juce::Label bassRateLabel_;
+  juce::ComboBox bassRateBox_;
+  juce::Label bassMidiLabel_;
+  juce::ToggleButton bassMidiDrawToggle_;
+  ui::SynthMidiGrid bassMidiGrid_;
+
   std::unique_ptr<juce::FileChooser> fileChooser_;
   bool applyingHistory_{false};
   bool updatingInspector_{false};

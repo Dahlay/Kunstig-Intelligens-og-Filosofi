@@ -15,7 +15,8 @@ enum class NodeType {
   Gain,
   Filter,
   Delay,
-  Mixer
+  Mixer,
+  Bass
 };
 
 enum class PortDirection { In, Out };
@@ -50,6 +51,12 @@ struct Node {
   bool synthUseMidiDraw{false};
   std::array<uint16_t, 16> synthStepMasks{{0, 0, 0, 0, 0, 0, 0, 0,
                                             0, 0, 0, 0, 0, 0, 0, 0}};
+  int bassWaveform{1};     // 0=sine, 1=saw, 2=square
+  int bassOctave{0};       // 0=C1-B1 range, 1=C2-B2 range
+  int bassRateDivision{2}; // 1=quarter, 2=eighth, 4=sixteenth
+  bool bassUseMidiDraw{false};
+  std::array<uint16_t, 16> bassStepMasks{{0, 0, 0, 0, 0, 0, 0, 0,
+                                          0, 0, 0, 0, 0, 0, 0, 0}};
   std::vector<std::string> inputPortIds;
   std::vector<std::string> outputPortIds;
 };

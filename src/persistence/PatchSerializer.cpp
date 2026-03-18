@@ -16,7 +16,7 @@ namespace {
 
 std::optional<graph::NodeType> nodeTypeFromInt(int typeValue) {
   if (typeValue < static_cast<int>(graph::NodeType::Output) ||
-      typeValue > static_cast<int>(graph::NodeType::Mixer)) {
+      typeValue > static_cast<int>(graph::NodeType::Bass)) {
     return std::nullopt;
   }
 
@@ -46,7 +46,12 @@ std::string PatchSerializer::toJson(const graph::PatchGraph& graph) {
                            {"synthRateDivision", node.synthRateDivision},
                            {"synthTemplate", node.synthTemplate},
                            {"synthUseMidiDraw", node.synthUseMidiDraw},
-                           {"synthStepMasks", node.synthStepMasks}});
+                           {"synthStepMasks", node.synthStepMasks},
+                           {"bassWaveform", node.bassWaveform},
+                           {"bassOctave", node.bassOctave},
+                           {"bassRateDivision", node.bassRateDivision},
+                           {"bassUseMidiDraw", node.bassUseMidiDraw},
+                           {"bassStepMasks", node.bassStepMasks}});
   }
 
   for (const auto& [edgeId, edge] : graph.getEdges()) {
@@ -170,6 +175,24 @@ bool PatchSerializer::fromJson(const std::string& jsonText, graph::PatchGraph& o
           } else {
             node->synthStepMasks[i] = 0;
           }
+        }
+      }
+      if (n.contains("bassWaveform")) {
+        node->bassWaveform = n["bassWaveform"].get<int>();
+      }
+      if (n.contains("bassOctave")) {
+        node->bassOctave = n["bassOctave"].get<int>();
+      }
+      if (n.contains("bassRateDivision")) {
+        node->bassRateDivision = n["bassRateDivision"].get<int>();
+      }
+      if (n.contains("bassUseMidiDraw")) {
+        node->bassUseMidiDraw = n["bassUseMidiDraw"].get<bool>();
+      }
+      if (n.contains("bassStepMasks") && n["bassStepMasks"].is_array()) {
+        const auto& arr = n["bassStepMasks"];
+        for (size_t i = 0; i < node->bassStepMasks.size() && i < arr.size(); ++i) {
+          node->bassStepMasks[i] = static_cast<uint16_t>(arr[i].get<int>());
         }
       }
     }

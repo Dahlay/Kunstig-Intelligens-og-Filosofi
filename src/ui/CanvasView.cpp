@@ -30,6 +30,8 @@ juce::String nodeName(graph::NodeType t) {
       return "Delay";
     case graph::NodeType::Mixer:
       return "Mixer";
+    case graph::NodeType::Bass:
+      return "Bass";
   }
   return "Node";
 }
@@ -225,8 +227,11 @@ void CanvasView::paint(juce::Graphics& g) {
     juce::DropShadow(juce::Colour(0x667eb8dd), 16, {0, 0})
         .drawForRectangle(g, r.toNearestInt().expanded(2));
 
-    juce::ColourGradient nodeFill(juce::Colour(0xfff4fdff), r.getTopLeft(),
-                                  juce::Colour(0xff91c7e8), r.getBottomRight(), false);
+    const auto fillTop = node.type == graph::NodeType::Bass
+        ? juce::Colour(0xffe8fff4) : juce::Colour(0xfff4fdff);
+    const auto fillBot = node.type == graph::NodeType::Bass
+        ? juce::Colour(0xff4f9b7c) : juce::Colour(0xff91c7e8);
+    juce::ColourGradient nodeFill(fillTop, r.getTopLeft(), fillBot, r.getBottomRight(), false);
     g.setGradientFill(nodeFill);
     g.fillRoundedRectangle(r, 10.0f);
     g.setColour(juce::Colour(0x9cffffff));
