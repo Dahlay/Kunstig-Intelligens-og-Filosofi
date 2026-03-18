@@ -54,6 +54,25 @@ permalink: /eksamen/index.html
 
 ---
 
+## Arbeidskrav 2 – Autonome våpen
+
+<div class="section-box">
+
+- **Tema:** Autonome dødelige våpensystemer (LAWS) og om det er moralsk akseptabelt å bruke dem i krig.
+- **Hva du bør kunne:**
+  - Forklare hva autonome våpen er, med utgangspunkt i F5 og Purves, Jenkins & Strawser.
+  - Skille klart mellom **empiriske utfordringer** (f.eks. feilklassifisering, misbruk, lavere voldsterskel) og **prinsipielle utfordringer** (ansvarsgap, mangel på moralsk dømmekraft, menneskeverd).
+  - Diskutere minst én prinsipiell utfordring i detalj, f.eks. ansvarsgap (Nyholm, Dung, ansvar fra F4) eller om det er akseptabelt å delegere liv‑og‑død‑beslutninger til maskiner.
+- **Nyttige koblinger i kurset:**
+  - F4 (Crawford, Floridi, Vallor): makt, ansvar, dygdsetikk og teknologisk praksis.
+  - F5 (Nyholm, Purves/Jenkins/Strawser, Bostrom, Long et al.): ansvar, autonome våpen, superintelligens og AI‑velferd.
+
+<strong>Eksamenstips:</strong> Tenk på Arbeidskrav 2 som en «mini‑eksamensoppgave» om autonome våpen: samme type forklar–skill–drøft‑struktur vil også være nyttig på eksamen.
+
+</div>
+
+---
+
 <h2 id="begreper">Alle nøkkelbegreper</h2>
 
 ### F1 — Introduksjon og Bevissthet

@@ -7,7 +7,7 @@ permalink: /bevissthet-2/index.html
 <div class="lecture-header">
   <div class="lecture-number">Forelesning 2 · Hedda Hassel Mørch</div>
   <h1>Funksjonalisme &amp; Kriterier for KI-bevissthet</h1>
-  <p class="lecturer">Pensum: Mørch (IIT) · Chalmers (Could a LLM be Conscious?) · Long, Butlin et al. (Consciousness in AI) · Seth · Schneider · Birch</p>
+  <p class="lecturer">Pensum: Chalmers (Could a LLM be Conscious?) · Long, Butlin et al. (Consciousness in AI) · Seth · Mørch (IIT) · Schneider · Birch</p>
   <div class="lecture-meta">
     <span class="lecture-tag">Funksjonalisme</span>
     <span class="lecture-tag">IIT</span>

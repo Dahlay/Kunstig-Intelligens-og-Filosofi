@@ -7,7 +7,7 @@ permalink: /bevissthet-1/index.html
 <div class="lecture-header">
   <div class="lecture-number">Forelesning 1 · Hedda Hassel Mørch</div>
   <h1>Introduksjon &amp; Bevissthet I</h1>
-  <p class="lecturer">Pensum: Nagel · Bayne (other minds, physicalism) · Chalmers (facing up) · Russell &amp; Norvig · Mørch (non-physicalist theories)</p>
+  <p class="lecturer">Pensum: Russell &amp; Norvig · Mørch (non-physicalist theories) · Nagel · Bayne (other minds, physicalism) · Chalmers (facing up)</p>
   <div class="lecture-meta">
     <span class="lecture-tag">Bevissthet</span>
     <span class="lecture-tag">Qualia</span>

@@ -7,7 +7,7 @@ permalink: /ai-velferd/index.html
 <div class="lecture-header">
   <div class="lecture-number">Forelesning 5 · Andreas Brekke Carlsson</div>
   <h1>AI Velferd, Moralsk Status og Fremtid</h1>
-  <p class="lecturer">Pensum: Nyholm · Purves/Jenkins/Strawser · Carlsson · Long et al. · Bostrom (Superintelligens, Posthuman, Deep Utopia) · Chalmers (What do we talk to?) · Shulman &amp; Bostrom</p>
+  <p class="lecturer">Pensum: Nyholm · Purves/Jenkins/Strawser · Carlsson · Long et al. (Taking AI Welfare Seriously) · Dung · Bostrom (Superintelligens, Posthuman) · Chalmers (What do we talk to?) · Shulman &amp; Bostrom</p>
   <div class="lecture-meta">
     <span class="lecture-tag">Moralsk status</span>
     <span class="lecture-tag">Superintelligens</span>
@@ -180,6 +180,27 @@ Long, Sebo et al.: Vi er usikre på om KI-systemer lider. Men:
 **Svar**: Ikke *enhver* — men når sannsynligheten er ikke-neglisjerbar (og vi skaper milliarder av KI-instanser), er den moralske risikoen reell.
 
 </details>
+
+---
+
+## Arbeidskrav 2 – Autonome våpen (kort oversikt)
+
+<div class="section-box">
+
+- **Definisjon:** Autonome våpen (LAWS) er våpen som kan identifisere, velge ut og angripe mål uten at et menneske tar selve avfyringsbeslutningen i øyeblikket.
+- **Empiriske utfordringer:** Fare for tekniske feil og skjevheter (feilklassifisering av sivile/stridende), misbruk av regimer/aktører uten respekt for folkeretten, og mulig lavere terskel for å gå til krig fordi egne soldater ikke risikerer liv.
+- **Prinsipielle utfordringer:**
+  - **Ansvarsgap:** Vanskelig å peke ut en tydelig ansvarlig aktør når et autonomt system gjør noe galt (kobling til ansvarsgap fra F4).
+  - **Mangel på moralsk dømmekraft:** Purves, Jenkins & Strawser argumenterer for at bare moralske agenter med forståelse av kontekst kan ta rettferdige liv‑og‑død‑beslutninger.
+  - **Menneskeverd og dehumanisering:** Vallor‑inspirert bekymring: å bli drept av en algoritme kan undergrave respekten for personer som moralske individer.
+- **Relevante tekster:**
+  - Purves, Jenkins & Strawser om autonome våpen og moralsk bedømmelse (F5)
+  - Nyholm og Dung om ansvar, ansvarsgap og «meaningful human control»
+  - Crawford og Vallor (F4) om makt, ansvar og hvilke typer praksiser teknologi fremmer
+
+<strong>Husk til oppgaven:</strong> Du bør (1) forklare hva autonome våpen er, (2) skille tydelig mellom empiriske og prinsipielle utfordringer, og (3) drøfte minst én prinsipiell utfordring i detalj med støtte i disse tekstene.
+
+</div>
 
 ---
 

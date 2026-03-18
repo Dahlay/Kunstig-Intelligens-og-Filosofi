@@ -49,11 +49,6 @@ Målet med siden er å gjøre dette lett å repetere, ikke å gjenta hele pensum
     <h3>AI Velferd og Fremtid</h3>
     <p>Om KI kan bli moralsk relevant, og hvorfor superintelligens og autonome våpen bekymrer filosofer.</p>
   </a>
-  <a class="lecture-card" href="/kunnskap-ai/">
-      <div class="card-num">Forelesning 6 · Anna Drozdzowicz</div>
-    <h3>Kunnskap og Forståelse</h3>
-    <p>Hva kunnskap og forståelse er, og hvorfor språkmodeller både imponerer og hallusinerer.</p>
-  </a>
 </div>
 
 ---
@@ -85,7 +80,7 @@ Målet med siden er å gjøre dette lett å repetere, ikke å gjenta hele pensum
 | Kan KI noen gang være bevisst? | F1, F2, F5 |
 | Hva er funksjonalisme, og holder det? | F2 |
 | Kan maskiner virkelig tenke — eller bare simulere? | F3 |
-| Hva betyr det at KI «forstår» noe? | F3, F6 |
+| Hva betyr det at KI «forstår» noe? | F3 |
 | Hvem er ansvarlig når KI tar feil beslutninger? | F4 |
 | Bør KI ha moralsk status eller rettigheter? | F5 |
 | Hva er superintelligens og posthumanisme? | F5 |
